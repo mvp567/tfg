@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  carrer: MyString
+  : MyString
+  numero: MyString
+  : 1
+  codi_postal: MyString
+  : MyString
+  ciutat_id: MyString
+  : 1
+
+two:
+  carrer: MyString
+  : MyString
+  numero: MyString
+  : 1
+  codi_postal: MyString
+  : MyString
+  ciutat_id: MyString
+  : 1

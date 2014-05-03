@@ -1,0 +1,2 @@
+class Monument < Pdi
+end

@@ -1,0 +1,124 @@
+
+
+<h1>Pdis#new</h1>
+ 
+
+<%= form_tag('/pdis/new', method: :get) do %>
+	<div>
+		<% tipus_pdi_array = [['Restaurant'], ['Botiga'], ['Museu'], ['Monument'], ['Discoteca'], ['Entreteniment'], ['Hotel'], ['Vista']] %>
+		
+		<%= select_tag(:tipus_pdi, options_for_select(tipus_pdi_array)) %>
+	</div>
+	<div><%= submit_tag "noelvull" %></div>
+<% end %>
+
+
+<% if @pdi %>
+
+  <%= form_for @pdi, url: {controller: "pdis", action: "create"} do |p| %>
+	<%= hidden_field_tag :tipus, @tipus_valor %>
+	
+	<%# Codi mapa + input autocomplete(pac-input) %>
+	<input id="pac-input" class="controls" type="text"
+        placeholder="Marc, introdueix una localització">
+    <div id="type-selector" class="controls">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
+
+      <input type="radio" name="type" id="changetype-establishment">
+      <label for="changetype-establishment">Establishments</label>
+
+      <input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Geocodes</label>
+    </div>
+	<div id="map-canvas"> </div>
+	<%# END Codi mapa + input autocomplete(pac-input) %>
+
+	<div>
+		<%= label_tag(:etiquetes, "Afegeix etiquetes:") %>	
+		<%= text_field_tag(:etiquetes) %>
+	</div>
+
+
+	<%= p.fields_for :localitzacio, @pdi.localitzacio do |localitzacio_camps| %>
+		<div>
+			<%#= p.label :localitzacio %>
+			<%= localitzacio_camps.text_field :carrer, :value => 'nena casas' %>
+			<%= localitzacio_camps.text_field :numero, :value => '66' %>
+			<%= localitzacio_camps.text_field :codi_postal, :value => '08017' %>
+			<%= localitzacio_camps.text_field :ciutat_id%>
+			<div>
+				<%#= @pdi.errors[:etiqueta].first %>
+			</div>
+		</div>
+	<% end %>
+
+	<div>
+		<%= p.label :nom %>	
+		<%= p.text_field :nom %>
+		<div>
+			<%= @pdi.errors[:nom].first %>
+		</div>
+	</div>
+
+
+	<div>
+		<%= p.label :observacions %>	
+		<%= p.text_field :observacions %>
+		<div>
+			<%= @pdi.errors[:observacions].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :horari %>	
+		<%= p.text_field :horari %>
+		<div>
+			<%= @pdi.errors[:horari].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :etiquetes %>
+		<%#= p.text_field :etiqueta %>
+		<div>
+			<%#= @pdi.errors[:etiqueta].first %>
+		</div>
+	</div>
+
+	
+
+<% if @tipus_valor == "Restaurant" %>
+	<div>
+		<%= p.label :forquilles %>
+		<%#= p.text_field :etiqueta %>
+		<div>
+			<%#= @pdi.errors[:etiqueta].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :preu_aprox %>
+		<%#= p.text_field :etiqueta %>
+		<div>
+			<%#= @pdi.errors[:etiqueta].first %>
+		</div>
+	</div>
+<% end %>
+	
+
+	<% if @tipus_valor == "Hotel" %>
+	<div>
+		<%= p.label :estrelles %>
+		<%#= p.text_field :etiqueta %>
+		<div>
+			<%#= @pdi.errors[:etiqueta].first %>
+		</div>
+	</div>
+
+<% end %>
+	<%= p.submit "Guardar" %>
+
+  <% end %>
+
+<% end %>

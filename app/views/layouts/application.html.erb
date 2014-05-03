@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dubidu - PoI i rutes</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true&language=sp">
+	</script>
+  
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+
+</head>
+<body>
+<p>Aquí anirià la capçalera de la pàgina amb títol i botonets</p>
+<div style="position: relative; left: 200px;">
+<%= yield %>
+<div>
+</body>
+</html>

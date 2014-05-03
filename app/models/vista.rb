@@ -1,0 +1,2 @@
+class Vista < Pdi
+end

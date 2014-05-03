@@ -1,0 +1,19 @@
+<h1>Demo#hello</h1>
+<p>Hello hello world!</p>
+<a href="/demo/index"> index page click </a>
+
+<br />
+
+<!-- the rails way of a link -->
+<%= link_to('Hello page 2', {:action => 'index'}) %>
+
+<br />
+
+ID: <%= params[:id] %><br />
+ID: <%= @id %><br />
+Page: <%= @page %><br />
+Next Page: <%= @page.to_i + 1 %><br />
+
+<hr />
+
+<%= params.inspect %>

@@ -1,0 +1,32 @@
+
+Rake
+rake db:create # crea BD
+rake -T # per veure tots els ruby make (tasks)
+
+Migrations
+rails generate migration NomMigration
+
+Model
+# crea Migration alhora que el Model
+rails generate model User
+# crea app/model/user.rb, db/migrate/xxxx_create_users.rb
+
+# modifiquem la migration per dir-li que creï una taula, amb certes columnes, etc. I executem la migració:
+rake db:migrate
+
+# per fer rollback
+rake db:migration VERSION=0
+
+# per veure en quin estat estan les migracions (i veure el seu id)
+rake db:migrate:status
+
+# per carregar una migració en particular
+rake db:migration VERSION=xxxxxxxx # on xxxxx = id que veiem quan fem status
+
+
+rails console
+#per a crear dades per exemple
+user = User.new
+user.first_name = "Maria"
+user.new_record? # if true, és que encara no s'ha salvat a BD
+user.save #el guarda a la bd

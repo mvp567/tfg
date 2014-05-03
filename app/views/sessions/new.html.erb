@@ -1,0 +1,16 @@
+<h1>Iniciar sessió</h1>
+
+<%= form_tag sessions_path do %>
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+  <div>
+    <%= label_tag :nom_usuari, nil, class: 'titol_camp2' %>
+    <%= text_field_tag :nom_usuari, params[:nom_usuari], class: 'contingut_camp2' %>
+  </div>
+  <div>
+    <%= label_tag :password, nil, class: 'titol_camp2' %>
+    <%= password_field_tag :password, nil, class: 'contingut_camp2' %>
+  </div>
+  <div><%= submit_tag "Entra" %></div>
+<% end %>

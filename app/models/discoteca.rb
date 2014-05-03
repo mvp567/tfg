@@ -1,0 +1,2 @@
+class Discoteca < Pdi
+end
