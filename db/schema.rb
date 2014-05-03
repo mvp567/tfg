@@ -80,15 +80,6 @@ ActiveRecord::Schema.define(version: 20140501214646) do
     t.datetime "updated_at"
   end
 
-  create_table "localitzacios", force: true do |t|
-    t.string   "carrer"
-    t.string   "numero"
-    t.string   "codi_postal"
-    t.integer  "ciutat_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "pais", force: true do |t|
     t.string   "nom"
     t.datetime "created_at"
@@ -99,11 +90,19 @@ ActiveRecord::Schema.define(version: 20140501214646) do
     t.string   "nom"
     t.string   "observacions"
     t.string   "horari"
-    t.string   "type"
-    t.integer  "localitzacio_id"
-    t.integer  "usuari_id"
-    t.integer  "forquilles"
+    t.string   "telefon"
+    t.string   "web"
     t.decimal  "preu_aprox"
+    t.integer  "nivell_preu"
+    t.string   "type"
+    t.integer  "usuari_id"
+    t.string   "adreca"
+    t.string   "codi_postal"
+    t.string   "localitat"
+    t.string   "pais"
+    t.string   "coord_lat"
+    t.string   "coord_lng"
+    t.integer  "forquilles"
     t.integer  "classe_restaurant_id"
     t.integer  "classe_botiga_id"
     t.integer  "classe_museu_id"

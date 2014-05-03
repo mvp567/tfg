@@ -39,20 +39,6 @@
 		<%= text_field_tag(:etiquetes) %>
 	</div>
 
-
-	<%= p.fields_for :localitzacio, @pdi.localitzacio do |localitzacio_camps| %>
-		<div>
-			<%#= p.label :localitzacio %>
-			<%= localitzacio_camps.text_field :carrer, :value => 'nena casas' %>
-			<%= localitzacio_camps.text_field :numero, :value => '66' %>
-			<%= localitzacio_camps.text_field :codi_postal, :value => '08017' %>
-			<%= localitzacio_camps.text_field :ciutat_id%>
-			<div>
-				<%#= @pdi.errors[:etiqueta].first %>
-			</div>
-		</div>
-	<% end %>
-
 	<div>
 		<%= p.label :nom %>	
 		<%= p.text_field :nom %>
@@ -79,14 +65,73 @@
 	</div>
 
 	<div>
-		<%= p.label :etiquetes %>
-		<%#= p.text_field :etiqueta %>
+		<%= p.label :telefon %>	
+		<%= p.text_field :telefon %>
 		<div>
-			<%#= @pdi.errors[:etiqueta].first %>
+			<%= @pdi.errors[:telefon].first %>
 		</div>
 	</div>
 
+	<div>
+		<%= p.label :web %>	
+		<%= p.text_field :web %>
+		<div>
+			<%= @pdi.errors[:web].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :preu_aprox %>	
+		<%= p.text_field :preu_aprox %>
+		<div>
+			<%= @pdi.errors[:preu_aprox].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :nivell_preu %>	
+		<%= p.text_field :nivell_preu %>
+		<div>
+			<%= @pdi.errors[:nivell_preu].first %>
+		</div>
+	</div>
+
+<h2> Camps localització </h2>
 	
+	<div>
+		<%= p.label :adreca %>	
+		<%= p.text_field :adreca %>
+		<div>
+			<%= @pdi.errors[:adreca].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :codi_postal %>	
+		<%= p.text_field :codi_postal %>
+		<div>
+			<%= @pdi.errors[:codi_postal].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :localitat %>	
+		<%= p.text_field :localitat %>
+		<div>
+			<%= @pdi.errors[:localitat].first %>
+		</div>
+	</div>
+
+	<div>
+		<%= p.label :pais %>	
+		<%= p.text_field :pais %>
+		<div>
+			<%= @pdi.errors[:pais].first %>
+		</div>
+	</div>
+
+	<%= p.text_field :coord_lat %>
+	<%= p.text_field :coord_lng %>
 
 <% if @tipus_valor == "Restaurant" %>
 	<div>
@@ -97,13 +142,6 @@
 		</div>
 	</div>
 
-	<div>
-		<%= p.label :preu_aprox %>
-		<%#= p.text_field :etiqueta %>
-		<div>
-			<%#= @pdi.errors[:etiqueta].first %>
-		</div>
-	</div>
 <% end %>
 	
 

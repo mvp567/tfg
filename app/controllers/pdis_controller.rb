@@ -4,7 +4,6 @@ class PdisController < ApplicationController
     if params[:tipus_pdi] != nil
 
       @pdi = params[:tipus_pdi].constantize.new
-      @pdi.localitzacio = Localitzacio.new
       @tipus_valor = params[:tipus_pdi]
     end
     
@@ -33,8 +32,8 @@ class PdisController < ApplicationController
 
   def create_params
   		params.require(params[:tipus].downcase.to_sym).permit(
-        :nom, :observacions, :horari, :forquilles, :preu_aprox, :estrelles, 
-        :localitzacio_attributes => [:carrer, :numero, :codi_postal])
+        :nom, :observacions, :horari, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles,
+        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng)
   end
 
 

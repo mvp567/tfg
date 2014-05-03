@@ -4,13 +4,23 @@ class CreatePdis < ActiveRecord::Migration
       t.string :nom
       t.string :observacions
       t.string :horari
+      t.string :telefon
+      t.string :web
+      t.decimal :preu_aprox
+      t.integer :nivell_preu
       t.string :type
-      t.integer :localitzacio_id
       t.integer :usuari_id
       
+      # camps localització:
+      t.string :adreca
+      t.string :codi_postal
+      t.string :localitat
+      t.string :pais
+      t.string :coord_lat
+      t.string :coord_lng
+
       # camps específics restaurant:
       t.integer :forquilles
-      t.decimal :preu_aprox
       t.integer :classe_restaurant_id
 
       # camps específics botiga:
@@ -25,7 +35,6 @@ class CreatePdis < ActiveRecord::Migration
       # camps específics hotel:
       t.integer :estrelles
 
-      #coordenades (varis camps?)
       t.timestamps
     end
   end

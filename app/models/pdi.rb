@@ -1,11 +1,8 @@
 class Pdi < ActiveRecord::Base
-	belongs_to :localitzacio
 	belongs_to :usuari
 
 	has_many :etiquetes_pdis
 	has_many :favorits
-
-	accepts_nested_attributes_for :localitzacio
 
 	def el_meu_save(etiquetes)
 		etiquetes_a_enllacar = []

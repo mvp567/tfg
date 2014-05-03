@@ -1,13 +1,3 @@
-var componentForm = {
-  street_number: 'short_name',
-  route: 'long_name',
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  country: 'long_name',
-  postal_code: 'short_name'
-};
-
-
 function initialize() {
   var mapOptions = {
     center: new google.maps.LatLng(41.39147225212958, 2.1668240462890935),
@@ -36,10 +26,37 @@ function initialize() {
     infowindow.close();
     marker.setVisible(false);
     var place = autocomplete.getPlace();
-    //fillInAddress();
-    $('#restaurant_localitzacio_attributes_ciutat_id').val(place.formatted_address);
-    $('#restaurant_nom').val(place.name);
-    $('#restaurant_localitzacio_attributes_numero').val(place.geometry.location.A);
+
+    var tipus = $('#tipus').val().toLowerCase();
+
+    $('#' + tipus + '_nom').val(place.name);
+    $('#' + tipus + '_horari').val(place.opening_hours);
+    $('#' + tipus + '_telefon').val(place.formatted_phone_number);
+    $('#' + tipus + '_web').val(place.website);
+    $('#' + tipus + '_nivell_preu').val(place.price_level);
+
+    
+    $('#' + tipus + '_adreca').val(place.formatted_address);
+    $('#' + tipus + '_coord_lat').val(place.geometry.location.A);
+    $('#' + tipus + '_coord_lng').val(place.geometry.location.k);
+    
+
+
+    //fillInAddress(tipus);
+
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (addressType == 'locality') {
+        $('#' + tipus + '_localitat').val(place.address_components[i].long_name);
+      }
+      else if (addressType == 'country') {
+        $('#' + tipus + '_pais').val(place.address_components[i].long_name);
+      }
+      else if (addressType == 'postal_code') {
+        $('#' + tipus + '_codi_postal').val(place.address_components[i].long_name);
+      }
+  }
+    
     if (!place.geometry) {
       return;
     }
@@ -74,33 +91,6 @@ function initialize() {
     infowindow.open(map, marker);
   });
 
-// [START region_fillform]
-function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-
-  /*for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }*/
-
-  // Get each component of the address from the place details
-  // and fill the corresponding field on the form.
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    /*if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
-    }*/
-    if (addressType == 'route') {
-      $('#restaurant_localitzacio_attributes_carrer').val(place.address_components[0].types['route']);
-    }
-    else if (addressType == 'route') {
-      $('#restaurant_localitzacio_attributes_carrer').val(place.address_components[0].types['route']);
-    }
-  }
-}
-// [END region_fillform]
 
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
