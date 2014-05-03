@@ -18,7 +18,7 @@
   <%= form_for @pdi, url: {controller: "pdis", action: "create"} do |p| %>
 	<%= hidden_field_tag :tipus, @tipus_valor %>
 	
-	<%# Codi mapa + input autocomplete(pac-input) %>
+	<%# BEGIN Codi mapa + input autocomplete(pac-input) %>
 	<input id="pac-input" class="controls" type="text"
         placeholder="Marc, introdueix una localització">
     <div id="type-selector" class="controls">
