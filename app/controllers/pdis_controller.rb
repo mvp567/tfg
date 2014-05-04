@@ -2,9 +2,12 @@ class PdisController < ApplicationController
 
   def new
     if params[:tipus_pdi] != nil
-
       @pdi = params[:tipus_pdi].constantize.new
       @tipus_valor = params[:tipus_pdi]
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
     
   end
