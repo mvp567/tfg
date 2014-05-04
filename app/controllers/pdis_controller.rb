@@ -4,12 +4,8 @@ class PdisController < ApplicationController
     if params[:tipus_pdi] != nil
       @pdi = params[:tipus_pdi].constantize.new
       @tipus_valor = params[:tipus_pdi]
-      respond_to do |format|
-        format.html
-        format.js
-      end
+
     end
-    
   end
 
   def create
@@ -19,18 +15,32 @@ class PdisController < ApplicationController
 
   	@pdi = params[:tipus].constantize.new(create_params)
     @pdi.usuari = usuari_actual
-    # primer: creo Localització amb la localització de google maps
-    # @pdi.localitzacio = amb l'objecte acabat de crear
-    # per les etiquetes, miro si la taula etiqueta la té, sino la creo, i creo link etiqueta-pdi a la taula etiquetes_pdis
-
     @etiquetes = params[:etiquetes]
 
     @pdi.el_meu_save(@etiquetes)
-  	#@pdi.save
-    
+  	# @pdi.save
+  end
+
+  def edit
+    @pdi = Pdi.find(params[:id])
+  end
+
+  def update
+    @pdi = Pdi.find(params[:id])
+
+    #if 
+      @pdi.update(update_params)
+      #redirect_to @pdi ## PROBLEM no existeix hotel_url
+    #else
+     # render 'edit'
+    #end
   end
 
   def show
+  end
+
+  def index
+    @pdis = Pdi.all
   end
 
   def create_params
@@ -39,5 +49,8 @@ class PdisController < ApplicationController
         :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng)
   end
 
-
+  def update_params
+      params.require(params[:tipus].downcase.to_sym).permit(
+        :nom, :observacions, :horari, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles)
+  end
 end

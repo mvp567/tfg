@@ -1,26 +1,15 @@
-<div id="pdi-new">
-<h1>Pdis#new</h1>
- 
-
-<%#= form_tag('/pdis/new', method: :get) do %>
-<%= form_tag('/pdis/new', method: :get, id: 'tagid') do %>
-
-	<div>
-		<% tipus_pdi_array = [['Restaurant'], ['Botiga'], ['Museu'], ['Monument'], ['Discoteca'], ['Entreteniment'], ['Hotel'], ['Vista']] %>
-		
-		<%= select_tag(:tipus_pdi, options_for_select(tipus_pdi_array)) %>
-	</div>
-	<div><%= submit_tag "noelvull" %></div>
-<% end %>
+<h1>Pdis#edit</h1>
 
 
-<% if @pdi %>
+<%= hidden_field_tag :accio, "editant" %>
+  <%= form_for @pdi, url: {controller: "pdis", action: "update"} do |p| %>
+		<%= hidden_field_tag :tipus, @pdi.type %>
+	<%# TODO localització mapa no es pot editar. treure input 
+		carregar marker al mapa
+	%>
 
-  <%= form_for @pdi, url: {controller: "pdis", action: "create"} do |p| %>
-	<%= hidden_field_tag :tipus, @tipus_valor %>
-	
 	<%# BEGIN Codi mapa + input autocomplete(pac-input) %>
-	<input id="pac-input" class="controls" type="text"
+	<!--<input id="pac-input" class="controls" type="text"
         placeholder="Marc, introdueix una localització">
     <div id="type-selector" class="controls">
       <input type="radio" name="type" id="changetype-all" checked="checked">
@@ -31,15 +20,12 @@
 
       <input type="radio" name="type" id="changetype-geocode">
       <label for="changetype-geocode">Geocodes</label>
-    </div>
+    </div>-->
 	<div id="map-canvas"> </div>
 	<%# END Codi mapa + input autocomplete(pac-input) %>
 
-	<div>
-		<%= label_tag(:etiquetes, "Afegeix etiquetes:") %>	
-		<%= text_field_tag(:etiquetes) %>
-	</div>
 
+	<!-- carregar etiquetes de l'associació -->
 	<div>
 		<%= p.label :nom %>	
 		<%= p.text_field :nom %>
@@ -134,7 +120,7 @@
 	<%= p.text_field :coord_lat %>
 	<%= p.text_field :coord_lng %>
 
-<% if @tipus_valor == "Restaurant" %>
+<% if @pdi.type == "Restaurant" %>
 	<div>
 		<%= p.label :forquilles %>
 		<%#= p.text_field :etiqueta %>
@@ -146,7 +132,7 @@
 <% end %>
 	
 
-	<% if @tipus_valor == "Hotel" %>
+	<% if @pdi.type == "Hotel" %>
 	<div>
 		<%= p.label :estrelles %>
 		<%#= p.text_field :etiqueta %>
@@ -160,5 +146,4 @@
 
   <% end %>
 
-<% end %>
-</div>
+

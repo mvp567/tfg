@@ -1,28 +1,13 @@
 Tfg::Application.routes.draw do
 
-  get "pdis/new"
-  get "pdis/show"
-  get "sessions/new"
-  get "sessions/create"
-  get "poi/new"
-  get "poi/create"
-  #root 'demo#index'
-  #get 'demo/index'
-  get 'demo/other_hello'
 
-  get 'poi/new'
-
+  root 'pdis#index'
+  
   resources :usuaris, :only => [:new, :create] 
   resources :sessions, :only => [:new, :create] 
-  resources :pdis, :only => [:new, :create, :show] 
+  resources :pdis, :only => [:new, :create, :edit, :update, :show, :index] 
 
 
-
-  match "demo/index2",
-  :to => "demo#index",
-  :via => :get
-
-  match ':controller(/:action(/:id))', :via => :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
