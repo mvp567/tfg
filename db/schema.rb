@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501214646) do
+ActiveRecord::Schema.define(version: 20140506212849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20140501214646) do
     t.integer  "nivell_preu"
     t.string   "type"
     t.integer  "usuari_id"
+    t.integer  "usuari_modificador_id"
     t.string   "adreca"
     t.string   "codi_postal"
     t.string   "localitat"
@@ -108,6 +109,22 @@ ActiveRecord::Schema.define(version: 20140501214646) do
     t.integer  "classe_museu_id"
     t.integer  "classe_entreteniment_id"
     t.integer  "estrelles"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pdis_rutaturisticas", force: true do |t|
+    t.integer  "pdi_id"
+    t.integer  "ruta_turistica_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ruta_turisticas", force: true do |t|
+    t.string   "nom"
+    t.string   "temps"
+    t.integer  "usuari_id"
+    t.integer  "usuari_modificador_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

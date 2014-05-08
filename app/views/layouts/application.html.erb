@@ -6,9 +6,10 @@
 
   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true&language=sp">
-	</script>
+  </script>
   
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag :defaults, :cache => true %>
   <%= csrf_meta_tags %>
 
 

@@ -1,0 +1,39 @@
+<h1>RutaTuristicas#new</h1>
+
+<%= form_for @rt, url: {controller: "ruta_turisticas", action: "create"} do |p| %>
+	
+	<%#= TODO posar markers al mapa cada cop que es fa una cerca exitosa de pdi%>
+	<div id="map-canvas"> </div>
+
+	<div>
+		<%= p.label :nom %>	
+		<%= p.text_field :nom %>
+		<div>
+			<%= @rt.errors[:nom].first %>
+		</div>
+	</div>
+	<div>
+		<%= p.label :temps %>	
+		<%= p.text_field :temps %>
+		<div>
+			<%= @rt.errors[:temps].first %>
+		</div>
+	</div>
+
+	<%#= @rt.pdis_rutaturisticas.each do |pdi_rt| %>
+		<%#= p.fields_for :pdis_rutaturistica, pdi_rt.pdi do |builder| %>
+		<%= p.fields_for :pdis_rutaturisticas do |builder| %>
+			<p>
+					<%#= builder.label :pdi, "PDI: " %>
+					<%#= builder.text_field :pdi, :rows => 3 %>
+					<%#= TODO ha de ser autocomplete amb PDIS de la bd %>
+					
+					<%= builder.label :pdi, "PDI: " %>
+					<%= builder.text_field :pdi, :rows => 3 %>
+					<%= text_field_tag(:pdinom) %>		
+			</p>
+		<%#= end %>
+	<% end %>
+	<%= p.submit "Guardar" %>
+
+  <% end %>

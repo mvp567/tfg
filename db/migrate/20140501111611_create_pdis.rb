@@ -10,6 +10,7 @@ class CreatePdis < ActiveRecord::Migration
       t.integer :nivell_preu
       t.string :type
       t.integer :usuari_id
+      t.integer :usuari_modificador_id
       
       # camps localització:
       t.string :adreca

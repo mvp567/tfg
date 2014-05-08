@@ -1,7 +1,9 @@
 class Pdi < ActiveRecord::Base
 	belongs_to :usuari
+	belongs_to :usuari_modificador, :class_name => "Usuari", :foreign_key => "usuari_modificador_id"
 
 	has_many :etiquetes_pdis
+	has_many :pdis_rutaturisticas
 	has_many :favorits
 
 	def el_meu_save(etiquetes)

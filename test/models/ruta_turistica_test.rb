@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PoiTest < ActiveSupport::TestCase
+class RutaTuristicaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
