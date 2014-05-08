@@ -2,7 +2,7 @@ class RutaTuristicasController < ApplicationController
   def new
     @rt = RutaTuristica.new
     #@rt.pdis_rutaturisticas = PdisRutaturistica.new
-    3.times { 
+    2.times { 
       @rt.pdis_rutaturisticas.build 
       #@rt.pdis_rutaturisticas.last.pdi = Pdi.new
       #@pdi_rt = PdisRutaturistica.new
@@ -25,7 +25,9 @@ class RutaTuristicasController < ApplicationController
     end
 
     @rt.pdis_rutaturisticas = ll
-byebug
+
+    #PdisRutaturistica.first.pdis.map{|cs| cs.nom}
+
     @rt.save
 
 
