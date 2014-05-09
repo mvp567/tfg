@@ -1,9 +1,5 @@
 <h1>RutaTuristicas#new</h1>
-<script>
-		$(document).ready(function () {
-			$("#datepicker").datepicker();
-		});
-	</script>
+
 <%= form_for @rt, url: {controller: "ruta_turisticas", action: "create"} do |p| %>
 	
 	<%#= TODO posar markers al mapa cada cop que es fa una cerca exitosa de pdi%>
@@ -24,30 +20,20 @@
 		</div>
 	</div>
 
-	<%= text_field_tag(:noupdi) %>
-
-	<%#= @rt.pdis_rutaturisticas.each do |pdi_rt| %>
-		<%#= p.fields_for :pdis_rutaturistica, pdi_rt.pdi do |builder| %>
-		<ul id="sortable">
-		<%= p.fields_for :pdis_rutaturisticas do |builder| %>
+			<ul id="sortable">
+			<%= p.fields_for :pdis_rutaturisticas do |builder| %>
+				<%= render 'pdis_rutaturistica_fields', :f => builder %>
+			<% end %>
 			<p>
-					<%#= builder.label :pdi, "PDI: " %>
-					<%#= builder.text_field :pdi, :rows => 3 %>
-					<%#= TODO ha de ser autocomplete amb PDIS de la bd %>
-					
-					<%#= builder.label :pdi, "PDI: " %>
-					<%#= builder.text_field :pdi, :rows => 3 %>
+				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas %>
 			</p>
-			
-				<%#= render :partial => 'pdis_rutaturistica_fields', :f => builder, :locals => {:nompdi => 'holanom'} %>
-				<%= render(:partial => 'pdis_rutaturistica_fields', :locals => {:nompdi => 'holanom', :f => builder}) %>
-			
-		<%#= end %>
-	<% end %>
+	</ul>
 
-	
-	<p><%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas %></p>
-</ul>
 	<%= p.submit "Guardar" %>
 
+	<div class="ui-widget">
+	  <label for="tags">Tags: </label>
+	  <input id="tags">
+	</div>
+	
   <% end %>
