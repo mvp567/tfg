@@ -33,7 +33,10 @@ $(function() {
 } );*/
 </script>
 
-<li class="ui-state-default ui-widget">
+<%#= ui-state-default ui-widget %>
+<li class="fields">
   <%= f.label :pdi, "PDI" %>
   <%= f.text_field :pdi, class: "text_autocomplete"%>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to_function "Treure\'l", "remove_fields(this)" %>
 </li>

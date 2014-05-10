@@ -22,13 +22,14 @@ class RutaTuristicasController < ApplicationController
     ll = []
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
 
-    cont = 0
     llista.each do |a|
       # ll << PdisRutaturistica.new(:pdi_id => llista[cont].first[1].to_i)
-      selected_pdi = Pdi.find_by_nom(llista[cont].first[1])
-      selected_pdi_id = selected_pdi.id
-      ll << PdisRutaturistica.new(:pdi_id => selected_pdi_id)
-      cont = cont + 1 
+      
+      if a.values[1] == "false" && !a.first[1].empty?
+        selected_pdi = Pdi.find_by_nom(a.first[1])
+        selected_pdi_id = selected_pdi.id
+        ll << PdisRutaturistica.new(:pdi_id => selected_pdi_id)
+      end
     end
 
     @rt.pdis_rutaturisticas = ll
@@ -39,7 +40,8 @@ class RutaTuristicasController < ApplicationController
 
 
     #@rt.el_meu_save(@pdis)
-
+    # TODO, si salva pq la llista no està buida, anar a create correctament. Sino anar a no creada
+    
   end
 
   def show
