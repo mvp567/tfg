@@ -5,35 +5,9 @@ $(function() {
     $( "#sortable" ).disableSelection();
 });
 
-
+/*
 $(function() {
-    /*var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];*/
-
-    $( "#tags" ).autocomplete({
-      //source: availableTags
+      $(".text_autocomplete").autocomplete ({
       source: function( request, response ) {
         $.ajax({
            url: '/pdis',
@@ -47,15 +21,12 @@ $(function() {
           success: function( data ) {
             response( $.map( data, function( item ) {
               return {
-                label: item.nom, //+ (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                value: item.nom 
-                //item.id
-              }
-            }));
+                label: item.nom,
+                value: item.nom
+              } //end return
+            })); //end response
           }
         });
       }
-
-
     });
-  });
+  });*/

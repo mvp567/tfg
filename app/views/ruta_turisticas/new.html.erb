@@ -22,18 +22,19 @@
 
 			<ul id="sortable">
 			<%= p.fields_for :pdis_rutaturisticas do |builder| %>
-				<%= render 'pdis_rutaturistica_fields', :f => builder %>
+				<%= render 'pdis_rutaturistica_fields', :f => builder, :locals => {:nompdi => '3'} %>
 			<% end %>
 			<p>
 				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas %>
 			</p>
 	</ul>
 
+
+		<p>
+
+		</p>
 	<%= p.submit "Guardar" %>
 
-	<div class="ui-widget">
-	  <label for="tags">Tags: </label>
-	  <input id="tags">
-	</div>
+
 	
   <% end %>

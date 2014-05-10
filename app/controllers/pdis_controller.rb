@@ -40,22 +40,18 @@ class PdisController < ApplicationController
   end
 
   def index
-
-    #if params[:request_term].null?
-
-     # @pdis = Pdi.all
-    #else
-      cercar = params[:request_term]
-      @pdis = Pdi.where("nom LIKE ?", "%#{cercar}%" )
-
-      #"name LIKE ? OR postal_code like ?", "%#{search}%", "%#{search}%"
-    #end
-    
-
+    cercar = params[:request_term]
+     if cercar.nil?
+      @pdis = Pdi.all
+    else
+      @pdis = Pdi.where("nom ILIKE ?", "%#{cercar}%" )
+    end
+     
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => @pdis.to_json }
     end
+
   end
 
   def create_params

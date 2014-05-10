@@ -1,5 +1,39 @@
+<script type="text/javascript">
+// ho poso qui pq sino els PDIs creats a partir del link add_fields, no funcionen
+$(function() {
+      $(".text_autocomplete").autocomplete ({
+      source: function( request, response ) {
+        $.ajax({
+           url: '/pdis',
+           dataType: "json",
+           data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 12,
+            request_term: request.term
+           }, // end data
+          success: function( data ) {
+            response( $.map( data, function( item ) {
+              return {
+              	id: item.id,
+                label: item.nom,
+                value: item.nom
+              } // end return
+            })); // end response
+          } // end success
+        }); // end ajax
+      } // end source
 
-<li class="ui-state-default">
+    }); // end autocomplete
+  }); // end function
+
+/*$( ".provant" ).on( "autocompleteselect", function( a,b) {
+	alert(b.item.id);
+	$('#selected_pdi').val(b.item.id);
+} );*/
+</script>
+
+<li class="ui-state-default ui-widget">
   <%= f.label :pdi, "PDI" %>
-  <%= f.text_field :pdi%>
+  <%= f.text_field :pdi, class: "text_autocomplete"%>
 </li>

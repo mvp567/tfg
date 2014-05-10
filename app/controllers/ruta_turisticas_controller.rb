@@ -11,16 +11,23 @@ class RutaTuristicasController < ApplicationController
   end
 
   def create
+    
+    #mirar params si esta selected_pdi
     @rt = RutaTuristica.new(create_params)
     @rt.usuari = usuari_actual
 
 
     # TODO posar això fora del controlador. Ha d'anar al model de ruta turística  
+
     ll = []
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
+
     cont = 0
     llista.each do |a|
-      ll << PdisRutaturistica.new(:pdi_id => llista[cont].first[1].to_i)
+      # ll << PdisRutaturistica.new(:pdi_id => llista[cont].first[1].to_i)
+      selected_pdi = Pdi.find_by_nom(llista[cont].first[1])
+      selected_pdi_id = selected_pdi.id
+      ll << PdisRutaturistica.new(:pdi_id => selected_pdi_id)
       cont = cont + 1 
     end
 
