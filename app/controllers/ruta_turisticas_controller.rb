@@ -11,7 +11,8 @@ class RutaTuristicasController < ApplicationController
   end
 
   def create
-    
+    #@pdi_lat = params[:pdi_lat]
+    #byebug
     #mirar params si esta selected_pdi
     @rt = RutaTuristica.new(create_params)
     @rt.usuari = usuari_actual
@@ -48,12 +49,21 @@ class RutaTuristicasController < ApplicationController
   end
 
   def index
+    @rts = RutaTuristica.all
   end
 
   def edit
+
+    @rt = RutaTuristica.find(params[:id])
+    byebug
+    # carregar pdis
   end
 
   def update
+    @rt = RutaTuristica.find(params[:id])
+
+    # processar pdis
+    @rt.update(create_params)
   end
   
   def create_params

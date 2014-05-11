@@ -17,13 +17,23 @@ $(function() {
               return {
               	id: item.id,
                 label: item.nom,
-                value: item.nom
+                value: item.nom,
+                lat: item.coord_lat,
+                lng: item.coord_lng
               } // end return
             })); // end response
           } // end success
         }); // end ajax
-      } // end source
-
+      }, // end source
+      select: function (a, b) {
+        var myLatlng = new google.maps.LatLng(b.item.lat,b.item.lng);
+        var marker = new google.maps.Marker({
+          position: myLatlng
+        });
+        marker.setMap(window.map);
+        window.map.setCenter(marker.getPosition());
+        window.map.setZoom(13);
+      }
     }); // end autocomplete
   }); // end function
 

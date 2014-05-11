@@ -1,2 +1,17 @@
 <h1>RutaTuristicas#index</h1>
 <p>Find me in app/views/ruta_turisticas/index.html.erb</p>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="2"></th>
+  </tr>
+<% @rts.each do |rt| %>
+  <tr>
+    <td><%= rt.id %></td>
+    <td><%= rt.nom %></td>
+    <td><%= link_to 'Show', ruta_turistica_path(rt) %></td>
+    <td><%= link_to 'Edit', edit_ruta_turistica_path(rt) %></td>
+  </tr>
+<% end %>
+</table>

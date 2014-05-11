@@ -9,14 +9,13 @@
   </script>
   
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag :defaults, :cache => true %>
   <%= csrf_meta_tags %>
 
 </head>
 <body>
 <p>Aquí anirià la capçalera de la pàgina amb títol i botonets</p>
-<div style="position: relative; left: 200px;">
+<div class="container">
 <%= yield %>
-<div>
+</div>
 </body>
 </html>

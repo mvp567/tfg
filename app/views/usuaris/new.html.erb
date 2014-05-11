@@ -1,58 +1,62 @@
 <h2>Enregistra't!</h2>
-<%= form_for @usuari do |u| %>
-	<div class="<%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star"></span> Star
+</button>
+
+<%= form_for @usuari, :role => "form" do |u| %>
+	<div class="form-group <%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :nom_usuari, :class=>"titol_camp" %>	
-		<%= u.text_field :nom_usuari, :class=>"contingut_camp" %>
+		<%= u.text_field :nom_usuari, :class=>"form-control contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:nom_usuari].first %>
 		</div>
 	</div>
 
-	<div class="<%= @usuari.errors[:email].present? ? 'camp_amb_errors' : '' %>">
+	<div class="form-group <%= @usuari.errors[:email].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :email, :class=>"titol_camp" %>	
-		<%= u.email_field :email, :class=>"contingut_camp" %>
+		<%= u.email_field :email, :class=>"form-control contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:email].first %>
 		</div>
 	</div>
 
-	<div class="<%= @usuari.errors[:password].present? ? 'camp_amb_errors' : '' %>">
+	<div class="form-group <%= @usuari.errors[:password].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :password, :class=>"titol_camp" %>	
-		<%= u.password_field :password, :class=>"contingut_camp" %>
+		<%= u.password_field :password, :class=>"form-control contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:password].first %>
 		</div>
 	</div>
 
-	<div class="<%= @usuari.errors[:password_confirmation].present? ? 'camp_amb_errors' : '' %>">
+	<div class="form-group <%= @usuari.errors[:password_confirmation].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :password_confirmation, :class=>"titol_camp" %>	
-		<%= u.password_field :password_confirmation, :class=>"contingut_camp" %>
+		<%= u.password_field :password_confirmation, :class=>"form-control contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:password_confirmation].first %>
 		</div>
 	</div>
 
-	<div>
+	<div class="form-group">
 		<%= u.label :nom, :class=>"titol_camp" %>	
-		<%= u.text_field :nom, :class=>"contingut_camp" %>
+		<%= u.text_field :nom, :class=>"form-control contingut_camp" %>
 	</div>
 
-	<div>
+	<div class="form-group">
 		<%= u.label :cognom, :class=>"titol_camp" %>	
-		<%= u.text_field :cognom, :class=>"contingut_camp" %>
+		<%= u.text_field :cognom, :class=>"form-control contingut_camp" %>
 	</div>
 
-	<div>
+	<div class="form-group">
 		<%= u.label :edat, :class=>"titol_camp" %>	
-		<%= u.number_field :edat, :class=>"contingut_camp" %>
+		<%= u.number_field :edat, :class=>"form-control contingut_camp" %>
 	</div>
 
-	<div>
+	<div class="form-group">
 		<%= u.label :sexe, :class=>"titol_camp" %>	
 	<span class="contingut_camp">
-		<%= u.radio_button(:sexe, "Dona") %>
+		<%= u.radio_button(:sexe, "Dona", :class =>"radio")%>
 		<%= label_tag(:sexe, "Dona") %>
-		<%= u.radio_button(:sexe, "Home") %>
+		<%= u.radio_button(:sexe, "Home", :class =>"radio") %>
 		<%= label_tag(:sexe, "Home") %>
 	</span>
 	</div>

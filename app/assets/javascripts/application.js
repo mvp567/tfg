@@ -13,6 +13,8 @@
 
 //= require ../../../vendor/assets/javascripts/jquery-1.11.1
 //= require ../../../vendor/assets/javascripts/jquery-ui-1.10.4
+//= require bootstrap.min
+//= require ../../../vendor/assets/javascripts/bootstrap/js/bootstrap
 
 //= require_tree .
 
@@ -21,4 +23,9 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).parent().before(content.replace(regexp, new_id));
+}
+
+function remove_fields(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".fields").hide();
 }

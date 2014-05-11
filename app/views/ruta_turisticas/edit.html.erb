@@ -1,2 +1,40 @@
 <h1>RutaTuristicas#edit</h1>
-<p>Find me in app/views/ruta_turisticas/edit.html.erb</p>
+
+<%= form_for @rt, url: {controller: "ruta_turisticas", action: "update"} do |p| %>
+	
+	<%#= TODO posar markers al mapa cada cop que es fa una cerca exitosa de pdi%>
+	<div id="map-canvas"> </div>
+
+	<div>
+		<%= p.label :nom %>	
+		<%= p.text_field :nom %>
+		<div>
+			<%= @rt.errors[:nom].first %>
+		</div>
+	</div>
+	<div>
+		<%= p.label :temps %>	
+		<%= p.text_field :temps %>
+		<div>
+			<%= @rt.errors[:temps].first %>
+		</div>
+	</div>
+
+			<ul id="sortable">
+			<%= p.fields_for :pdis_rutaturisticas do |builder| %>
+				<%= render 'pdis_rutaturistica_fields', :f => builder, :locals => {:nompdi => '3'} %>
+			<% end %>
+			<p>
+				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas %>
+			</p>
+	</ul>
+
+
+		<p>
+
+		</p>
+	<%= p.submit "Guardar" %>
+
+
+	
+  <% end %>
