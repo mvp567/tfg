@@ -10,15 +10,31 @@
  *
  * la carrega del jquery ui no funciona.per aixo de moment lhe posat directament a app/views/layout/application
  *= ../../../vendor/assets/stylesheets/ui-lightness/jquery-ui-1.10.4 
- *= require bootstrap.min
- *= ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap
- *= ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap-theme
+
 
  *= require_self
  *= require_tree .
  */
 
 body {
-	font-family: Verdana;
-	font-size: 11px;
+	font-family: "Lucida Sans Unicode";
+	font-size: 12px;
+}
+
+input[type=submit] {
+  background-color: #98f5e1;
+  border: none;
+  color: #0b705a;
+  padding: 0em 0.75em;
+  cursor: pointer;
+  height: 2em;
+  font-size: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+input[type=submit]:hover, input[type=submit]:focus {
+  outline: none;
+  background-color: #51eecc;
 }

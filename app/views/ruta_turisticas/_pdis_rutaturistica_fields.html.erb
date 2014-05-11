@@ -25,14 +25,17 @@ $(function() {
           } // end success
         }); // end ajax
       }, // end source
-      select: function (a, b) {
-        var myLatlng = new google.maps.LatLng(b.item.lat,b.item.lng);
+      select: function (event, UI) {
+        var element = $(event.target);
+        var myLatlng = new google.maps.LatLng(UI.item.lat,UI.item.lng);
         var marker = new google.maps.Marker({
           position: myLatlng
         });
         marker.setMap(window.map);
         window.map.setCenter(marker.getPosition());
         window.map.setZoom(13);
+        element.siblings("input[type=hidden]").val(UI.item.id);
+
       }
     }); // end autocomplete
   }); // end function
@@ -45,8 +48,11 @@ $(function() {
 
 <%#= ui-state-default ui-widget %>
 <li class="fields">
-  <%= f.label :pdi, "PDI" %>
-  <%= f.text_field :pdi, class: "text_autocomplete"%>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to_function "Treure\'l", "remove_fields(this)" %>
+  <%= f.fields_for :pdi do |p| %>
+    <%= p.hidden_field :id %>
+    <%= p.label :nom, "PDI" %>
+    <%= p.text_field :nom, class: "text_autocomplete"%>
+    <%= p.hidden_field :_destroy %>
+    <%= link_to_function "Treure\'l", "remove_fields(this)" %>
+  <% end %>
 </li>

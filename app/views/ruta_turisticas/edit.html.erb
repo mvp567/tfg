@@ -1,8 +1,8 @@
 <h1>RutaTuristicas#edit</h1>
 
+<%= hidden_field_tag :accio, "creant_rt" %>
 <%= form_for @rt, url: {controller: "ruta_turisticas", action: "update"} do |p| %>
 	
-	<%#= TODO posar markers al mapa cada cop que es fa una cerca exitosa de pdi%>
 	<div id="map-canvas"> </div>
 
 	<div>
@@ -25,7 +25,7 @@
 				<%= render 'pdis_rutaturistica_fields', :f => builder, :locals => {:nompdi => '3'} %>
 			<% end %>
 			<p>
-				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas %>
+				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas, :pdi %>
 			</p>
 	</ul>
 

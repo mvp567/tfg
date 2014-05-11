@@ -13,8 +13,7 @@
 
 //= require ../../../vendor/assets/javascripts/jquery-1.11.1
 //= require ../../../vendor/assets/javascripts/jquery-ui-1.10.4
-//= require bootstrap.min
-//= require ../../../vendor/assets/javascripts/bootstrap/js/bootstrap
+
 
 //= require_tree .
 
