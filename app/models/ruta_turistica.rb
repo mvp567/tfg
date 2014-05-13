@@ -7,6 +7,7 @@ class RutaTuristica < ActiveRecord::Base
 	has_many :pdis_rutaturisticas, :dependent => :destroy
 	accepts_nested_attributes_for :pdis_rutaturisticas, :allow_destroy => true
 
+	has_many :valoracios
 	
 
 end

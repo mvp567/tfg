@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titol: MyString
+  opinio: MyString
+  punts: 1
+  usuari_id: 1
+  ruta_turistica_id: 1
+  pdi_id: 1
+
+two:
+  titol: MyString
+  opinio: MyString
+  punts: 1
+  usuari_id: 1
+  ruta_turistica_id: 1
+  pdi_id: 1

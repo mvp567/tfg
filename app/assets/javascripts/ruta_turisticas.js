@@ -1,6 +1,20 @@
 $(function() {
     $( "#sortable" ).sortable({
-      placeholder: "ui-state-highlight"
+      placeholder: "ui-state-highlight",
+      stop: function(e, ui) {
+        var cont = 1;
+      $("li").each(function(event, ui) {
+        var element = $(event.target);
+        $(ui).children("input[id$='ordre']").val(cont);
+        cont++;
+      })
+
+
+        //alert("New position: " + ui.item.index());
+            console.log($.map($(this).find('li'), function(el) {
+                return el.id + ' = ' + $(el).index();
+            }));
+        }
     });
     $( "#sortable" ).disableSelection();
 });

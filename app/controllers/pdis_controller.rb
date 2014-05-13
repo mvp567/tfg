@@ -29,6 +29,7 @@ class PdisController < ApplicationController
     @pdi = Pdi.find(params[:id])
 
     #if 
+    byebug
       @pdi.update(update_params)
       #redirect_to @pdi ## PROBLEM no existeix hotel_url
     #else
@@ -40,6 +41,11 @@ class PdisController < ApplicationController
   end
 
   def index
+
+    # usuari_actual.badges
+    # retorna:
+    # [#<Merit::Badge id: 1, name: "primer-pdi", level: nil, description: nil, custom_fields: nil>]
+
     cercar = params[:request_term]
      if cercar.nil?
       @pdis = Pdi.all

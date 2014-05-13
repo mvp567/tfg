@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RegistreControllerTest < ActionController::TestCase
+class ValoracioTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

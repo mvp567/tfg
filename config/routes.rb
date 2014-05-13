@@ -2,10 +2,11 @@ Tfg::Application.routes.draw do
 
   root 'pdis#index'
   
-  resources :usuaris, :only => [:new, :create] 
-  resources :sessions, :only => [:new, :create] 
+  resources :usuaris#, :only => [:new, :create] 
+  resources :sessions#, :only => [:new, :create] 
   resources :pdis
   resources :ruta_turisticas 
+  resources :valoracios
 
 
 

@@ -1,8 +1,13 @@
+<script type="text/javascript">
+	// provisional
+
+</script>
 <h1>RutaTuristicas#edit</h1>
 
-<%= hidden_field_tag :accio, "creant_rt" %>
+<%= hidden_field_tag :accio, "editant_rt" %>
+
 <%= form_for @rt, url: {controller: "ruta_turisticas", action: "update"} do |p| %>
-	
+
 	<div id="map-canvas"> </div>
 
 	<div>
@@ -22,7 +27,8 @@
 
 			<ul id="sortable">
 			<%= p.fields_for :pdis_rutaturisticas do |builder| %>
-				<%= render 'pdis_rutaturistica_fields', :f => builder, :locals => {:nompdi => '3'} %>
+			  	<%#= builder.text_field :ordre %>
+				<%= render 'pdis_rutaturistica_fields', :f => builder%>
 			<% end %>
 			<p>
 				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas, :pdi %>

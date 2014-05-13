@@ -137,7 +137,29 @@ function initialize() {
       };
       window.map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
-    }
+  }
+  else if ($('#accio').val() == "editant_rt") {
+    var mapOptions = {
+        zoom: 1,
+        center: new google.maps.LatLng(-34.397, 150.644)
+      };
+      window.map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+    $("li").each(function(index, value){
+      var lat = $(value).children( "input[id$='lat']" ).val();
+      var lng = $(value).children( "input[id$='lng']" ).val();
+    
+        var myLatlng = new google.maps.LatLng(lat,lng);
+          var marker = new google.maps.Marker({
+            position: myLatlng
+          });
+          marker.setMap(window.map);
+          window.map.setCenter(marker.getPosition());
+          window.map.setZoom(11);
+        });
+  }
+
   
 }
 

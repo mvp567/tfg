@@ -25,17 +25,21 @@ $(function() {
           } // end success
         }); // end ajax
       }, // end source
-      select: function (event, UI) {
-        var element = $(event.target);
-        var myLatlng = new google.maps.LatLng(UI.item.lat,UI.item.lng);
+      select: function (event, ui) {
+        // Per a cada select de l'autocomplete, es carrega el marker en el mapa
+        var myLatlng = new google.maps.LatLng(ui.item.lat,ui.item.lng);
         var marker = new google.maps.Marker({
           position: myLatlng
         });
         marker.setMap(window.map);
         window.map.setCenter(marker.getPosition());
         window.map.setZoom(13);
-        element.siblings("input[type=hidden]").val(UI.item.id);
 
+        // omplo camps ocults (hidden) per tenir més info del model PDI
+        var element = $(event.target);
+        element.siblings("input[id$='id']").val(ui.item.id);
+        element.siblings("input[id$='lat']").val(ui.item.lat);
+        element.siblings("input[id$='lng']").val(ui.item.lng);
       }
     }); // end autocomplete
   }); // end function
@@ -48,8 +52,11 @@ $(function() {
 
 <%#= ui-state-default ui-widget %>
 <li class="fields">
+  <%= f.text_field :ordre %>
   <%= f.fields_for :pdi do |p| %>
     <%= p.hidden_field :id %>
+    <%= p.hidden_field :coord_lat %>
+    <%= p.hidden_field :coord_lng %>
     <%= p.label :nom, "PDI" %>
     <%= p.text_field :nom, class: "text_autocomplete"%>
     <%= p.hidden_field :_destroy %>

@@ -1,4 +1,6 @@
 class Usuari < ActiveRecord::Base
+  has_merit
+
 	validates :nom_usuari, :presence => true, :uniqueness => true, :length => { :in => 3..20}
 	validates :email, :presence => true, :uniqueness => true, :format => { :with    => /.+@.+\..+/i }
 	validates :password, :presence => true, :length => {:in => 6..20}, :on => :create
@@ -6,7 +8,6 @@ class Usuari < ActiveRecord::Base
 
 	has_many :favorits
 	has_many :pdis
-	#def self.authenticate(usuari)
-	#	LoginAutenticador.new(usuari).authenticate
-	#end
+	has_many :valoracios
+
 end

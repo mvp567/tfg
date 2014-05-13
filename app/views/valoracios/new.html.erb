@@ -1,0 +1,24 @@
+<h1>Valoracios#new</h1>
+<%= form_for @valoracio do |v| %>
+	<div>
+		<%= v.label :titol, :class=>"titol_camp" %>	
+		<%= v.text_field :titol, :class=>"contingut_camp" %>
+
+	</div>
+
+	<div>
+		<%= v.label :opinio, :class=>"titol_camp" %>	
+		<%= v.text_area :opinio, :class=>"contingut_camp" %>
+
+	</div>
+
+	<div>
+		<%= v.label :punts, :class=>"titol_camp" %>	
+		<%= v.number_field :punts, :class=>"contingut_camp" %>
+
+	</div>
+
+	<div>
+		<%= v.submit "Guarda", :class=>"contingut_camp_boto"  %>
+	</div>
+<% end %>

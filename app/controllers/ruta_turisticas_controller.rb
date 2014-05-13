@@ -17,9 +17,12 @@ class RutaTuristicasController < ApplicationController
     ll = []
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
 
+    # TODO si pdi_seleccionat no existeix com a pdi. proposar-li a l'usuari de crear-lo. i redirigir-lo a la pàgina de pdi_create
+    ordreRuta = 1
     llista.each do |a|
-      pdi_seleccionat = a.values[0]["id"]
-      ll << PdisRutaturistica.new(:pdi_id => pdi_seleccionat)
+      pdi_seleccionat = a.values[1]["id"]
+      ll << PdisRutaturistica.new(:pdi_id => pdi_seleccionat, :ordre => ordreRuta)
+      ordreRuta = ordreRuta + 1
     end
 
     @rt.pdis_rutaturisticas = ll
@@ -45,7 +48,6 @@ class RutaTuristicasController < ApplicationController
   def edit
 
     @rt = RutaTuristica.find(params[:id])
-    byebug
     # carregar pdis
   end
 
@@ -53,7 +55,8 @@ class RutaTuristicasController < ApplicationController
     @rt = RutaTuristica.find(params[:id])
 
     # TODO mirar si se n'han tret o afegit. crear o treure instàncies a pdis_rutaturist
-    @rt.update(create_params)
+    byebug
+    @rt.update(update_params)
   end
   
   def create_params
@@ -61,5 +64,9 @@ class RutaTuristicasController < ApplicationController
        :pdis_rutaturistica_attributes => [:pdi])
   end
        
+  def update_params
+    params.require(:ruta_turistica).permit(:id, :nom, :temps,
+       :pdis_rutaturisticas_attributes => [:ordre, :id, :pdi_attributes => [:id, :nom]]) # si hi poso :ordre en els attributes, em deixa de guardar el pdi id
+  end
 
 end
