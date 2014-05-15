@@ -7,6 +7,7 @@ class Pdi < ActiveRecord::Base
 	has_many :favorits
 	has_many :valoracios
 
+
 	def el_meu_save(etiquetes)
 		etiquetes_a_enllacar = []
 

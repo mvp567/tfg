@@ -128,7 +128,26 @@ function initialize() {
     // To add the marker to the map, call setMap();
     marker.setMap(map);
   }
+  else if ($('#accio').val() == "mostrant") {
+    var lat = $('#coord_lat').val();
+    var lng = $('#coord_lng').val();
+    var myLatlng = new google.maps.LatLng(lat,lng);
+    var mapOptions = {
+      zoom: 16,
+      center: myLatlng
+    }
 
+    $("#map-canvas").empty();
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      title:"Hello World!"
+    });
+
+    // To add the marker to the map, call setMap();
+    marker.setMap(map);
+  }
   else if ($('#accio').val() == "creant_rt") {
     //var map;
       var mapOptions = {

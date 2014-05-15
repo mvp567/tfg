@@ -5,6 +5,8 @@ class RutaTuristicasController < ApplicationController
       @rt.pdis_rutaturisticas.build
       @rt.pdis_rutaturisticas.last.pdi = Pdi.new
     }
+
+    @valoracio = Valoracio.new
   end
 
   def create
@@ -13,26 +15,12 @@ class RutaTuristicasController < ApplicationController
     @rt.usuari = usuari_actual
 
 
-    # TODO posar això fora del controlador. Ha d'anar al model de ruta turística  
-    ll = []
+    
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
 
     # TODO si pdi_seleccionat no existeix com a pdi. proposar-li a l'usuari de crear-lo. i redirigir-lo a la pàgina de pdi_create
-    ordreRuta = 1
-    llista.each do |a|
-      pdi_seleccionat = a.values[1]["id"]
-      ll << PdisRutaturistica.new(:pdi_id => pdi_seleccionat, :ordre => ordreRuta)
-      ordreRuta = ordreRuta + 1
-    end
 
-    @rt.pdis_rutaturisticas = ll
-
-    #PdisRutaturistica.first.pdis.map{|cs| cs.nom}
-
-    @rt.save
-
-
-    #@rt.el_meu_save(@pdis)
+    @rt.el_meu_save(llista)
 
     # TODO, si salva pq la llista no està buida, anar a create correctament. Sino anar a no creada
     
@@ -53,10 +41,21 @@ class RutaTuristicasController < ApplicationController
 
   def update
     @rt = RutaTuristica.find(params[:id])
+    #cont = 0
+    #@rt.pdis_rutaturisticas.each do |association|
+      #association.update_attributes(:ordre =>  params[:ruta_turistica][:pdis_rutaturisticas_attributes].values[cont][:ordre], :pdi_id => params[:ruta_turistica][:pdis_rutaturisticas_attributes].values[cont][:pdi_attributes][:id])
+      #cont = cont + 1
+    # end
+    #@rt.update(update_params)
 
     # TODO mirar si se n'han tret o afegit. crear o treure instàncies a pdis_rutaturist
+    llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
+    
+    @rt.pdis_rutaturisticas.destroy_all
     byebug
-    @rt.update(update_params)
+    @rt.el_meu_save(llista)
+    
+
   end
   
   def create_params
@@ -67,6 +66,8 @@ class RutaTuristicasController < ApplicationController
   def update_params
     params.require(:ruta_turistica).permit(:id, :nom, :temps,
        :pdis_rutaturisticas_attributes => [:ordre, :id, :pdi_attributes => [:id, :nom]]) # si hi poso :ordre en els attributes, em deixa de guardar el pdi id
+  #params.require(:ruta_turistica).permit(:id, :nom, :temps,
+   #    :pdis_rutaturistica_attributes => [:pdi, :pdi_attributes]) # si hi poso :ordre en els attributes, em deixa de guardar el pdi id
   end
 
 end

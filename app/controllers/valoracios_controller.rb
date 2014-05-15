@@ -15,6 +15,6 @@ class ValoraciosController < ApplicationController
   end
 
   def create_params
-  		params.require(:valoracio).permit(:titol, :opinion, :punts)
+  		params.require(:valoracio).permit(:titol, :opinio, :punts)
     end
 end

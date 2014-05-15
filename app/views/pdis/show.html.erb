@@ -1,2 +1,52 @@
 <h1>Pdis#show</h1>
-<p>Find me in app/views/pdis/show.html.erb</p>
+
+
+<%= hidden_field_tag :accio, "mostrant" %>
+		<%= hidden_field_tag :tipus, @pdi.type %>
+
+	<div id="map-canvas"> </div>
+	<%= hidden_field_tag @pdi.coord_lat, @pdi.coord_lat, {:id => 'coord_lat'} %>
+	<%= hidden_field_tag @pdi.coord_lng, @pdi.coord_lng, {:id => 'coord_lng'} %>
+	<!-- carregar etiquetes de l'associació -->
+
+		<%= label_tag @pdi.nom %>	
+
+		<%= label_tag @pdi.observacions %>	
+
+		<%= label_tag @pdi.horari %>	
+
+		<%= label_tag @pdi.telefon %>	
+		
+		<%= label_tag @pdi.web %>	
+		<%= label_tag @pdi.preu_aprox %>	
+		<%= label_tag @pdi.nivell_preu %>	
+
+<h2> Camps localització </h2>
+	
+	
+		<%= label_tag @pdi.adreca %>	
+		<%= label_tag @pdi.codi_postal %>	
+		<%= label_tag @pdi.localitat %>
+		<%= label_tag @pdi.pais %>
+
+
+<% if @pdi.type == "Restaurant" %>
+	
+		<%= label_tag @pdi.forquilles %>
+		
+<% end %>
+	
+
+	<% if @pdi.type == "Hotel" %>
+	
+		<%= label_tag @pdi.estrelles %>
+		
+<% end %>
+	
+
+<%#= QUESTION ha de ser object: @valoracio o @valoracio_pdi ?? %>
+  <%= render 'valoracios/new', object: @valoracio%>
+
+
+
+

@@ -22,7 +22,7 @@
 
 	<ul id="sortable">
 			<%= p.fields_for :pdis_rutaturisticas do |builder| %>
-				<%= render 'pdis_rutaturistica_fields', :f => builder, :locals => {:nompdi => '3'} %>
+				<%= render 'pdis_rutaturistica_fields', :f => builder %>
 			<% end %>
 			<p>
 				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas, :pdi %>
@@ -34,3 +34,5 @@
 
 	
   <% end %>
+
+

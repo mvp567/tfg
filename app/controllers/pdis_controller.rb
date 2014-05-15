@@ -38,6 +38,7 @@ class PdisController < ApplicationController
   end
 
   def show
+    @pdi = Pdi.find(params[:id])
   end
 
   def index
