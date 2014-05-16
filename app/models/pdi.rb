@@ -7,6 +7,7 @@ class Pdi < ActiveRecord::Base
 	has_many :favorits
 	has_many :valoracios
 
+	
 
 	def el_meu_save(etiquetes)
 		etiquetes_a_enllacar = []
@@ -21,4 +22,18 @@ class Pdi < ActiveRecord::Base
 		
 		self.save
 	end
+
+	def calcula_punts
+		valoracions = self.valoracios
+		if valoracions.count > 0
+			puntsPDI = 0
+    		valoracions.each do |v|
+      			puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+   			end
+      		puntsPDI /= valoracions.count
+      		self.punts = puntsPDI
+      		self.save
+      	end
+	end
+
 end

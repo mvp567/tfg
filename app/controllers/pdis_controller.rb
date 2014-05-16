@@ -39,6 +39,18 @@ class PdisController < ApplicationController
 
   def show
     @pdi = Pdi.find(params[:id])
+    @valoracions = @pdi.valoracios
+
+    #@puntsPDI = @pdi.calcula_punts
+    #@puntsPDI = @pdi.punts
+
+    #TODO each time valoració new, s'actualitza aquest camp a la bd
+   
+    #@puntsPDI = 0
+    #@valoracions.each do |v|
+     # @puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+    #end
+     # @puntsPDI /= @valoracions.count
   end
 
   def index
@@ -46,6 +58,7 @@ class PdisController < ApplicationController
     # usuari_actual.badges
     # retorna:
     # [#<Merit::Badge id: 1, name: "primer-pdi", level: nil, description: nil, custom_fields: nil>]
+    @usuari_actual = usuari_actual
 
     cercar = params[:request_term]
      if cercar.nil?

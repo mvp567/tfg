@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20140512142517) do
   end
 
   create_table "pdis", force: true do |t|
+    t.float    "punts"
     t.string   "nom"
     t.string   "observacions"
     t.string   "horari"
@@ -167,6 +168,7 @@ ActiveRecord::Schema.define(version: 20140512142517) do
   create_table "ruta_turisticas", force: true do |t|
     t.string   "nom"
     t.string   "temps"
+    t.float    "punts"
     t.integer  "usuari_id"
     t.integer  "usuari_modificador_id"
     t.datetime "created_at"
@@ -190,6 +192,7 @@ ActiveRecord::Schema.define(version: 20140512142517) do
     t.string   "pais_naixament",    limit: 25
     t.string   "ciutat_residencia", limit: 25
     t.string   "pais_residencia",   limit: 25
+    t.float    "punts"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sash_id"

@@ -12,6 +12,7 @@ class CreateUsuaris < ActiveRecord::Migration
       t.string "pais_naixament", :limit => 25
       t.string "ciutat_residencia", :limit => 25
       t.string "pais_residencia", :limit => 25
+      t.float :punts
       t.timestamps
     end
   end

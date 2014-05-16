@@ -7,7 +7,8 @@ class Usuari < ActiveRecord::Base
 	has_secure_password
 
 	has_many :favorits
-	has_many :pdis
+	has_many :pdis #, :conditions => {:type => ['Restaurant', 'Museu']}
 	has_many :valoracios
+	has_many :ruta_turisticas
 
 end

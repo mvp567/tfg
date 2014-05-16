@@ -15,7 +15,11 @@ class UsuarisController < ApplicationController
         #redirect_to root_url, :notice => "Signed up!"
       end
 
-    end
+  end
+
+  def show
+    @usuari = Usuari.find(params[:id])
+  end
 
   	def create_params
   		params.require(:usuari).permit(:nom, :cognom, :nom_usuari, :email, :password, :password_confirmation, :edat, :sexe)

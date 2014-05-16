@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+<% @valoracions.each do |val| %>
+  <tr>
+    <td><%= val.id %></td>
+    <td><%= val.titol %></td>
+    <td><%= val.opinio %></td>
+    <td><%= val.punts %></td>
+  </tr>
+<% end %>
+</table>

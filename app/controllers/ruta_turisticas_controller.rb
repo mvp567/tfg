@@ -6,7 +6,7 @@ class RutaTuristicasController < ApplicationController
       @rt.pdis_rutaturisticas.last.pdi = Pdi.new
     }
 
-    @valoracio = Valoracio.new
+    
   end
 
   def create
@@ -16,17 +16,26 @@ class RutaTuristicasController < ApplicationController
 
 
     
+    
+
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
 
     # TODO si pdi_seleccionat no existeix com a pdi. proposar-li a l'usuari de crear-lo. i redirigir-lo a la pàgina de pdi_create
 
     @rt.el_meu_save(llista)
 
+    # grant badge manualment si rutes == 3 pq a /badge_rules.rb no funciona
+    if @rt.usuari.ruta_turisticas.count == 3
+      usuari_actual.add_badge(4)
+    end
+    
     # TODO, si salva pq la llista no està buida, anar a create correctament. Sino anar a no creada
     
   end
 
   def show
+    @rt = RutaTuristica.find(params[:id])
+    @valoracions = @rt.valoracios
   end
 
   def index

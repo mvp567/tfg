@@ -22,4 +22,17 @@ class RutaTuristica < ActiveRecord::Base
 
     	self.save
 	end
+
+	def calcula_punts
+		valoracions = self.valoracios
+		if valoracions.count > 0
+			puntsRT = 0
+    		valoracions.each do |v|
+      			puntsRT += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+   			end
+      		puntsRT /= valoracions.count
+      		self.punts = puntsRT
+      		self.save
+      	end
+	end
 end

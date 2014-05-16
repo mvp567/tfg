@@ -8,6 +8,7 @@
 	<%= hidden_field_tag @pdi.coord_lat, @pdi.coord_lat, {:id => 'coord_lat'} %>
 	<%= hidden_field_tag @pdi.coord_lng, @pdi.coord_lng, {:id => 'coord_lng'} %>
 	<!-- carregar etiquetes de l'associació -->
+		<%= label_tag @pdi.punts %>
 
 		<%= label_tag @pdi.nom %>	
 
@@ -44,8 +45,8 @@
 <% end %>
 	
 
-<%#= QUESTION ha de ser object: @valoracio o @valoracio_pdi ?? %>
-  <%= render 'valoracios/new', object: @valoracio%>
+<%= link_to "Nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %>
+<%= render 'valoracios/index' %>
 
 
 

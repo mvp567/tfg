@@ -1,2 +1,19 @@
 <h1>RutaTuristicas#show</h1>
-<p>Find me in app/views/ruta_turisticas/show.html.erb</p>
+
+<%= hidden_field_tag :accio, "editant_rt" %>
+
+<div id="map-canvas"> </div>
+<%= label_tag @rt.punts %>
+<%= label_tag @rt.nom %>
+<%= label_tag @rt.temps %>
+		
+<ul>
+	<% @rt.pdis_rutaturisticas.each do |prt| %>
+		<li>
+			<%= label_tag prt.pdi.nom %>
+		</li>
+	<% end %>
+</ul>
+
+<%= link_to "Nova valoració", {:controller => "valoracios", :action => "new", :ruta_turistica_id => @rt.id}, :method => :get %>
+<%= render 'valoracios/index' %>

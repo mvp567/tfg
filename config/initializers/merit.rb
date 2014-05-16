@@ -8,6 +8,7 @@ Merit.setup do |config|
 
   # Add application observers to get notifications when reputation changes.
   # config.add_observer 'MyObserverClassName'
+  config.add_observer 'ReputationChangeObserver'
 
   # Define :user_model_name. This model will be used to grand badge if no
   # `:to` option is given. Default is 'User'.
@@ -34,9 +35,35 @@ end
 
 
  badge_id = 0
- [{
+ [
+ {
    id: (badge_id = badge_id+1),
    name: 'primer-pdi'
- }].each do |attrs|
+ },
+ {
+   id: (badge_id = badge_id+1),
+   name: '10-pdis'
+ },
+ {
+   id: (badge_id = badge_id+1),
+   name: 'primera-ruta-turistica'
+ },
+ {
+   id: (badge_id = badge_id+1),
+   name: '3-rutes-turistiques'
+ },
+ {
+   id: (badge_id = badge_id+1),
+   name: 'primera-valoracio'
+ },
+ {
+   id: (badge_id = badge_id+1),
+   name: '5-valoracions'
+ },
+ {
+   id: (badge_id = badge_id+1),
+   name: 'registrat'
+ }
+ ].each do |attrs|
    Merit::Badge.create! attrs
  end

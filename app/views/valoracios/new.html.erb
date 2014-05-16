@@ -1,5 +1,10 @@
+
 <h1>Valoracios#new</h1>
 <%= form_for @valoracio do |v| %>
+
+	<%= v.hidden_field :pdi_id, :value => params[:pdi_id] %>
+	<%= v.hidden_field :ruta_turistica_id, :value => params[:ruta_turistica_id] %>
+
 	<div>
 		<%= v.label :titol, :class=>"titol_camp" %>	
 		<%= v.text_field :titol, :class=>"contingut_camp" %>

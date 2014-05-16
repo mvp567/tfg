@@ -3,6 +3,7 @@ class CreateRutaTuristicas < ActiveRecord::Migration
     create_table :ruta_turisticas do |t|
       t.string :nom
       t.string :temps
+      t.float :punts
       t.integer :usuari_id
       t.integer :usuari_modificador_id
 

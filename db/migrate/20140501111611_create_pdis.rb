@@ -1,6 +1,7 @@
 class CreatePdis < ActiveRecord::Migration
   def change
     create_table :pdis do |t|
+      t.float :punts
       t.string :nom
       t.string :observacions
       t.string :horari

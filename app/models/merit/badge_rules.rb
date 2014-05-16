@@ -45,6 +45,25 @@ module Merit
       # end
 
       grant_on 'pdis#create', badge: 'primer-pdi'
+      grant_on 'ruta_turisticas#create', badge: 'primera-ruta-turistica'
+      grant_on 'valoracios#create', badge: 'primera-valoracio'
+      grant_on 'usuaris#create', badge: 'registrat'
+
+      grant_on 'pdis#create', badge: '10-pdis' do |pdi|
+        byebug
+        pdi.usuari.pdis.count == 4
+      end
+
+      grant_on 'ruta_turisticas#create', badge: '3-rutes-turistiques' do |rt|
+        byebug
+        rt.usuari.ruta_turisticas.count == 3
+      end
+
+      grant_on 'valoracios#create', badge: '5-valoracions' do |val|
+        byebug
+        val.usuari.valoracios.count == 3
+      end
+
     end
   end
 end
