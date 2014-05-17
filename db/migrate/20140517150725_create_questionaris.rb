@@ -1,6 +1,6 @@
-class CreateTestToPasses < ActiveRecord::Migration
+class CreateQuestionaris < ActiveRecord::Migration
   def change
-    create_table :test_to_passes do |t|
+    create_table :questionaris do |t|
       t.integer :ruta_turistica_id
       t.integer :usuari_id #creador
       t.float :param_reputacio

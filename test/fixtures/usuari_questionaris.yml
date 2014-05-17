@@ -2,10 +2,10 @@
 
 one:
   usuari_id: 1
-  test_to_pass_id: 1
-  nota_treta: 
+  questionari_id: 1
+  nota_treta: 1.5
 
 two:
   usuari_id: 1
-  test_to_pass_id: 1
-  nota_treta: 
+  questionari_id: 1
+  nota_treta: 1.5

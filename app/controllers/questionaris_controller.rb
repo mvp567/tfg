@@ -1,6 +1,6 @@
-class TestToPassesController < ApplicationController
-	def new
-		@exam = TestToPass.new
+class QuestionarisController < ApplicationController
+def new
+		@exam = Questionari.new
 
     	2.times { 
       		@exam.preguntas.build
@@ -13,10 +13,10 @@ class TestToPassesController < ApplicationController
 
 	def create
 		
-		@exam = TestToPass.new(create_params)
+		@exam = Questionari.new(create_params)
     	@exam.usuari = usuari_actual
     	llista_preguntes = []
-    	preguntes = params[:test_to_pass][:preguntas_attributes]
+    	preguntes = params[:questionari][:preguntas_attributes]
     	preguntes.each do |preg|
 
     		p = Pregunta.new(:text => preg.second[:text])
@@ -41,6 +41,6 @@ class TestToPassesController < ApplicationController
 	end
 
 	def create_params
-    	params.require(:test_to_pass).permit(:text, :preguntas_attributes => [:text, :respostas_attributes => [:text, :correcta]])
+    	params.require(:questionari).permit(:text, :preguntas_attributes => [:text, :respostas_attributes => [:text, :correcta]])
   end
 end

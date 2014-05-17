@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RegistreTest < ActiveSupport::TestCase
+class QuestionariTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

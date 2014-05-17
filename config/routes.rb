@@ -7,7 +7,7 @@ Tfg::Application.routes.draw do
   resources :pdis
   resources :ruta_turisticas 
   resources :valoracios
-  resources :test_to_passes
+  resources :questionaris
 
 
 
