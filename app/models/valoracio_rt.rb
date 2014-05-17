@@ -1,0 +1,2 @@
+class ValoracioRt < Valoracio
+end

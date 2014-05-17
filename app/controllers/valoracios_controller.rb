@@ -4,7 +4,12 @@ class ValoraciosController < ApplicationController
   end
 
   def create
-  	@valoracio = Valoracio.new(create_params)
+    if params[:valoracio][:pdi_id] != ""
+  	  @valoracio = ValoracioPdi.new(create_params)
+    else
+      @valoracio = ValoracioRt.new(create_params)
+    end
+byebug
     @valoracio.usuari = usuari_actual
   	@valoracio.save
   end

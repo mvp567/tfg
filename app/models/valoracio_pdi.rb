@@ -1,0 +1,2 @@
+class ValoracioPdi < Valoracio
+end

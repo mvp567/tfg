@@ -7,7 +7,8 @@ class CreateValoracios < ActiveRecord::Migration
       t.integer :usuari_id
       t.integer :ruta_turistica_id
       t.integer :pdi_id
-
+      t.string :type
+      
       t.timestamps
     end
   end

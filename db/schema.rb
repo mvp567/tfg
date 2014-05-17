@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 20140512142517) do
     t.integer  "usuari_id"
     t.integer  "ruta_turistica_id"
     t.integer  "pdi_id"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
