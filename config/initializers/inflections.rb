@@ -11,6 +11,10 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.acronym 'RESTful'
-# end
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+   #inflect.acronym 'RESTful'
+   #inflect.irregular 'ruta_turistica', 'rutes_turistiques'
+   inflect.irregular 'resposta', 'respostas'
+   inflect.irregular 'pregunta', 'preguntas'
+end
+

@@ -10,5 +10,7 @@ class Usuari < ActiveRecord::Base
 	has_many :pdis #, :conditions => {:type => ['Restaurant', 'Museu']}
 	has_many :valoracios
 	has_many :ruta_turisticas
+	has_many :usuari_tests
+	has_many :test_to_passes, through: :usuari_tests
 
 end

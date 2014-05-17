@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512142517) do
+ActiveRecord::Schema.define(version: 20140517095133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,21 @@ ActiveRecord::Schema.define(version: 20140512142517) do
     t.datetime "updated_at"
   end
 
+  create_table "preguntas", force: true do |t|
+    t.text     "text"
+    t.integer  "test_to_pass_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "respostas", force: true do |t|
+    t.text     "text"
+    t.boolean  "correcta"
+    t.integer  "pregunta_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ruta_turisticas", force: true do |t|
     t.string   "nom"
     t.string   "temps"
@@ -176,6 +191,26 @@ ActiveRecord::Schema.define(version: 20140512142517) do
   end
 
   create_table "sashes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "test_to_passes", force: true do |t|
+    t.integer  "ruta_turistica_id"
+    t.integer  "usuari_id"
+    t.float    "param_reputacio"
+    t.boolean  "param_ciutat_naixament"
+    t.boolean  "param_pais_naixament"
+    t.boolean  "param_ciutat_residencia"
+    t.boolean  "param_pais_residencia"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usuari_tests", force: true do |t|
+    t.integer  "usuari_id"
+    t.integer  "test_to_pass_id"
+    t.float    "nota_treta"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

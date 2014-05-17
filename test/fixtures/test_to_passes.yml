@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  param_reputacio: 1.5
+  param_ciutat_naixament: false
+  param_pais_naixament: false
+  param_ciutat_residencia: false
+  param_pais_residencia: false
+
+two:
+  param_reputacio: 1.5
+  param_ciutat_naixament: false
+  param_pais_naixament: false
+  param_ciutat_residencia: false
+  param_pais_residencia: false

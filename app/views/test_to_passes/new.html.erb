@@ -1,0 +1,30 @@
+<%= form_for @exam, url: {controller: "test_to_passes", action: "create"} do |ex| %>
+	<%#= TODO afegir radiobuttons pels paràmetres %>
+	<ul>
+		<li>
+			<%= ex.fields_for :preguntas do |preg| %>
+					<%= preg.label "Pregunta:" %>
+					<%= preg.text_field :text %>
+					<p>
+					<%= preg.fields_for :respostas do |resp| %>
+						<%= resp.label "R/:" %>
+						<%= resp.text_field :text %>
+						<%= resp.label "És correcta?" %>
+						<%= resp.label "Sí" %>
+						<%= resp.radio_button :correcta, "true", checked: false %>
+						<%= resp.label "No" %>
+						<%= resp.radio_button :correcta, "false", checked: true %>
+					<% end %>
+					</p>
+			<% end %>
+			<p>
+				<%#= link_to_add_fields "Afegir resposta", ex, :pregunta, :pregunta %>
+			</p>
+		</li>
+	</ul>
+
+	<%= ex.submit "Guardar" %>
+
+<% end %>
+
+
