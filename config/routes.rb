@@ -8,6 +8,7 @@ Tfg::Application.routes.draw do
   resources :ruta_turisticas 
   resources :valoracios
   resources :questionaris
+  resources :usuari_questionaris
 
 
 

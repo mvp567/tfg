@@ -1,0 +1,26 @@
+<h1>UsuariQuestionaris#new</h1>
+
+<%= form_for @uq, url: {controller: "usuari_questionaris", action: "create"} do |uq| %>
+	<%= uq.fields_for :questionari do |q| %>
+	
+		<%#= TODO afegir radiobuttons pels paràmetres %>
+		<ul>	
+			<%= q.fields_for :preguntas do |preg| %>
+				<li><ul>
+					<%= preg.label "Pregunta:" %>
+					<%= preg.label return_value_of_symbol(preg, :text) %>
+					<%= preg.fields_for :respostas do |resp| %>
+						<li>
+							<%= resp.radio_button :correcta, :correcta %>
+							<%= resp.label return_value_of_symbol(resp, :text) %>
+						</li>
+					<% end %>
+				</ul></li>
+					
+			<% end %>
+		</ul>
+	<% end %>
+	<%= uq.submit "Enviar per correcció" %>
+<% end %>
+
+

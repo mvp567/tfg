@@ -8,6 +8,8 @@ class RutaTuristica < ActiveRecord::Base
 	accepts_nested_attributes_for :pdis_rutaturisticas, :allow_destroy => true
 
 	has_many :valoracios
+
+	has_one :questionari
 	
 	def el_meu_save(params_pdis)
 		ll = []

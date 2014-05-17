@@ -4,6 +4,12 @@ module ApplicationHelper
 	    if sub == :pdi
 	    	new_object.build_pdi
 	    end
+	    if sub == :pregunta
+	    	2.times {
+	    		new_object.respostas.build
+	    	}
+	    end
+
 	    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
 	      render(association.to_s.singularize + "_fields", :f => builder)
 	    end

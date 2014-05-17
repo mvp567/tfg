@@ -1,5 +1,9 @@
 <h1>RutaTuristicas#index</h1>
 <p>Find me in app/views/ruta_turisticas/index.html.erb</p>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <table>
   <tr>
     <th>Title</th>
