@@ -1,9 +1,13 @@
 <%= f.label "Pregunta:" %>
 <%= f.text_field :text %>
 <p>
+<ul>
 	<%= f.fields_for :respostas do |resp| %>
+	<li>
 		<%= render 'resposta_fields', :f => resp %>
+	</li>
 	<% end %>
+</ul>
 	<p>
 		<%= link_to_add_fields "Afegir resposta", f, :respostas, :resposta %>
 	</p>

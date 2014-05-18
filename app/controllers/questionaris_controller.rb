@@ -13,6 +13,17 @@ def new
 	def create
 		@quest = Questionari.new(create_params)
     	@quest.usuari = usuari_actual
+
+        # guardant paràmetres del pas 1
+        @quest.param_reputacio = params[:param_reputacio]
+        if params[:param_pais] == "2"
+            @quest.param_pais_naixament = true   
+        end
+        if params[:param_pais] == "3"
+            @quest.param_pais_residencia = true
+        end
+
+        # guardant preguntes i repsostes del pas 2
     	llista_preguntes = []
     	preguntes = params[:questionari][:preguntas_attributes]
     	preguntes.each do |preg|
@@ -39,7 +50,7 @@ def new
         #else
             #TODO donar error que la llista de preguntes no pot ser buida
         end
-
+        @quest.ruta_turistica = RutaTuristica.find_by_id(params[:questionari][:ruta_turistica_id].to_i)
     	@quest.save
 	end
 

@@ -1,9 +1,10 @@
 <h1>UsuariQuestionaris#new</h1>
-
+<% if @passa_parametres == true %>
 <%= form_for @uq, url: {controller: "usuari_questionaris", action: "create"} do |uq| %>
-	<%= uq.fields_for :questionari do |q| %>
 	
-		<%#= TODO afegir radiobuttons pels paràmetres %>
+	<%= uq.fields_for :questionari do |q| %>
+
+	
 		<ul>	
 			<%= q.fields_for :preguntas do |preg| %>
 				<li><ul>
@@ -11,8 +12,10 @@
 					<%= preg.label return_value_of_symbol(preg, :text) %>
 					<%= preg.fields_for :respostas do |resp| %>
 						<li>
-							<%= resp.radio_button :correcta, :correcta %>
+							<%= resp.hidden_field :correcta %> <%#= a values hi tinc t o f %>
+							<%= radio_button_tag "contestacions["+preg.object.id.to_s+"]", resp.object.id %>
 							<%= resp.label return_value_of_symbol(resp, :text) %>
+	
 						</li>
 					<% end %>
 				</ul></li>
@@ -20,7 +23,12 @@
 			<% end %>
 		</ul>
 	<% end %>
+	
 	<%= uq.submit "Enviar per correcció" %>
-<% end %>
 
+<% end %>
+<% else %>
+No compleixes les condicions necessàries per a poder editar aquesta ruta turística.
+(llistar paràmetres)
+<% end %>
 

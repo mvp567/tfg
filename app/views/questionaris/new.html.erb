@@ -1,14 +1,34 @@
-<%= form_for @q, url: {controller: "questionaris", action: "create"} do |q| %>
+<%= form_for @quest, url: {controller: "questionaris", action: "create"} do |q| %>
+<%= q.hidden_field :ruta_turistica_id, :value => params[:ruta_turistica_id] %>
+
 	<%#= TODO afegir radiobuttons pels paràmetres %>
+	<h2> Pas 1 </h2>
+	Quin ranking mínim ha de tenir l'usuari editor?
+	<%= radio_button_tag "param_reputacio", "1", {:checked => "checked"} %> 1-Novell
+	<%= radio_button_tag "param_reputacio", "2" %> 2-Ruter
+	<%= radio_button_tag "param_reputacio", "3" %> 3-De confiança
+	<%= radio_button_tag "param_reputacio", "4" %> 4-
+	<%= radio_button_tag "param_reputacio", "5" %> 5-Master
+
+	<br><br>
+
+	Selecciona les condicions que vols que s'apliquin:
+	<%= radio_button_tag "param_pais", "1", {:checked => "checked"} %> Ninguna
+	<%= radio_button_tag "param_pais", "2" %> Qualsevol de les dues
+	<%= radio_button_tag "param_pais", "3" %> País de naixament ha de ser el de la ruta
+	<%= radio_button_tag "param_pais", "4" %> País de residència ha de ser el de la ruta
+	<h2> Pas 2 (opcional) </h2>
 	<ul>
-		<li>
-			<%= q.fields_for :preguntas do |preg| %>
-					<%= render 'pregunta_fields', :f => preg %>
-			<% end %>
-			<p>
-				<%= link_to_add_fields "Afegir pregunta", q, :preguntas, :pregunta %>
-			</p>
-		</li>
+		
+		<%= q.fields_for :preguntas do |preg| %>
+			<li>
+				<%= render 'pregunta_fields', :f => preg %>
+			</li>
+		<% end %>
+		<p>
+			<%= link_to_add_fields "Afegir pregunta", q, :preguntas, :pregunta %>
+		</p>
+		
 	</ul>
 
 	<%= q.submit "Guardar" %>

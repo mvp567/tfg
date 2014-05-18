@@ -23,6 +23,8 @@ class RutaTuristicasController < ApplicationController
     # TODO si pdi_seleccionat no existeix com a pdi. proposar-li a l'usuari de crear-lo. i redirigir-lo a la pàgina de pdi_create
 
     @rt.el_meu_save(llista)
+    
+    @rt_creada = @rt.id
 
     # grant badge manualment si rutes == 3 pq a /badge_rules.rb no funciona
     if @rt.usuari.ruta_turisticas.count == 3

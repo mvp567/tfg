@@ -1,2 +1,4 @@
 <h1>RutaTuristicas#create</h1>
-<p>Ruta turística creada correctament.</p>
+<p>Per a finalitzar, crea un formulari per a l'accés a l'edició de la ruta turística.</p>
+
+<%= link_to "Crea formulari", {:controller => "questionaris", :action => "new", :ruta_turistica_id => @rt.id}, :method => :get %>

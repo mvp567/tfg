@@ -4,10 +4,8 @@ class CreateQuestionaris < ActiveRecord::Migration
       t.integer :ruta_turistica_id
       t.integer :usuari_id #creador
       t.float :param_reputacio
-      t.boolean :param_ciutat_naixament
-      t.boolean :param_pais_naixament
-      t.boolean :param_ciutat_residencia
-      t.boolean :param_pais_residencia
+      t.boolean :param_pais_naixament, :default => false 
+      t.boolean :param_pais_residencia, :default => false
 
       t.timestamps
     end
