@@ -15,11 +15,24 @@ def new
     	@quest.usuari = usuari_actual
 
         # guardant paràmetres del pas 1
-        @quest.param_reputacio = params[:param_reputacio]
-        if params[:param_pais] == "2"
-            @quest.param_pais_naixament = true   
+        if params[:param_reputacio] == 1
+            @quest.param_reputacio = 0
+        elsif params[:param_reputacio] == 2
+            @quest.param_reputacio = 200
+        elsif params[:param_reputacio] == 3
+            @quest.param_reputacio = 400
+        elsif params[:param_reputacio] == 4
+            @quest.param_reputacio = 600
+        elsif params[:param_reputacio] == 5
+            @quest.param_reputacio = 800
         end
-        if params[:param_pais] == "3"
+
+        if params[:param_pais] == "2"
+            @quest.param_pais_naixament = true 
+            @quest.param_pais_residencia = true
+        elsif params[:param_pais] == "3"
+            @quest.param_pais_naixament = true   
+        elsif params[:param_pais] == "4"
             @quest.param_pais_residencia = true
         end
 

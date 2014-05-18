@@ -11,6 +11,8 @@
 	<% @rt.pdis_rutaturisticas.each do |prt| %>
 		<li>
 			<%= label_tag prt.pdi.nom %>
+			<%= hidden_field_tag :coord_lat, prt.pdi.coord_lat %>
+    		<%= hidden_field_tag :coord_lng, prt.pdi.coord_lng %>
 		</li>
 	<% end %>
 </ul>

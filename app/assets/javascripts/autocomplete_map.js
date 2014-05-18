@@ -175,7 +175,7 @@ function initialize() {
           });
           marker.setMap(window.map);
           window.map.setCenter(marker.getPosition());
-          window.map.setZoom(11);
+          window.map.setZoom(12);
         });
   }
 

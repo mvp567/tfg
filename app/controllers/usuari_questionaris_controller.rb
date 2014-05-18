@@ -7,6 +7,7 @@ class UsuariQuestionarisController < ApplicationController
     # comprovar si usuari_editor compleix paràmetres base
     @passa_parametres = false
     cond1 = cond2 = cond3 = true
+    
     # 1) comprovar param_reputació
      if @uq.questionari.param_reputacio > usuari_actual.punts
       cond1 = false
