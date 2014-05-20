@@ -36,4 +36,19 @@ class Pdi < ActiveRecord::Base
       	end
 	end
 
+
+  self.table_name = "pdis"
+
+  scope :close_to, -> (latitude, longitude, distance_in_meters = 2000) {
+    where(%{
+      ST_DWithin(
+        ST_GeographyFromText(
+          'SRID=4326;POINT(' || pdis.coord_lng || ' ' || pdis.coord_lat || ')'
+        ),
+        ST_GeographyFromText('SRID=4326;POINT(%f %f)'),
+        %d
+      )
+    } % [longitude, latitude, distance_in_meters])
+  }
+
 end

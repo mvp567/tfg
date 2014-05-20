@@ -17,6 +17,8 @@ class PdisController < ApplicationController
     @pdi.usuari = usuari_actual
     @etiquetes = params[:etiquetes]
 
+    @pdi.lonlat = 'POINT(2.1789019999999937 41.385514)'
+
     @pdi.el_meu_save(@etiquetes)
   	# @pdi.save
   end
@@ -55,11 +57,36 @@ class PdisController < ApplicationController
 
   def index
 
-    # usuari_actual.badges
-    # retorna:
-    # [#<Merit::Badge id: 1, name: "primer-pdi", level: nil, description: nil, custom_fields: nil>]
+    # provant la cerca per proximitat de pdi
+    #@eo = Pdi.where(:lonlat => 'POINT(2.1789019999999937 41.385514)').first
+
+    #@eo = Pdi.where("ST_DWithin(ST_GeographyFromText('SRID=4326;POINT(' || pdis.coord_lng|| ' ' || pdis.coord_lat || ')'
+    #    ),ST_GeographyFromText('SRID=4326;POINT(2.1789019999999937 41.385514)'),200)")
+
+    @eo = Pdi.close_to(41.385514,2.1789019999999937)
+
+
+    # Provant cerca per nom de pdi
+    @pdis_by_nom = []
+    if params[:search]
+      @pdis_by_nom = Pdi.find(:all, :conditions => ['nom ILIKE ?', "%#{params[:search]}%"])
+    else
+      @pdis_by_nom = Pdi.all
+    end
+
+    # Provant cerca per ciutat
+    @pdis_ciutat = []
+    if params[:search_ciutat]
+      @pdis_ciutat = Pdi.find(:all, :conditions => ['localitat ILIKE ?', "%#{params[:search_ciutat]}%"])
+    else
+      @pdis_ciutat = Pdi.all
+    end
+
+
+
     @usuari_actual = usuari_actual
 
+    # Per l'autocomplete dels pdis
     cercar = params[:request_term]
      if cercar.nil?
       @pdis = Pdi.all
@@ -71,6 +98,8 @@ class PdisController < ApplicationController
       format.html # index.html.erb
       format.json  { render :json => @pdis.to_json }
     end
+
+
 
   end
 

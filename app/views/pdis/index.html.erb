@@ -14,3 +14,43 @@
   </tr>
 <% end %>
 </table>
+
+<ul>
+<% @eo.each do |eoo| %>
+    <li><%= eoo.nom %></li>
+<% end %>
+</ul>
+
+<hr>
+
+<%= form_tag('/pdis', method: :get) do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag :search, :name => nil %>
+  </p>
+<% end %>
+
+<ul>
+<% @pdis_by_nom.each do |pdi_by_nom| %>
+  <li>
+    <%= pdi_by_nom.nom %>
+  </li>
+<% end %>
+</ul>
+
+<hr>
+
+<%= form_tag('/pdis', method: :get) do %>
+  <p>
+    <%= text_field_tag :search_ciutat, params[:search_ciutat] %>
+    <%= submit_tag :search_ciutat, :name => nil %>
+  </p>
+<% end %>
+
+<ul>
+<% @pdis_ciutat.each do |pdi_by_ciutat| %>
+  <li>
+    <%= pdi_by_ciutat.nom %>
+  </li>
+<% end %>
+</ul>

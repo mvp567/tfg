@@ -9,8 +9,13 @@ class ValoraciosController < ApplicationController
     else
       @valoracio = ValoracioRt.new(create_params)
     end
-byebug
+
     @valoracio.usuari = usuari_actual
+
+    if @valoracio.punts.blank?
+        @valoracio.punts = 0
+    end
+
   	@valoracio.save
   end
 

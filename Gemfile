@@ -59,3 +59,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Sistema de punts, badges i ranks
 gem 'merit'
+
+# Adaptador per PostGis (postgres + dades geografiques)
+gem 'activerecord-postgis-adapter'

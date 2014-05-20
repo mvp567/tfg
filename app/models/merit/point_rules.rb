@@ -25,17 +25,26 @@ module Merit
       # ]
 
       score 10, :on => 'valoracios#create' do |val|
-        #val.pdi.valoracios.count == 3
 
-        #if !val.pdi.nil? && val.pdi.valoracios.count > 0
-         # puntsPDI = 0
-          #val.pdi.valoracios.each do |v|
-           # puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
-          #end
-          #puntsPDI /= val.pdi.valoracios.count
-        #end
+        spm = false
 
-        #puntsPDI > 5
+        if val.pdi.valoracios.count.modulo(5).zero?
+          ultimes_vals = val.pdi.valoracios.order('created_at DESC').limit(5) #.each_with_index do |s, i|
+          puntsPDI = 0
+
+          ultimes_vals.each do |v|
+            puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+          end
+
+          puntsPDI /= 5
+
+          if puntsPDI > 5
+            spm = true
+          end
+          byebug
+        end
+
+        spm == true
       end
 
     end

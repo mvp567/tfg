@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140517150725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "admin_users", force: true do |t|
     t.string   "first_name",      limit: 25
@@ -26,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140517150725) do
     t.string   "username",        limit: 25
   end
 
-  add_index "admin_users", ["username"], name: "index_admin_users_on_username", using: :btree
+  add_index "admin_users", ["username"], :name => "index_admin_users_on_username"
 
   create_table "badges_sashes", force: true do |t|
     t.integer  "badge_id"
@@ -35,9 +36,9 @@ ActiveRecord::Schema.define(version: 20140517150725) do
     t.datetime "created_at"
   end
 
-  add_index "badges_sashes", ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id", using: :btree
-  add_index "badges_sashes", ["badge_id"], name: "index_badges_sashes_on_badge_id", using: :btree
-  add_index "badges_sashes", ["sash_id"], name: "index_badges_sashes_on_sash_id", using: :btree
+  add_index "badges_sashes", ["badge_id", "sash_id"], :name => "index_badges_sashes_on_badge_id_and_sash_id"
+  add_index "badges_sashes", ["badge_id"], :name => "index_badges_sashes_on_badge_id"
+  add_index "badges_sashes", ["sash_id"], :name => "index_badges_sashes_on_sash_id"
 
   create_table "ciutats", force: true do |t|
     t.string   "nom"
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20140517150725) do
     t.string   "pais"
     t.string   "coord_lat"
     t.string   "coord_lng"
+    t.spatial  "lonlat",                  limit: {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer  "forquilles"
     t.integer  "classe_restaurant_id"
     t.integer  "classe_botiga_id"
@@ -155,7 +157,11 @@ ActiveRecord::Schema.define(version: 20140517150725) do
     t.integer  "estrelles"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.spatial  "lat",                     limit: {:srid=>0, :type=>"point"}
+    t.spatial  "lng",                     limit: {:srid=>0, :type=>"point"}
   end
+
+  add_index "pdis", ["lonlat"], :name => "index_pdis_on_lonlat", :spatial => true
 
   create_table "pdis_rutaturisticas", force: true do |t|
     t.integer  "pdi_id"
@@ -176,10 +182,8 @@ ActiveRecord::Schema.define(version: 20140517150725) do
     t.integer  "ruta_turistica_id"
     t.integer  "usuari_id"
     t.float    "param_reputacio"
-    t.boolean  "param_ciutat_naixament"
-    t.boolean  "param_pais_naixament"
-    t.boolean  "param_ciutat_residencia"
-    t.boolean  "param_pais_residencia"
+    t.boolean  "param_pais_naixament",  default: false
+    t.boolean  "param_pais_residencia", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

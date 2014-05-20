@@ -21,6 +21,14 @@ class CreatePdis < ActiveRecord::Migration
       t.string :coord_lat
       t.string :coord_lng
 
+      # nous camps per utilitzar PostGIS
+      t.point :lat
+      t.point :lng
+      t.point :lonlat, :geographic => true
+      t.polygon :boundary, :srid => 2285
+      
+      t.index :lonlat, :spatial => true
+
       # camps específics restaurant:
       t.integer :forquilles
       t.integer :classe_restaurant_id
