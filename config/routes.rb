@@ -1,8 +1,8 @@
 Tfg::Application.routes.draw do
 
 
-  root 'layouts#home'
-  
+  root "home#index"
+    
   resources :usuaris#, :only => [:new, :create] 
   resources :sessions#, :only => [:new, :create] 
   resources :pdis

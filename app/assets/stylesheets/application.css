@@ -38,3 +38,16 @@ input[type=submit]:hover, input[type=submit]:focus {
   outline: none;
   background-color: #51eecc;
 }
+
+
+.searcher {
+  width: 200px;
+  margin-left: 40px;
+  margin-top:5px;
+  margin-bottom: 5px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 4px;
+}

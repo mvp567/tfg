@@ -13,18 +13,22 @@
 
 </head>
 <body>
-<div style="height:50px; width:100%; background-color:#e1fcf6;"> 
-	<p style="color:#3fecc7;font-size:20px;font-weight:bold;padding-top:10px;padding-left:5px;">TFG</p>
+<div style="height:50px; width:100%; background-color:#f5f5f5;"> 
+	<div style="position:relative; left:400px; top:10px;">
+    <%= render :partial => '/layouts/cercador' %>
+  </div>
+  <div style="position:relative; left:1070px; top:-22px;">
+    <%= link_to "Enregistra't", {:controller => "usuaris", :action => "new", :method => :get}, {:style => "color:#14caa3"} %>
+    <span> | </span>
+    <%= link_to "Inicia sessió", {:controller => "sessions", :action => "new", :method => :get}, {:style => "color:#14caa3"} %>
+  </div>
+  
 </div>
-<div style="height:5px; width:100%; background-color:#3fecc7;">
-</div>
+
 
 
 
 <div style="position: relative; left:200px; width:70%;">
-	<p>
-		<%= render :partial => '/layouts/cercador' %>
-	</p>
 <%= yield %>
 </div>
 </body>

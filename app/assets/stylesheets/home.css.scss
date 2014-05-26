@@ -1,0 +1,76 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#contingut_rel_pdi, #contingut_rel_rt {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	width: 300px;
+	height: 300px;
+	padding: 20px;
+	float: left;
+
+}
+
+#contingut_rel_pdi {
+	border-color: #0062ae;
+	background: #d5edff;
+}
+
+#contingut_rel_rt {
+	border-color: #62ae00;
+	background: #edffd5;
+	margin-left: 30px;
+}
+
+#contingut_funcionament {
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	background: #f5f5f5;
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+.pdis_link_to_new {
+  text-decoration:none;
+  background-color: #0062ae;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  height: 2em;
+  font-size: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.pdis_link_to_new:hover, .pdis_link_to_new:focus {
+  outline: none;
+  background-color: #51eecc;
+}
+
+
+.rts_link_to_new {
+  text-decoration:none;
+  background-color: #62ae00;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  height: 2em;
+  font-size: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.rts_link_to_new:hover, .rts_link_to_new:focus {
+  outline: none;
+  background-color: #51eecc;
+}
