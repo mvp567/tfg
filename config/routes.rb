@@ -1,6 +1,7 @@
 Tfg::Application.routes.draw do
 
-  root 'pdis#index'
+
+  root 'layouts#home'
   
   resources :usuaris#, :only => [:new, :create] 
   resources :sessions#, :only => [:new, :create] 
@@ -9,7 +10,7 @@ Tfg::Application.routes.draw do
   resources :valoracios
   resources :questionaris
   resources :usuari_questionaris
-
+  resources :cercadors
 
 
   # The priority is based upon order of creation: first created -> highest priority.

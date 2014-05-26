@@ -1,5 +1,6 @@
 class Etiqueta < ActiveRecord::Base
 	has_many :etiquetes_pdis
+	has_many :pdis, through: :etiquetes_pdis
 
 	# Funció estàtica, va amb el self davant
 	def self.obte_etiquetes(etiquetes)

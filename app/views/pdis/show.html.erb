@@ -22,7 +22,7 @@
 		<%= label_tag @pdi.preu_aprox %>	
 		<%= label_tag @pdi.nivell_preu %>	
 
-<h2> Camps localització </h2>
+<h3> Camps localització </h3>
 	
 	
 		<%= label_tag @pdi.adreca %>	
@@ -44,10 +44,36 @@
 		
 <% end %>
 	
+<p>
+	<h2>Rutes turístiques que inclouen aquest PDI</h2>
+<ul>
+<% @rts_from_pdi.each do |rtp| %>
+  <li>
+    <%#= rtp.nom %>
+    <%= link_to rtp.nom, ruta_turistica_path(rtp) %>
+  </li>
+<% end %>
+</ul>
+</p>
+
+<p>
+	<h2>PDIs propers</h2>
+<ul>
+<% @pdis_propers.each do |pp| %>
+  <li>
+    <%# = pp.nom %>
+    <%= link_to pp.nom, pdi_path(pp) %>
+  </li>
+<% end %>
+</ul>
+</p>
+
+<p>
+	<h2>Valoracions del PDI</h2>
 
 <%= link_to "Nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %>
 <%= render 'valoracios/index' %>
 
-
+</p>
 
 

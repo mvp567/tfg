@@ -1,0 +1,19 @@
+<h1>Cercadors#index</h1>
+
+<ul>
+<% @pdis.each do |pdi| %>
+    <li><%= link_to pdi.nom, pdi_path(pdi) %></li>
+<% end %>
+</ul>
+
+<ul>
+<% @rts.each do |rt| %>
+    <li><%= link_to rt.nom, ruta_turistica_path(rt) %></li>
+<% end %>
+</ul>
+
+<ul>
+<% @usuaris.each do |usu| %>
+    <li><%= link_to usu.nom_usuari, usuari_path(usu) %></li>
+<% end %>
+</ul>

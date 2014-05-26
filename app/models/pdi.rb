@@ -3,6 +3,7 @@ class Pdi < ActiveRecord::Base
 	belongs_to :usuari_modificador, :class_name => "Usuari", :foreign_key => "usuari_modificador_id"
 
 	has_many :etiquetes_pdis
+	has_many :etiqueta, through: :etiquetes_pdis #el plural d'etiqueta potser és problemàtic!!
 	has_many :pdis_rutaturisticas
 	has_many :favorits
 	has_many :valoracios

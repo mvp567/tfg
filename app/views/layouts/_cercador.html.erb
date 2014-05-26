@@ -1,0 +1,8 @@
+<%= form_tag('/cercadors', method: :get) do %>
+  <p>
+  	<% tipus_array = [['Punt d\'interès',1], ['Ruta turística', 2], ['Ciutat', 3], ['País', 4], ['Etiqueta', 5], ['Usuari', 6]] %>
+  	<%= select_tag(:tipus, options_for_select(tipus_array)) %>
+    <%= text_field_tag :cerca, params[:cerca] %>
+    <%= submit_tag :cerca, :name => nil %>
+  </p>
+<% end %>
