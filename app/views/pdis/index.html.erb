@@ -1,16 +1,14 @@
-<table>
+<table class="table">
   <tr>
-    <th>Title</th>
-    <th>Text</th>
+    <th></th>
+    <th></th>
     <th colspan="2"></th>
   </tr>
  
 <% @pdis.each do |pdi| %>
   <tr>
-    <td><%= pdi.id %></td>
-    <td><%= pdi.nom %></td>
-    <td><%= link_to 'Show', pdi_path(pdi) %></td>
-    <td><%= link_to 'Edit', edit_pdi_path(pdi) %></td>
+    <td><%= link_to pdi.nom, pdi_path(pdi), :class=>"text_table" %></td>
+    <td><%= link_to 'Edit', edit_pdi_path(pdi), :class => "edit_table fa fa-pencil-square-o" %></td>
   </tr>
 <% end %>
 </table>

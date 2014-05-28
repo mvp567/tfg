@@ -1,38 +1,59 @@
-<h1>Pdis#new</h1>
- 
 
-<%#= form_tag('/pdis/new', method: :get) do %>
-<%= form_tag('/pdis/new', method: :get, id: 'tagid') do %>
+<h3>Crea un nou punt d'interès</h3>
 
+<% if @pdi.nil? %>
+<%= form_tag('/pdis/new', method: :get) do %>
+<%#= form_tag('/pdis/new', method: :get, id: 'tagid') do %>
+  <div id="ph_1" class="coloreate">
+<h5>1. Selecciona quin tipus de punt d'interès vols crear.</h5>
 	<div>
 		<% tipus_pdi_array = [['Restaurant'], ['Botiga'], ['Museu'], ['Monument'], ['Discoteca'], ['Entreteniment'], ['Hotel'], ['Vista']] %>
 		
-		<%= select_tag(:tipus_pdi, options_for_select(tipus_pdi_array)) %>
+		<%= select_tag(:tipus_pdi, options_for_select(tipus_pdi_array), :class => "form-control", :style => "width:150px; display:initial;", :selected => @tipus_valor) %>
+		<%= submit_tag "Selecciona" %>
 	</div>
-	<div><%= submit_tag "noelvull" %></div>
+</div>
+<% end %>
 <% end %>
 
-
 <% if @pdi %>
+
+
 <%= hidden_field_tag :accio, "creant" %>
   <%= form_for @pdi, url: {controller: "pdis", action: "create"} do |p| %>
-	<%= hidden_field_tag :tipus, @tipus_valor %>
 	
+	<%= hidden_field_tag :tipus, @tipus_valor %>
+ <div id="ph_1b" class="allunyat">
+	<h5>1. Estàs creant un punt d'interès: <b><%= @tipus_valor %></b> <small><%= link_to 'Canvia-ho', controller: "pdis", action: "new", :class => "glyphicon glyphicon-arrow-left" %></small></h5> 
+</div>
+	 
+	<div id="ph_2" class="allunyat coloreate">
+	<h5>2. Busca el punt d'interès en qüestió.</h5>
 	<%# BEGIN Codi mapa + input autocomplete(pac-input) %>
 	<input id="pac-input" class="controls" type="text"
-        placeholder="Introdueix una localització">
+        placeholder="Introdueix una localització" autofocus>
    
 	<div id="map-canvas"> </div>
 	<%# END Codi mapa + input autocomplete(pac-input) %>
-
+</div>
 	<div>
+		  <div id="ph_3" class="allunyat">
+		<h5>3. Introdueix mínim tres etiquetes per descriure'l.</h5>
 		<%= label_tag(:etiquetes, "Afegeix etiquetes:") %>	
 		<%= text_field_tag(:etiquetes) %>
+		<input type="text" id="input-tags" class="demo-default selectized" value="awesome,neat" tabindex="-1" style="display: none;">
+		<div class="formrow">
+      <label for="input-tags">Tags:</label>
+      <input type="text" id="input-tags" value="website,graphics,question">
+    </div>
 	</div>
+</div>
+ <div id="ph_4">
+ <h5>4. Ja casi estàs! Revisa la informació i modifica-la si ho creus necessari.</h5>
 
 	<div>
-		<%= p.label :nom %>	
-		<%= p.text_field :nom %>
+		<%= p.label :nom, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :nom, :class=>"textbox_linia" %>
 		<div>
 			<%= @pdi.errors[:nom].first %>
 		</div>
@@ -40,89 +61,60 @@
 
 
 	<div>
-		<%= p.label :observacions %>	
-		<%= p.text_field :observacions %>
-		<div>
-			<%= @pdi.errors[:observacions].first %>
-		</div>
-	</div>
-
-	<div>
-		<%= p.label :horari %>	
-		<%= p.text_field :horari %>
-		<div>
-			<%= @pdi.errors[:horari].first %>
-		</div>
-	</div>
-
-	<div>
-		<%= p.label :telefon %>	
-		<%= p.text_field :telefon %>
+		<%= p.label :telefon, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :telefon, :class=>"textbox_linia"  %>
 		<div>
 			<%= @pdi.errors[:telefon].first %>
 		</div>
 	</div>
 
 	<div>
-		<%= p.label :web %>	
-		<%= p.text_field :web %>
+		<%= p.label :web, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :web, :class=>"textbox_linia"  %>
 		<div>
 			<%= @pdi.errors[:web].first %>
 		</div>
 	</div>
 
 	<div>
-		<%= p.label :preu_aprox %>	
-		<%= p.text_field :preu_aprox %>
+		<%= p.label :preu_aprox, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :preu_aprox, :class=>"textbox_linia"  %>
 		<div>
 			<%= @pdi.errors[:preu_aprox].first %>
 		</div>
 	</div>
 
 	<div>
-		<%= p.label :nivell_preu %>	
-		<%= p.text_field :nivell_preu %>
-		<div>
-			<%= @pdi.errors[:nivell_preu].first %>
-		</div>
+		<%= p.label :horari, "horari_hidden", :class=>"titol_camp_esq" %>
+		<%= p.text_field :horari, :class=>"textbox_linia" %>
 	</div>
+		<%= p.hidden_field :nivell_preu  %>
 
-<h2> Camps localització </h2>
+
+<h6> Localització </h6>
 	
 	<div>
-		<%= p.label :adreca %>	
-		<%= p.text_field :adreca %>
-		<div>
-			<%= @pdi.errors[:adreca].first %>
-		</div>
+		<%= p.label :adreca, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :adreca, :class=>"textbox_linia"  %>
 	</div>
 
 	<div>
-		<%= p.label :codi_postal %>	
-		<%= p.text_field :codi_postal %>
-		<div>
-			<%= @pdi.errors[:codi_postal].first %>
-		</div>
+		<%= p.label :codi_postal, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :codi_postal, :class=>"textbox_linia"  %>
 	</div>
 
 	<div>
-		<%= p.label :localitat %>	
-		<%= p.text_field :localitat %>
-		<div>
-			<%= @pdi.errors[:localitat].first %>
-		</div>
+		<%= p.label :localitat, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :localitat, :class=>"textbox_linia"  %>
 	</div>
 
 	<div>
-		<%= p.label :pais %>	
-		<%= p.text_field :pais %>
-		<div>
-			<%= @pdi.errors[:pais].first %>
-		</div>
+		<%= p.label :pais, :class=>"titol_camp_esq" %>	
+		<%= p.text_field :pais, :class=>"textbox_linia"  %>
 	</div>
 
-	<%= p.text_field :coord_lat %>
-	<%= p.text_field :coord_lng %>
+	<%= p.hidden_field :coord_lat %>
+	<%= p.hidden_field :coord_lng %>
 
 <% if @tipus_valor == "Restaurant" %>
 	<div>
@@ -132,7 +124,7 @@
 			<%#= @pdi.errors[:etiqueta].first %>
 		</div>
 	</div>
-
+</div>
 <% end %>
 	
 
@@ -146,7 +138,7 @@
 	</div>
 
 <% end %>
-	<%= p.submit "Guardar" %>
+	<%= p.submit "Guardar", {:style=>"margin-top:30px; margin-left:130px; padding:10px; width:280px; padding-bottom:25px;"} %>
 
   <% end %>
 

@@ -1,7 +1,10 @@
 <h2>Enregistra't!</h2>
-
-<%= form_for @usuari do |u| %>
-	<div class="<%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star"></span> Star
+</button>
+<%= form_for @usuari, :class=>"form-horizontal" do |u| %>
+<% pais_array = [['Espanya',1], ['París', 2]] %>
+	<div class="control-group, <%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :nom_usuari, :class=>"titol_camp" %>	
 		<%= u.text_field :nom_usuari, :class=>"contingut_camp" %>
 		<div>
@@ -47,7 +50,15 @@
 		<%= u.label :edat, :class=>"titol_camp" %>	
 		<%= u.number_field :edat, :class=>"contingut_camp" %>
 	</div>
+	<div>
+		<%= u.label :pais_naixament, :class=>"titol_camp" %>	
+		<%= u.select(:pais_naixament, options_for_select(pais_array), {}, {:class=>"contingut_camp"}) %>
+	</div>
 
+	<div>
+		<%= u.label :pais_residencia, :class=>"titol_camp" %>	
+		<%= u.select(:pais_residencia, options_for_select(pais_array), {}, {:class=>"contingut_camp"}) %>
+	</div>
 	<div>
 		<%= u.label :sexe, :class=>"titol_camp" %>	
 	<span class="contingut_camp_radio">
@@ -57,38 +68,16 @@
 		<%= label_tag(:sexe, "Home") %>
 	</span>
 	</div>
+
+
+
 	<div>
 		<%= u.submit "Registra't", :class=>"contingut_camp_boto"  %>
-	</div>
-<br>
-<hr>
-<br>
-<p> En construcció:</p>
-	<div>
-		<% #ciutats_array = City.all.map { |city| [city.name, city.id] } %>
-		<% ciutats_array = [['Barcelona',1], ['Madrid', 2]] %>
-		<%= u.label :ciutat_naixament %>	
-		<% #u.select(:ciutat_naixament) %>
-		<%#= options_for_select(ciutats_array) %>
-		<%= select_tag(:ciutat_naixament, options_for_select(ciutats_array)) %>
-	</div>
-
-	<div>
-		<%= u.label :pais_naixament %>	
-		<%= u.number_field :pais_naixament %>
-	</div>
-
-	<div>
-		<%= u.label :ciutat_residencia %>	
-		<%= u.number_field :ciutat_residencia %>
-	</div>
-
-	<div>
-		<%= u.label :pais_residencia %>	
-		<%= u.number_field :pais_residencia %>
-
 	</div>
 
 <% end %>
 
+
+<%##= cities_array = City.all.map { |city| [city.name, city.id] } %>
+<%#= options_for_select(cities_array) %>
     

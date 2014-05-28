@@ -11,7 +11,7 @@ class UsuarisController < ApplicationController
         render('new')
       else 
         # TODO redirigir a l'autèntica home
-        redirect_to '/demo/index'
+        redirect_to '/sessions/new'
         #redirect_to root_url, :notice => "Signed up!"
       end
 

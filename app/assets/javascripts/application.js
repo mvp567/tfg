@@ -14,6 +14,12 @@
 //= require ../../../vendor/assets/javascripts/jquery-1.11.1
 //= require ../../../vendor/assets/javascripts/jquery-ui-1.10.4
 
+//= require ../../../vendor/assets/javascripts/bootstrap/js/bootstrap
+
+//= require ../../../vendor/assets/javascripts/customdropdown/js/modernizr.custom.79639
+
+//= require ../../../vendor/assets/javascripts/selectize/js/selectize
+
 
 //= require_tree .
 
@@ -28,3 +34,42 @@ function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
 }
+
+/*Codi pel customdropdown*/
+$( document ).ready(function() {
+  	$("li").on("click",function() {
+      //$(".hidden").val($(event.target).text())
+      $("#eo").val($(event.target).text());
+      $("#seleccionat").val($(event.target).text());
+ 
+  	});
+
+	function DropDown(el) {
+					this.dd = el;
+					this.initEvents();
+				}
+				DropDown.prototype = {
+					initEvents : function() {
+						var obj = this;
+
+						obj.dd.on('click', function(event){
+							var dropDownValor = $('#dd').val();
+							$('#seleccionat').val(dropDownValor);
+
+							$(this).toggleClass('active');
+							event.stopPropagation();
+						});	
+					}
+				}
+
+	$(function() {
+		var dd = new DropDown( $('#dd') );
+
+		$(document).click(function() {
+		// all dropdowns
+			$('.wrapper-dropdown-2').removeClass('active');
+		});
+
+	});
+
+});

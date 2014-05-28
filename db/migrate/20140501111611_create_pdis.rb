@@ -3,7 +3,6 @@ class CreatePdis < ActiveRecord::Migration
     create_table :pdis do |t|
       t.float :punts
       t.string :nom
-      t.string :observacions
       t.string :horari
       t.string :telefon
       t.string :web

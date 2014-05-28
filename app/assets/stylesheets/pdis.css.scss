@@ -2,6 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
   
+/* PDI#index */
+.text_table {
+  color: black;
+}
+
+.edit_table {
+  color: #14caa3;
+}
+
+
+/* PDI#new */
+.allunyat {
+  margin-bottom: 20px;
+}
+
+.coloreate {
+  padding: 20px;
+  background: #e1fcf6;
+}
+
+
+
+
 /* BEGIN Estils mapa Google Maps Api*/  
 #map-canvas { 
 height: 20em;
@@ -52,3 +75,7 @@ width: 50em;
       }
 
 /*END Estils mapa Google Maps Api*/
+
+
+
+

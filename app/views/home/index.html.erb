@@ -1,20 +1,36 @@
 
 
 <h1 style="display:none">Cerca, crea, edita. Comparteix les teves rutes.</h1>
+<div id="contingut_searcher">
+	<%= render :partial => '/layouts/cercador' %>
+</div>
+
 <div id="contingut_funcionament">
 	<h2>Com funciona?</h2>
-<p>1. Crea els punts d'interès si no existeixen ja.</p>
-<p>2. Crea una ruta turística.</p>
+	<div class="div_floatejant">
+		<p>1. Crea els punts d'interès si no existeixen ja. </p>
+		<div style="position:relative; left: 17px;">
+			<%= link_to "Crea Punt d\'interès", {:controller => "pdis", :action => "new"}, {:class => "pdis_link_to_new"} %>
+		</div>
+	</div>
+
+	<div class="div_floatejant">
+		<p>2. Crea una ruta turística. </p>
+		<div style="position:relative; left: 17px;">
+			<%= link_to "Crea Ruta turística", {:controller => "ruta_turisticas", :action => "new"}, {:class => "rts_link_to_new"} %>
+		</div>
+	</div>
 </div>
+
 <div id="contingut_rel_pdi">
 	<h4> Punts d'interès 
-	<%= link_to "Crea Punt d\'interès", {:controller => "pdis", :action => "new", :method => :get}, {:class => "pdis_link_to_new"} %>
+	
 	</h4>
 </div>
 
 <div id="contingut_rel_rt">
 	<h4> Rutes turístiques 
-	<%= link_to "Crea Ruta turística", {:controller => "ruta_turisticas", :action => "new", :method => :get}, {:class => "rts_link_to_new"} %>
+	
 	</h4>
 </div>
 

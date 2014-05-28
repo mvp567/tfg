@@ -1,7 +1,26 @@
+<script type="text/javascript">
+
+</script>
+
+
 <%= form_tag('/cercadors', method: :get) do %>
   <p>
   	<% tipus_array = [['Punt d\'interès',1], ['Ruta turística', 2], ['Ciutat', 3], ['País', 4], ['Etiqueta', 5], ['Usuari', 6]] %>
-  	<%= select_tag(:tipus, options_for_select(tipus_array)) %>
+  	
+<!--<div id="dd" class="wrapper-dropdown-2">
+  <input type="text" style="order:none; border-color:transparent;" id="eo" value="Què busques?">
+  <%= hidden_field_tag :seleccionat, :id => "seleccionat" %>
+    <ul class="dropdown" style="z-index:1000;">
+        <li><a href="#"><i class="fa fa-map-marker"></i>Punt d'interès</a></li>
+        <li><a href="#"><i class="fa fa-building"></i>Ciutat</a></li>
+        <li><a href="#"><i class="fa fa-globe"></i>País</a></li>
+        <li><a href="#"><i class="fa fa-tag"></i>Etiqueta</a></li>
+        <li><a href="#"><i class="fa fa-user"></i>Usuari</a></li>
+    </ul>
+</div>-->
+
+
+	<%= select_tag(:tipus, options_for_select(tipus_array), :class => "form-control", :style => "width:150px; display:initial;") %>
     <%= text_field_tag :cerca, params[:cerca], :class=>"searcher" %>
     <%= submit_tag :cerca, :name => nil %>
   </p>

@@ -4,7 +4,6 @@ class PdisController < ApplicationController
     if params[:tipus_pdi] != nil
       @pdi = params[:tipus_pdi].constantize.new
       @tipus_valor = params[:tipus_pdi]
-
     end
   end
 
@@ -18,7 +17,6 @@ class PdisController < ApplicationController
     @etiquetes = params[:etiquetes]
 
     #@pdi.lonlat = 'POINT(2.1789019999999937 41.385514)'
-
     @pdi.el_meu_save(@etiquetes)
   	# @pdi.save
   end

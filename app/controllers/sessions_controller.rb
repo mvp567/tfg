@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if usu && usu.authenticate(params[:password])
       session[:usuari_id] = usu.id
       # TODO redirigir a l'autèntica home
-      redirect_to '/demo/index'
+      redirect_to ({:controller => "home", :action => "index"})
     else
       flash[:notice] =  "Nom d\'usuari invàlid o contrasenya errònea"
       render "new"

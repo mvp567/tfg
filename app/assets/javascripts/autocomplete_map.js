@@ -24,6 +24,10 @@ function initialize() {
       });
 
       google.maps.event.addListener(autocomplete, 'place_changed', function() {
+
+        $("#ph_2").removeClass("coloreate");
+        $("#ph_3").addClass("coloreate");
+
         infowindow.close();
         marker.setVisible(false);
         var place = autocomplete.getPlace();
@@ -41,7 +45,6 @@ function initialize() {
         $('#' + tipus + '_coord_lat').val(place.geometry.location.k);
         $('#' + tipus + '_coord_lng').val(place.geometry.location.A);
         
-
 
         //fillInAddress(tipus);
 
@@ -183,3 +186,6 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.event
+ .addListenerOnce(map,'tilesloaded',function(){jQuery('#pac-input').focus()});

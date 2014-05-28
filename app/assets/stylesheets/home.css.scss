@@ -3,11 +3,47 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+$meuverdblau_clar: #e1fcf6;
+
+/*
+mostassa
+$pdi_border: #edd077;
+$pdi_back: #fbf4df;
+
+verd fulla viu
+$rt_border: #14ca49;
+$rt_back: #e1fce9;
+*/
+
+/*
+blau viu
+$pdi_border: #23a6ce;
+$pdi_back: #d1eef7;
+
+verd fulla viu
+$rt_border: #14ca49;
+$rt_back: #e1fce9;
+*/
+
+$pdi_border: #14caa3;
+$pdi_back: #e1fcf6;
+$pdi_hover: #51eecc;
+
+$rt_border: #ed9577;
+$rt_back: #fbeedf;
+$rt_hover: #f3b8a4;
+
+.div_floatejant{
+	width: 48%;
+	padding: 20px;
+	float: left;
+}
+
 #contingut_rel_pdi, #contingut_rel_rt {
-	border-style: solid;
-	border-width: 1px;
+	/*border-style: solid;
+	border-width: 1px;*/
 	border-radius: 25px;
-	width: 300px;
+	width: 48%;
 	height: 300px;
 	padding: 20px;
 	float: left;
@@ -15,30 +51,49 @@
 }
 
 #contingut_rel_pdi {
-	border-color: #0062ae;
-	background: #d5edff;
+	/*border-color: #0062ae;
+	background: #d5edff;*/
+	/*border-color: #14caa3;
+	background: #e1fcf6; elmeuverdblau*/
+	border-color: $pdi_border;
+	background: $pdi_back;
 }
 
 #contingut_rel_rt {
-	border-color: #62ae00;
-	background: #edffd5;
-	margin-left: 30px;
+	margin-left: 4%;
+	/*border-color: #62ae00;
+	background: #edffd5;*/
+	/*border-color: #edd077;
+	background: #fbf4df; mostassa*/
+	border-color: $rt_border;
+	background: $rt_back;
 }
 
 #contingut_funcionament {
 	width: 100%;
-	height: 100px;
 	padding: 10px;
+	padding-bottom: 30px;
 	background: #f5f5f5;
 	display: inline-block;
-	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
+#contingut_searcher {
+	width: 100%;
+	/*border-color: #4e4e4e;
+	border-style: dotted;
+	border-width: 1px;*/
+	background: #f5f5f5;
+	text-align: center;
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
 
 .pdis_link_to_new {
   text-decoration:none;
-  background-color: #0062ae;
+  background-color: $pdi_border;
   border: none;
   color: white;
   padding: 5px;
@@ -51,14 +106,16 @@
 }
 
 .pdis_link_to_new:hover, .pdis_link_to_new:focus {
+  text-decoration:none;
   outline: none;
-  background-color: #51eecc;
+  color: white;
+  background-color: $pdi_hover;
 }
 
 
 .rts_link_to_new {
   text-decoration:none;
-  background-color: #62ae00;
+  background-color: $rt_border;
   border: none;
   color: white;
   padding: 5px;
@@ -71,6 +128,8 @@
 }
 
 .rts_link_to_new:hover, .rts_link_to_new:focus {
+  text-decoration:none;
   outline: none;
-  background-color: #51eecc;
+  color: white;
+  background-color: $rt_hover;
 }

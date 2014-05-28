@@ -2,41 +2,4 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.camp_amb_errors {
-  color: red;
-  margin-bottom: 10px;
-}
 
-.titol_camp {
-	float:left;
-	width: 150px;
-	margin: 5px;
-	text-align: right;
-}
-
-.contingut_camp {
-	width: 200px;
-	margin-left: 40px;
-	margin-top:5px;
-	margin-bottom: 5px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	border: 1px solid rgb(204, 204, 204);
-	padding: 4px;
-}
-
-.contingut_camp_radio {
-	width: 200px;
-	margin-left: 40px;
-	position: relative;
-	top: 4px;
-}
-
-.contingut_camp_boto {
-	width: 210px;
-	margin-left: 40px;
-	margin-top:15px;
-	margin-bottom: 5px;
-	padding: 4px;
-}
