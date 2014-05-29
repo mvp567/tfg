@@ -1,16 +1,15 @@
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="2"></th>
-  </tr>
  
 <% @valoracions.each do |val| %>
   <tr>
-    <td><%= val.id %></td>
     <td><%= val.titol %></td>
-    <td><%= val.opinio %></td>
     <td><%= val.punts %></td>
+    <td> <%=val.usuari.nom_usuari%> </td>
+    <td><%=val.created_at%></td>
+  </tr>
+  <tr>
+    <td colspan="4"><%= val.opinio %></td>
   </tr>
 <% end %>
+
 </table>

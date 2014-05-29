@@ -3,6 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+/* RUTA#index */
+.edita_ruta {
+  color: #ed9577;
+}
+
+/* RUTA#new/edit */
+.estil_num_ordre {
+	color: #e46033;
+	width: 20px;
+	background-color: #f6cabb;
+	border-style: solid;
+	border-radius: 20px;
+	border-width: 1px;
+	border-color: #ed9577;
+	padding-left: 5px;
+	padding-top: 2px;
+}
+
+
 /* BEGIN ESTILS PEL SORTABLE DE JQUERY-UI*/
 #sortable { 
 	list-style-type: none; margin: 0; padding: 0; width: 60%; 
@@ -18,15 +37,3 @@ html>body #sortable li {
 }
 
 /* END ESTILS PEL SORTABLE DE JQUERY-UI*/
-
-
-// Place all the styles related to the pdis controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-  
-/* BEGIN Estils mapa Google Maps Api*/  
-#map-canvas { 
-height: 20em;
-width: 50em; 
-}
-/*END Estils mapa Google Maps Api*/

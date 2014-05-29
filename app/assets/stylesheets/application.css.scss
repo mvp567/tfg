@@ -12,10 +12,11 @@
  *= ../../../vendor/assets/stylesheets/ui-lightness/jquery-ui-1.10.4 
  
  *= require ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap
- *= require ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap-theme
  
  *= require ../../../vendor/assets/stylesheets/customdropdown/css/style
- *= require ../../../vendor/assets/stylesheets/selectize/css/selectize
+ *= require ../../../vendor/assets/stylesheets/magnific-popup/css/magnific-popup
+ *= require ../../../vendor/assets/stylesheets/tagit/css/jquery.tagit
+ *= require ../../../vendor/assets/stylesheets/tagit/css/tagit.ui-zendesk
 
  *= require_self
  *= require_tree .
@@ -128,6 +129,15 @@ input[type=submit]:hover, input[type=submit]:focus {
   padding: 4px;
 }
 
+.contingut_camp_autocomplete {
+  width: 400px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 4px;
+}
+
 /* el textbox sense caixeta, sino linia */
 .textbox_linia { 
   height: 25px; 
@@ -142,4 +152,16 @@ input[type=submit]:hover, input[type=submit]:focus {
   margin-bottom: 5px;
 } 
 
+/* estil estrelletes */
+.estil_estrelletes {
+  font-size: 18px;
+  color: #ffc508;
+  cursor: pointer;
+}
 
+/* BEGIN Estils mapa Google Maps Api*/  
+#map-canvas { 
+height: 20em;
+width: 55em;
+}
+/*END Estils mapa Google Maps Api*/

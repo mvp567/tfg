@@ -47,22 +47,19 @@ class RutaTuristicasController < ApplicationController
   def edit
     @rt = RutaTuristica.find(params[:id])
     # TODO check if user have the quest for it in usuari-questionari
-    uq = UsuariQuestionari.where(:questionari_id => @rt.questionari.id, :usuari_id => usuari_actual.id)
-    if !uq.exists?
-      # TODO passar per get el qüestionari_id
-      byebug
-      redirect_to :controller => 'usuari_questionaris', :action => 'new', :questionari_id => @rt.questionari.id
-      byebug
-    else
-      #mirar nota
-      byebug
-      nota = uq.first.nota_treta
-      if nota < 5.0
-        error = "El qüestionari per aquesta ruta turística no ha estat superat, per tant no pots editar-la."
-        redirect_to ruta_turisticas_path, :notice => error
-      end
 
-    end
+    # TODO descomentar!!!
+    #uq = UsuariQuestionari.where(:questionari_id => @rt.questionari.id, :usuari_id => usuari_actual.id)
+    #if !uq.exists?
+     # redirect_to :controller => 'usuari_questionaris', :action => 'new', :questionari_id => @rt.questionari.id
+    #else
+     # nota = uq.first.nota_treta
+      #if nota < 5.0
+       # error = "El qüestionari per aquesta ruta turística no ha estat superat, per tant no pots editar-la."
+        #redirect_to ruta_turisticas_path, :notice => error
+      #end
+
+    #end
 
 
   end

@@ -3,11 +3,14 @@ class CreatePdis < ActiveRecord::Migration
     create_table :pdis do |t|
       t.float :punts
       t.string :nom
-      t.string :horari
+      t.text :horari
+      t.text :fotos_petites
+      t.text :fotos_grans
       t.string :telefon
       t.string :web
       t.decimal :preu_aprox
       t.integer :nivell_preu
+      t.string :icone
       t.string :type
       t.integer :usuari_id
       t.integer :usuari_modificador_id

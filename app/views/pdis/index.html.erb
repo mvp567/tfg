@@ -8,7 +8,7 @@
 <% @pdis.each do |pdi| %>
   <tr>
     <td><%= link_to pdi.nom, pdi_path(pdi), :class=>"text_table" %></td>
-    <td><%= link_to 'Edit', edit_pdi_path(pdi), :class => "edit_table fa fa-pencil-square-o" %></td>
+    <td><%= link_to 'Edita', edit_pdi_path(pdi), :class => "edita_pdi fa fa-pencil-square-o" %></td>
   </tr>
 <% end %>
 </table>

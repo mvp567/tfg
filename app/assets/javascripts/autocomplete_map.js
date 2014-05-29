@@ -25,8 +25,8 @@ function initialize() {
 
       google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
-        $("#ph_2").removeClass("coloreate");
-        $("#ph_3").addClass("coloreate");
+        $("#ph_2").removeClass("colorejat");
+        $("#ph_3").addClass("colorejat");
 
         infowindow.close();
         marker.setVisible(false);
@@ -35,12 +35,27 @@ function initialize() {
         var tipus = $('#tipus').val().toLowerCase();
 
         $('#' + tipus + '_nom').val(place.name);
-        $('#' + tipus + '_horari').val(place.opening_hours);
+        $('#' + tipus + '_horari').val(JSON.stringify(place.opening_hours));
         $('#' + tipus + '_telefon').val(place.formatted_phone_number);
         $('#' + tipus + '_web').val(place.website);
         $('#' + tipus + '_nivell_preu').val(place.price_level);
-
+        $('#' + tipus + '_icone').val(place.icon);
+       
+        // BEGIN tractament de place.photos per a guardar-ho serialitzat
+        var string_fotos_petites = "";
+        var string_fotos_grans = "";
         
+        for (var i=0; i<place.photos.length; i++) {
+          string_fotos_petites += place.photos[i].getUrl({ 'maxWidth': 75, 'maxHeight': 75 }) +",";
+          string_fotos_grans += place.photos[i].getUrl({ 'maxWidth': 600, 'maxHeight': 600 }) +","; 
+        }
+
+        $('#' + tipus + '_fotos_petites').val(string_fotos_petites);
+        $('#' + tipus + '_fotos_grans').val(string_fotos_grans);
+
+        // END tractament de place.photos per a guardar-ho serialitzat
+
+
         $('#' + tipus + '_adreca').val(place.formatted_address);
         $('#' + tipus + '_coord_lat').val(place.geometry.location.k);
         $('#' + tipus + '_coord_lng').val(place.geometry.location.A);
@@ -187,5 +202,4 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-google.maps.event
- .addListenerOnce(map,'tilesloaded',function(){jQuery('#pac-input').focus()});
+//google.maps.event.addListenerOnce(map,'tilesloaded',function(){jQuery('#pac-input').focus()});

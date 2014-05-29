@@ -1,4 +1,9 @@
-<h1>RutaTuristicas#create</h1>
-<p>Per a finalitzar, crea un formulari per a l'accés a l'edició de la ruta turística.</p>
+<div class="alert alert-info" style="margin-top:40px;">
+	Per a finalitzar, crea un formulari per a l'accés a l'edició de la ruta turística: 
 
-<%= link_to "Crea formulari", {:controller => "questionaris", :action => "new", :ruta_turistica_id => @rt.id}, :method => :get %>
+	<strong><%= link_to "Crea formulari", {:controller => "questionaris", :action => "new", :ruta_turistica_id => @rt.id}, :method => :get, :class=>"alert-link" %></strong>
+
+</div>
+
+
+

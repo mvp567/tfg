@@ -1,79 +1,139 @@
-<h1>Pdis#show</h1>
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Punts d'interès</a></li>
+  <li class="active"> <%= @pdi.nom %> </li>
+</ol>
 
+<div>
+
+<h2 style="width:800px;"> 
+	<i class="fa fa-map-marker"></i>
+	<%= @pdi.nom %> 
+
+	<small><small><i class="fa fa-home"></i></small></small>
+	<small><small>
+		<%= link_to @pdi.localitat, {:controller=>"cercadors", :action=>"index", :cerca=>@pdi.localitat, :tipus=>"3"}, :style=>"color: #9f9f9f;" %>
+	</small></small>
+
+	<small><small><i class="fa fa-globe"></i></small></small>
+	<small><small>
+		<%= link_to @pdi.pais, {:controller=>"cercadors", :action=>"index", :cerca=>@pdi.pais, :tipus=>"4"}, :style=>"color: #9f9f9f;" %>
+	</small></small>
+
+<% if @pdi.punts.nil? %>
+	<small style="float:right; margin-top:15px; color:darkorange;">-</small>
+<% else %>
+	<small style="float:right; margin-top:15px; color:darkorange;"><i class="fa fa-trophy" style="padding-right:5px;"></i><%= '%.1f' % @pdi.punts %></small>
+<% end %>
+</h2>
+
+</div>
 
 <%= hidden_field_tag :accio, "mostrant" %>
-		<%= hidden_field_tag :tipus, @pdi.type %>
+<%= hidden_field_tag :tipus, @pdi.type %>
 
-	<div id="map-canvas"> </div>
-	<%= hidden_field_tag @pdi.coord_lat, @pdi.coord_lat, {:id => 'coord_lat'} %>
-	<%= hidden_field_tag @pdi.coord_lng, @pdi.coord_lng, {:id => 'coord_lng'} %>
-	<!-- carregar etiquetes de l'associació -->
-		<%= label_tag @pdi.punts %>
+<div id="map-canvas" style="margin-bottom:20px;"> </div>
 
-		<%= label_tag @pdi.nom %>	
+<%= hidden_field_tag @pdi.coord_lat, @pdi.coord_lat, {:id => 'coord_lat'} %>
+<%= hidden_field_tag @pdi.coord_lng, @pdi.coord_lng, {:id => 'coord_lng'} %>
 
-		<%= label_tag @pdi.observacions %>	
 
-		<%= label_tag @pdi.horari %>	
+<div> 
+	<%= link_to 'Edita', edit_pdi_path(@pdi), :class => "edita_pdi fa fa-pencil-square-o" %>
+	Creat per <%= @pdi.usuari.nom_usuari %> - <%= @pdi.created_at %>
+	Última modificació: <%= @pdi.usuari_modificador.nom_usuari %> - <%= @pdi.updated_at %>
+</div>
 
-		<%= label_tag @pdi.telefon %>	
-		
-		<%= label_tag @pdi.web %>	
-		<%= label_tag @pdi.preu_aprox %>	
-		<%= label_tag @pdi.nivell_preu %>	
+<div class="popup-gallery" style="margin-bottom:20px;">
+	<% @fotos.each do |f| %>
+		<% foto_petita = f.dup %>
+		<% foto_petita["w600-h600"] = "w75-h75" %>
+		<a href="<%= f %>" title="<%= @pdi.nom %>"><img src="<%= foto_petita %>" width="75" height="75"></a>
+	<% end %>
+</div>
 
-<h3> Camps localització </h3>
-	
-	
+
+<div style="display: flex;">
+<ul class="list-inline"  style="display: inherit;">
+  <% @pdi.etiqueta.each do |et| %>
+	  <li>
+	  	<i class="fa fa-tag verdmar">
+	     <%= link_to et.nom, {:controller=>"cercadors", :action=>"index", :cerca=>et.nom, :tipus=>"5"}, :class=>"link_verdmar" %>
+	     </i>
+	  </li>
+  <% end %>
+</ul>
+</div>
+
+<div style="margin-bottom:40px;">
+
+	<i class="fa fa-arrows"></i>
 		<%= label_tag @pdi.adreca %>	
 		<%= label_tag @pdi.codi_postal %>	
-		<%= label_tag @pdi.localitat %>
-		<%= label_tag @pdi.pais %>
+<br>
+	<i class="fa fa-clock-o"></i>
+		<%= label_tag @pdi.horari %>
+<br>
+	<i class="fa fa-phone"></i>
+		<%= label_tag @pdi.telefon %>	
+<br>
+	<i class="fa fa-link"></i>
+		<%= link_to @pdi.web, @pdi.web, :target => "_blank" %>	
+<br>
+	<i class="fa fa-money"></i>
+		<%= label_tag @pdi.preu_aprox %>	
 
-
-<% if @pdi.type == "Restaurant" %>
-	
+	<% if @pdi.type == "Restaurant" %>
 		<%= label_tag @pdi.forquilles %>
+	<% end %>
 		
-<% end %>
-	
 
 	<% if @pdi.type == "Hotel" %>
-	
 		<%= label_tag @pdi.estrelles %>
-		
-<% end %>
-	
-<p>
-	<h2>Rutes turístiques que inclouen aquest PDI</h2>
-<ul>
-<% @rts_from_pdi.each do |rtp| %>
-  <li>
-    <%#= rtp.nom %>
-    <%= link_to rtp.nom, ruta_turistica_path(rtp) %>
-  </li>
-<% end %>
-</ul>
-</p>
+	<% end %>
+</div>
 
-<p>
-	<h2>PDIs propers</h2>
-<ul>
+
+<div style="width:600px; margin-bottom:40px;">
+<h4>Punts d'interès propers</h4>
+<ul class="list-group">
 <% @pdis_propers.each do |pp| %>
-  <li>
-    <%# = pp.nom %>
+  <li class="list-group-item">
+  	<i class="fa fa-map-marker">
     <%= link_to pp.nom, pdi_path(pp) %>
+    </i>
   </li>
 <% end %>
 </ul>
-</p>
+</div>
 
-<p>
-	<h2>Valoracions del PDI</h2>
+<div style="width:600px; margin-bottom:40px;">
+<h4>Rutes turístiques que l'inclouen </h4>
+<ul class="list-group">
+  <% @rts_from_pdi.each do |rtp| %>
+	  <li class="list-group-item">
+	  	<i class="fa fa-picture-o">
+	    <%= link_to rtp.nom, ruta_turistica_path(rtp) %>
+	    </i>
+	  </li>
+  <% end %>
+</ul>
+</div>
 
-<%= link_to "Nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %>
+
+
+
+
+<div style="background:#f3f2f4; padding:15px;">
+<h2>
+	<i class="fa fa-comment"></i> Valoracions
+
+	<small><small><%= link_to "Afegeix una nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %></small></small>
+
+</h2>
 <%= render 'valoracios/index' %>
 
-</p>
+</div>
+
 
 

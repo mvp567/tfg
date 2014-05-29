@@ -1,26 +1,24 @@
-
-<h1>Valoracios#new</h1>
+<h3>Nova valoració</h3>
 <%= form_for @valoracio do |v| %>
 
 	<%= v.hidden_field :pdi_id, :value => params[:pdi_id] %>
 	<%= v.hidden_field :ruta_turistica_id, :value => params[:ruta_turistica_id] %>
 
 	<div>
-		<%= v.label :titol, :class=>"titol_camp" %>	
+		<%= v.label :titol, "Títol", :class=>"titol_camp" %>	
 		<%= v.text_field :titol, :class=>"contingut_camp" %>
 
 	</div>
 
 	<div>
-		<%= v.label :opinio, :class=>"titol_camp" %>	
+		<%= v.label :opinio, "Opinió", :class=>"titol_camp" %>	
 		<%= v.text_area :opinio, :class=>"contingut_camp" %>
 
 	</div>
 
 	<div>
 		<%= v.label :punts, :class=>"titol_camp" %>	
-		<%= v.number_field :punts, :class=>"contingut_camp" %>
-
+		<div style="position:relative; left:42px;"><input type="number" name="punts" data-max="5" data-min="1" id="punts" class="rating" style="font-size:14px;color:red;" /></div>
 	</div>
 
 	<div>

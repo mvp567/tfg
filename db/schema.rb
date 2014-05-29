@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517150725) do
+ActiveRecord::Schema.define(version: 20140529112744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,8 @@ ActiveRecord::Schema.define(version: 20140517150725) do
     t.datetime "updated_at"
     t.spatial  "lat",                     limit: {:srid=>0, :type=>"point"}
     t.spatial  "lng",                     limit: {:srid=>0, :type=>"point"}
+    t.text     "fotos"
+    t.text     "fotos_petites"
   end
 
   add_index "pdis", ["lonlat"], :name => "index_pdis_on_lonlat", :spatial => true

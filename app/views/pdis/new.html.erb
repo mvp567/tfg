@@ -1,10 +1,10 @@
 
-<h3>Crea un nou punt d'interès</h3>
+<h3><i class="fa fa-map-marker"></i> Crea un nou punt d'interès</h3>
 
 <% if @pdi.nil? %>
 <%= form_tag('/pdis/new', method: :get) do %>
 <%#= form_tag('/pdis/new', method: :get, id: 'tagid') do %>
-  <div id="ph_1" class="coloreate">
+  <div id="ph_1" class="colorejat">
 <h5>1. Selecciona quin tipus de punt d'interès vols crear.</h5>
 	<div>
 		<% tipus_pdi_array = [['Restaurant'], ['Botiga'], ['Museu'], ['Monument'], ['Discoteca'], ['Entreteniment'], ['Hotel'], ['Vista']] %>
@@ -27,7 +27,7 @@
 	<h5>1. Estàs creant un punt d'interès: <b><%= @tipus_valor %></b> <small><%= link_to 'Canvia-ho', controller: "pdis", action: "new", :class => "glyphicon glyphicon-arrow-left" %></small></h5> 
 </div>
 	 
-	<div id="ph_2" class="allunyat coloreate">
+	<div id="ph_2" class="allunyat colorejat">
 	<h5>2. Busca el punt d'interès en qüestió.</h5>
 	<%# BEGIN Codi mapa + input autocomplete(pac-input) %>
 	<input id="pac-input" class="controls" type="text"
@@ -38,14 +38,9 @@
 </div>
 	<div>
 		  <div id="ph_3" class="allunyat">
-		<h5>3. Introdueix mínim tres etiquetes per descriure'l.</h5>
-		<%= label_tag(:etiquetes, "Afegeix etiquetes:") %>	
-		<%= text_field_tag(:etiquetes) %>
-		<input type="text" id="input-tags" class="demo-default selectized" value="awesome,neat" tabindex="-1" style="display: none;">
-		<div class="formrow">
-      <label for="input-tags">Tags:</label>
-      <input type="text" id="input-tags" value="website,graphics,question">
-    </div>
+		<h5>3. Introdueix mínim tres etiquetes per descriure'l. <small>Separa-les amb comes o apretant la tecla tab.</small></h5>
+		<div id="div_etiquetes">
+		<%= text_field_tag(:etiquetes) %></div>
 	</div>
 </div>
  <div id="ph_4">
@@ -77,17 +72,34 @@
 	</div>
 
 	<div>
-		<%= p.label :preu_aprox, :class=>"titol_camp_esq" %>	
+		<%= p.label :preu_aprox, :class=>"titol_camp_esq" %>
 		<%= p.text_field :preu_aprox, :class=>"textbox_linia"  %>
 		<div>
 			<%= @pdi.errors[:preu_aprox].first %>
 		</div>
 	</div>
 
+
 	<div>
 		<%= p.label :horari, "horari_hidden", :class=>"titol_camp_esq" %>
 		<%= p.text_field :horari, :class=>"textbox_linia" %>
 	</div>
+
+	<div>
+		<%= p.label :fotos_petites, "fotos_hidden", :class=>"titol_camp_esq" %>
+		<%= p.text_field :fotos_petites, :class=>"textbox_linia" %>
+	</div>
+
+	<div>
+		<%= p.label :fotos_grans, "fotos_hidden", :class=>"titol_camp_esq" %>
+		<%= p.text_field :fotos_grans, :class=>"textbox_linia" %>
+	</div>
+
+	<div>
+		<%= p.label :icone, "icone_hidden", :class=>"titol_camp_esq" %>
+		<%= p.text_field :icone, :class=>"textbox_linia" %>
+	</div>
+
 		<%= p.hidden_field :nivell_preu  %>
 
 

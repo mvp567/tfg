@@ -14,22 +14,30 @@ class PdisController < ApplicationController
 
   	@pdi = params[:tipus].constantize.new(create_params)
     @pdi.usuari = usuari_actual
+    @pdi.usuari_modificador = usuari_actual
     @etiquetes = params[:etiquetes]
-
     #@pdi.lonlat = 'POINT(2.1789019999999937 41.385514)'
+
     @pdi.el_meu_save(@etiquetes)
   	# @pdi.save
   end
 
   def edit
     @pdi = Pdi.find(params[:id])
+    @etiquetes = ""
+    @pdi.etiqueta.each do |et|
+      @etiquetes += et.nom + ","
+    end
   end
 
   def update
     @pdi = Pdi.find(params[:id])
+    @etiquetes = params[:etiquetes]
+    @pdi.usuari_modificador = usuari_actual
+    @pdi.el_meu_save(@etiquetes)
 
     #if 
-      @pdi.update(update_params)
+    ##@pdi.update(update_params)
       #redirect_to @pdi ## PROBLEM no existeix hotel_url
     #else
      # render 'edit'
@@ -39,6 +47,17 @@ class PdisController < ApplicationController
   def show
     @pdi = Pdi.find(params[:id])
     @valoracions = @pdi.valoracios
+    if !@pdi.fotos_grans.nil?
+      @fotos = @pdi.fotos_grans.split ","
+    else
+      @fotos = []
+    end
+
+    if !@pdi.horari.nil?
+      @horari = JSON.parse @pdi.horari
+    else
+      @horari = "-"
+    end
 
     #@puntsPDI = @pdi.calcula_punts
     #@puntsPDI = @pdi.punts
@@ -52,7 +71,7 @@ class PdisController < ApplicationController
      # @puntsPDI /= @valoracions.count
 
      # Mostrar pdis per proximitat 
-      @pdis_propers = Pdi.close_to(@pdi.coord_lat, @pdi.coord_lng)
+    @pdis_propers = Pdi.close_to(@pdi.coord_lat, @pdi.coord_lng)
      
      # Mostrar rutes que inclouen aquest pdi
       @rts_from_pdi = []
@@ -81,8 +100,8 @@ class PdisController < ApplicationController
 
   def create_params
   		params.require(params[:tipus].downcase.to_sym).permit(
-        :nom, :observacions, :horari, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles,
-        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng)
+        :nom, :observacions, :horari, :fotos_petites, :fotos_grans, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles,
+        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng, :icone)
   end
 
   def update_params

@@ -1,35 +1,39 @@
-<h1>RutaTuristicas#new</h1>
+<h3><i class="fa fa-picture-o"></i> Crea una nova ruta turística</h3>
+
 <%= hidden_field_tag :accio, "creant_rt" %>
 <%= form_for @rt, url: {controller: "ruta_turisticas", action: "create"} do |p| %>
 
-	<%#= TODO posar markers al mapa cada cop que es fa una cerca exitosa de pdi%>
 	<div id="map-canvas"> </div>
-
+<div>
 	<div>
-		<%= p.label :nom %>	
-		<%= p.text_field :nom %>
+		<%= p.label :nom, :style=>"width:50px;" %>	
+		<%= p.text_field :nom, :class=>"contingut_camp", :style=>"width:384px;"  %>
 		<div>
 			<%= @rt.errors[:nom].first %>
 		</div>
 	</div>
 	<div>
-		<%= p.label :temps %>	
-		<%= p.text_field :temps %>
+		<%= p.label :temps, :style=>"width:50px;"  %>	
+		<%= p.text_field :temps, :class=>"contingut_camp" %>
 		<div>
 			<%= @rt.errors[:temps].first %>
 		</div>
 	</div>
 
+<h5>Afegeix tants punts d'interès com vulguis, i reordena'ls arrossegant-los.</h5>
+
 	<ul id="sortable">
 			<%= p.fields_for :pdis_rutaturisticas do |builder| %>
 				<%= render 'pdis_rutaturistica_fields', :f => builder %>
 			<% end %>
-			<p>
-				<%= link_to_add_fields "Add pdi", p, :pdis_rutaturisticas, :pdi %>
-			</p>
+			
+				<i class="fa fa-plus-circle" style="margin-left:35px; margin-top:15px;">
+					<%= link_to_add_fields "Afegeix un altre punt d'interès", p, :pdis_rutaturisticas, :pdi %>
+				</i>
+			
 	</ul>
-
-	<%= p.submit "Següent" %>
+</div>
+	<%= p.submit "Següent", :style=>"margin-left:103px; margin-top:20px; width:200px;" %>
 
 
 	

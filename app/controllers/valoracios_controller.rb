@@ -12,9 +12,7 @@ class ValoraciosController < ApplicationController
 
     @valoracio.usuari = usuari_actual
 
-    if @valoracio.punts.blank?
-        @valoracio.punts = 0
-    end
+    @valoracio.punts = params[:punts].to_i * 2
 
   	@valoracio.save
   end

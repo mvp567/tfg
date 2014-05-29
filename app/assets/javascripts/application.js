@@ -17,8 +17,9 @@
 //= require ../../../vendor/assets/javascripts/bootstrap/js/bootstrap
 
 //= require ../../../vendor/assets/javascripts/customdropdown/js/modernizr.custom.79639
-
-//= require ../../../vendor/assets/javascripts/selectize/js/selectize
+//= require ../../../vendor/assets/javascripts/magnific-popup/js/jquery.magnific-popup
+//= require ../../../vendor/assets/javascripts/tagit/js/tag-it
+//= require ../../../vendor/assets/javascripts/rating/js/bootstrap-rating-input
 
 
 //= require_tree .

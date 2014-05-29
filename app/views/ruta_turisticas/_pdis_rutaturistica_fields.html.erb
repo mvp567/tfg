@@ -51,15 +51,15 @@ $(function() {
 </script>
 
 <%#= ui-state-default ui-widget %>
-<li class="fields">
-  <%= f.text_field :ordre %>
+<li class="fields" style="margin-bottom:15px;">
+  <%= f.text_field :ordre, :class=>"estil_num_ordre" %>
   <%= f.fields_for :pdi do |p| %>
     <%= p.hidden_field :id %>
     <%= p.hidden_field :coord_lat %>
     <%= p.hidden_field :coord_lng %>
-    <%= p.label :nom, "PDI" %>
-    <%= p.text_field :nom, class: "text_autocomplete"%>
+    <%= p.text_field :nom, class: "text_autocomplete contingut_camp_autocomplete"%>
     <%= p.hidden_field :_destroy %>
-    <%= link_to_function "Treure\'l", "remove_fields(this)" %>
+    <%= link_to_function "", "remove_fields(this)", :class=>"fa fa-times" %>
+    <i class="fa fa-arrows-v" style="color: #e46033;"></i>
   <% end %>
 </li>

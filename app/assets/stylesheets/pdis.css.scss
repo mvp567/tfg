@@ -7,7 +7,7 @@
   color: black;
 }
 
-.edit_table {
+.edita_pdi {
   color: #14caa3;
 }
 
@@ -17,19 +17,36 @@
   margin-bottom: 20px;
 }
 
-.coloreate {
+.colorejat {
   padding: 20px;
   background: #e1fcf6;
 }
 
+/* PDI#show */
+.verdmar {
+  color: #109e7f;
+  padding:5px;
+  background: #cdfaf0;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color:#89f4dc;
+}
+.link_verdmar {
+  color: #109e7f;
+  font-weight: bold;
+}
 
-
+.link_verdmar:hover {
+  color: #15cca4;
+  font-weight: bold;
+}
 
 /* BEGIN Estils mapa Google Maps Api*/  
-#map-canvas { 
+/*#map-canvas { 
 height: 20em;
 width: 50em; 
-}
+}*/
  .controls {
         margin-top: 16px;
         border: 1px solid transparent;

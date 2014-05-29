@@ -1,5 +1,6 @@
-<h3> <%= @pdi.nom %> </h3>
-<h5 class="bg-warning" style="padding:10px;">Editant</h5>
+<h5 style="background:#fffeeb;border-style:solid; border-width:1px; border-color:#fff2c6; color:#b28b00; padding:15px;" style="padding:10px;">Editant</h5>
+<!--class="alert alert-warning"-->
+<h3> Punt d'interès: <%= @pdi.nom %> </h3>
 
 
 <%= hidden_field_tag :accio, "editant" %>
@@ -9,10 +10,9 @@
 	<div id="map-canvas" style="margin-bottom:20px;"> </div>
 
 
-	<!-- TODO carregar etiquetes de l'associació -->
 	<div>
-		<%= p.label(:etiquetes) %>	
-		<%#= p.text_field(:etiquetes) %>
+		<%= label_tag(:etiquetes, "Afegeix etiquetes:") %>	
+		<%= text_field_tag(:etiquetes, @etiquetes) %>
 	</div>
 
 	<div>

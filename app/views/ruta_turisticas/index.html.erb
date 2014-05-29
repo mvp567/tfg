@@ -1,21 +1,15 @@
-<h1>RutaTuristicas#index</h1>
-<p>Find me in app/views/ruta_turisticas/index.html.erb</p>
+<h1>Rutes turístiques</h1>
+
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="2"></th>
-  </tr>
+<table class="table">
+
 <% @rts.each do |rt| %>
   <tr>
-    <td><%= rt.id %></td>
-    <td><%= rt.nom %></td>
-    <td><%= link_to 'Show', ruta_turistica_path(rt) %></td>
-    <td><%= link_to 'Edit', edit_ruta_turistica_path(rt) %></td>
+    <td><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></td>
+    <td><%= link_to 'Edita', edit_ruta_turistica_path(rt), :class => "edita_ruta fa fa-pencil-square-o" %></td>
   </tr>
 <% end %>
 </table>
