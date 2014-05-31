@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
 
   #TODO tancar sessió
   def destroy
+    @usuari_actual = nil
     session[:usuari_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to root_url
   end
 end

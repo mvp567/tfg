@@ -23,11 +23,17 @@ class PdisController < ApplicationController
   end
 
   def edit
-    @pdi = Pdi.find(params[:id])
-    @etiquetes = ""
-    @pdi.etiqueta.each do |et|
-      @etiquetes += et.nom + ","
-    end
+
+    if usuari_actual.nil?
+      error = "Has d'estar registrat per poder editar el punt d\'interès."
+      redirect_to pdis_path, :notice => error
+    else
+      @pdi = Pdi.find(params[:id])
+      @etiquetes = ""
+      @pdi.etiqueta.each do |et|
+        @etiquetes += et.nom + ","
+      end
+  end
   end
 
   def update

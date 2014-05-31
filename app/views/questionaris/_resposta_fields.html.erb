@@ -1,7 +1,9 @@
+<div style="margin-left:43px;">
 <%= f.label "R/:" %>
-<%= f.text_field :text %>
+<%= f.text_field :text, :style=>"width:200px;" %>
 <%= f.label "És correcta?" %>
 <%= f.label "Sí" %>
 <%= f.radio_button :correcta, "true", checked: false %>
 <%= f.label "No" %>
 <%= f.radio_button :correcta, "false", checked: true %>
+</div>

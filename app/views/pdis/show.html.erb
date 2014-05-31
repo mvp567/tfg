@@ -1,4 +1,4 @@
-<ol class="breadcrumb">
+<ol class="breadcrumb" style="margin-top:20px;">
   <li><a href="#">Home</a></li>
   <li><a href="#">Punts d'interès</a></li>
   <li class="active"> <%= @pdi.nom %> </li>
@@ -10,7 +10,7 @@
 	<i class="fa fa-map-marker"></i>
 	<%= @pdi.nom %> 
 
-	<small><small><i class="fa fa-home"></i></small></small>
+	<small><small><i class="fa fa-building-o"></i></small></small>
 	<small><small>
 		<%= link_to @pdi.localitat, {:controller=>"cercadors", :action=>"index", :cerca=>@pdi.localitat, :tipus=>"3"}, :style=>"color: #9f9f9f;" %>
 	</small></small>
@@ -128,12 +128,33 @@
 <h2>
 	<i class="fa fa-comment"></i> Valoracions
 
-	<small><small><%= link_to "Afegeix una nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %></small></small>
+	<small><small>
+		<%#= link_to "Afegeix una nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %>
+		<!-- Button trigger modal -->
+  <a data-toggle="modal" href="#myModal" class="">Afegeix una nova valoració</a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Nova valoració</h4>
+        </div>
+        <div class="modal-body">
+          <%= render :partial => 'valoracios/new', :locals => { :val => Valoracio.new, :pdi_id => @pdi.id, :ruta_turistica_id => "" } %>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+	</small></small>
 
 </h2>
 <%= render 'valoracios/index' %>
 
 </div>
+
 
 
 

@@ -13,28 +13,52 @@
 </head>
 
 <body>
+  <div id="wrap">
   <div class="container">
-          <div id="capcalera" style="height:50px; width:100%; background-color:#f5f5f5;margin-bottom:20px;"> 
-            <div>  
-              <%= link_to "Home", {:controller => "home", :action => "index"}, {:style => "color:#858585"} %>
+      <div id="capcalera" style="height:50px; width:100%; background-color:#f5f5f5;"> 
+            <div style="position:relative; left:2%; top:50%; font-size:14px;"> 
+              <%= link_to " Home", {:controller => "home", :action => "index"}, {:class => "link_capcalera fa fa-home"} %>
+              &nbsp &nbsp
+              <%= link_to " Punts d'interès", {:controller => "pdis", :action => "index"}, {:class => "link_capcalera fa fa-map-marker"} %>
+              &nbsp &nbsp
+              <%= link_to " Rutes turístiques", {:controller => "ruta_turisticas", :action => "index"}, {:class => "link_capcalera fa fa-picture-o"} %>
+
             </div>
-            <div style="position:relative; width:150px; top:10px; left:980px;">
-              <%= link_to "Enregistra't", {:controller => "usuaris", :action => "new", :method => :get}, {:style => "color:#ca1496"} %>
-              <span> | </span>
-              <%= link_to "Inicia sessió", {:controller => "sessions", :action => "new", :method => :get}, {:style => "color:#ca1496"} %>
-            </div>
-            
+            <i class="fa fa-globe" style="position:absolute; left:48%; top:15px; font-size:30px; color:#7d7d7d"></i>
+           <div style="position:absolute; left:79%; top:25px;">
+            <% if usuari_actual.nil? %>
+              <div id="no_loguejat">
+                <%= link_to "Enregistra't", {:controller => "usuaris", :action => "new", :method => :get}, {:style => "color:#ca1496"} %>
+                <span> | </span>
+                <%= link_to "Inicia sessió", {:controller => "sessions", :action => "new", :method => :get}, {:style => "color:#ca1496"} %>
+              </div>
+            <% else %>
+              <div id="loguejat">
+                  <i class="fa fa-user" style="color:#ca1496"></i>
+                    <%= link_to usuari_actual.nom_usuari, usuari_path(usuari_actual), {:style => "color:#ca1496"} %>
+                    <span> | </span>
+                    <%= link_to "Tanca sessió", {:controller => "sessions", :action => "destroy", :method => :delete}, {:style => "color:#ca1496"} %>
+               </div>
+            <% end %>
           </div>
+      </div>
 
 
-          <div style="position: relative; left:100px; width:80%; margin-bottom: 40px;">
+          <div style="position: relative; left:100px; width:80%;">
           <%= yield %>
-          </div>
-  </div>
 
-  <div id="peu_de_pagina">
-    <hr>
-   Aqui va el peu de pàgina
+          </div>
+
   </div>
+</div>
+
+  <div id="footer" class="container" style="margin-top:70px;">
+    <div class="container">
+    <p class="text-muted" style="padding:10px;">
+      Disseny i desenvolupament per Maria Vidal - Treball Final de Grau - 2014
+    </p>
+  </div>
+</div>
+
 </body>
 </html>

@@ -14,10 +14,6 @@ class RutaTuristicasController < ApplicationController
     @rt = RutaTuristica.new(create_params)
     @rt.usuari = usuari_actual
 
-
-    
-    
-
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
 
     # TODO si pdi_seleccionat no existeix com a pdi. proposar-li a l'usuari de crear-lo. i redirigir-lo a la pàgina de pdi_create
@@ -48,18 +44,22 @@ class RutaTuristicasController < ApplicationController
     @rt = RutaTuristica.find(params[:id])
     # TODO check if user have the quest for it in usuari-questionari
 
-    # TODO descomentar!!!
-    #uq = UsuariQuestionari.where(:questionari_id => @rt.questionari.id, :usuari_id => usuari_actual.id)
-    #if !uq.exists?
-     # redirect_to :controller => 'usuari_questionaris', :action => 'new', :questionari_id => @rt.questionari.id
-    #else
-     # nota = uq.first.nota_treta
-      #if nota < 5.0
-       # error = "El qüestionari per aquesta ruta turística no ha estat superat, per tant no pots editar-la."
-        #redirect_to ruta_turisticas_path, :notice => error
-      #end
+    if usuari_actual.nil?
+      error = "Has d'estar registrat per poder editar la ruta turística."
+      redirect_to ruta_turisticas_path, :notice => error
 
-    #end
+    elsif @rt.usuari != usuari_actual
+      uq = UsuariQuestionari.where(:questionari_id => @rt.questionari.id, :usuari_id => usuari_actual.id)
+      if !uq.exists?
+        redirect_to :controller => 'usuari_questionaris', :action => 'new', :questionari_id => @rt.questionari.id
+      else
+        nota = uq.first.nota_treta
+        if nota < 5.0
+          error = "El qüestionari per aquesta ruta turística no ha estat superat, per tant no pots editar-la."
+          redirect_to ruta_turisticas_path, :notice => error
+        end
+      end
+    end
 
 
   end

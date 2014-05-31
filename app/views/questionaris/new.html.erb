@@ -1,25 +1,46 @@
+<h5 style="background:#fffeeb;border-style:solid; border-width:1px; border-color:#fff2c6; color:#b28b00; padding:15px;" style="padding:10px;">
+
+	<strong>Creant qüestionari de control</strong>
+	<br><br>
+	Per tal de controlar qui pot editar la ruta turística que acabes de crear, et demanem que creïs un qüestionari per a controlar que només puguin editar la ruta aquells usuaris que el superin.
+</h5>
+
+
 <%= form_for @quest, url: {controller: "questionaris", action: "create"} do |q| %>
 <%= q.hidden_field :ruta_turistica_id, :value => params[:ruta_turistica_id] %>
 
-	<%#= TODO afegir radiobuttons pels paràmetres %>
-	<h2> Pas 1 </h2>
-	Quin ranking mínim ha de tenir l'usuari editor?
+	<h5> Pas 1 </h5>
+	<i class="fa fa-chevron-circle-right"></i> Quin ranking mínim ha de tenir l'usuari editor?
+	<br>
+	<div style="margin-left:20px">
 	<%= radio_button_tag "param_reputacio", "1", {:checked => "checked"} %> 1-Novell
+	<br>
 	<%= radio_button_tag "param_reputacio", "2" %> 2-Ruter
+	<br>
 	<%= radio_button_tag "param_reputacio", "3" %> 3-De confiança
+	<br>
 	<%= radio_button_tag "param_reputacio", "4" %> 4-
+	<br>
 	<%= radio_button_tag "param_reputacio", "5" %> 5-Master
-
+	</div>
 	<br><br>
 
-	Selecciona les condicions que vols que s'apliquin:
-	<%= radio_button_tag "param_pais", "1", {:checked => "checked"} %> Ninguna
-	<%= radio_button_tag "param_pais", "2" %> Qualsevol de les dues
-	<%= radio_button_tag "param_pais", "3" %> País de naixament ha de ser el de la ruta
-	<%= radio_button_tag "param_pais", "4" %> País de residència ha de ser el de la ruta
-	<h2> Pas 2 (opcional) </h2>
-	<ul>
-		
+	<i class="fa fa-chevron-circle-right"></i> Selecciona les condicions que vols que s'apliquin:
+	<br>
+	<div style="margin-left:20px">
+	<%= radio_button_tag "param_pais", "1", {:checked => "checked"} %> Ninguna.
+	<br>
+	<%= radio_button_tag "param_pais", "2" %> O el país de naixament o el de residència han de coincidir amb el de la ruta. 
+	<br>
+	<%= radio_button_tag "param_pais", "3" %> El país de naixament ha de coincidir amb el de la ruta.
+	<br>
+	<%= radio_button_tag "param_pais", "4" %> El país de residència ha de coincidir amb el de la ruta.
+	</div>
+
+
+	<br><br>
+	<h5> Pas 2 (opcional) </h5>
+	<ul style="margin-left:20px; list-style-type:none;">
 		<%= q.fields_for :preguntas do |preg| %>
 			<li>
 				<%= render 'pregunta_fields', :f => preg %>

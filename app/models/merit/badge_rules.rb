@@ -50,18 +50,15 @@ module Merit
       grant_on 'usuaris#create', badge: 'registrat'
 
       grant_on 'pdis#create', badge: '10-pdis' do |pdi|
-        byebug
-        pdi.usuari.pdis.count == 4
+        pdi.usuari.pdis.count == 10
       end
 
       grant_on 'ruta_turisticas#create', badge: '3-rutes-turistiques' do |rt|
-        byebug
         rt.usuari.ruta_turisticas.count == 3
       end
 
       grant_on 'valoracios#create', badge: '5-valoracions' do |val|
-        byebug
-        val.usuari.valoracios.count == 3
+        val.usuari.valoracios.count == 5
       end
 
     end

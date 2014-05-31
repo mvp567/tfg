@@ -5,7 +5,7 @@ class RutaTuristica < ActiveRecord::Base
 	belongs_to :usuari_modificador, :class_name => "Usuari", :foreign_key => "usuari_modificador_id"
 
 	has_many :pdis_rutaturisticas, :dependent => :destroy
-	accepts_nested_attributes_for :pdis_rutaturisticas, :allow_destroy => true
+	accepts_nested_attributes_for :pdis_rutaturisticas, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
 	has_many :valoracios
 
@@ -15,12 +15,18 @@ class RutaTuristica < ActiveRecord::Base
 		ll = []
     	ordreRuta = 1
    		params_pdis.each do |a|
+   			byebug
       		pdi_seleccionat = a.values[1]["id"]
-      		ll << PdisRutaturistica.new(:pdi_id => pdi_seleccionat, :ordre => ordreRuta)
-      		ordreRuta = ordreRuta + 1
+      		if !pdi_seleccionat.blank? && a.values[1]["_destroy"] == "false"
+      			ll << PdisRutaturistica.new(:pdi_id => pdi_seleccionat, :ordre => ordreRuta)
+      			ordreRuta = ordreRuta + 1
+
+      		end
     	end
 
-    	self.pdis_rutaturisticas = ll
+    	if ll.count > 0
+    		self.pdis_rutaturisticas = ll
+    	end
 
     	self.save
 	end

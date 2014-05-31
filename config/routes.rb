@@ -4,7 +4,10 @@ Tfg::Application.routes.draw do
   root "home#index"
     
   resources :usuaris#, :only => [:new, :create] 
-  resources :sessions#, :only => [:new, :create] 
+  resources :sessions, :except => [:destroy]
+  resource :session, :only => [] do
+    get :destroy
+  end
   resources :pdis
   resources :ruta_turisticas 
   resources :valoracios

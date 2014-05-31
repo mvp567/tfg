@@ -34,10 +34,14 @@ function add_fields(link, association, content) {
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
+  $(link).closest(".fields").children( "input[id$='nom']" ).val("");
 }
 
-/*Codi pel customdropdown*/
+
 $( document ).ready(function() {
+
+/*Codi pel customdropdown*/
+	// customdropdown de la home, eo funciona, seleccionat no
   	$("li").on("click",function() {
       //$(".hidden").val($(event.target).text())
       $("#eo").val($(event.target).text());

@@ -1,2 +1,18 @@
-<h1>UsuariQuestionaris#create</h1>
-<p>Find me in app/views/usuari_questionaris/create.html.erb</p>
+
+<div style="margin-top:20px">
+<% if @uq.nota_treta > 5 %>
+
+	<div class="alert alert-info" style="margin-top:40px;">
+		Qüestionari finalitzat amb èxit. Siusplau dirigeix-te al següent link per editar la ruta:
+		<%= link_to @uq.questionari.ruta_turistica.nom, edit_ruta_turistica_path(@uq.questionari.ruta_turistica) %>
+	</div>
+
+<% else %>
+
+	<div class="alert alert-danger">
+		Ho sentim, no pots editar aquesta ruta. El qüestionari no ha estat superat amb èxit.  <br>
+		Per a qualsevol dubte posa't en contacte amb nosaltres.
+	</div>
+
+<% end %>
+</div>

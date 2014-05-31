@@ -41,6 +41,41 @@ body {
 	font-size: 12px;
 }
 
+/* BEGIN sticky footer */
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 40px;
+}
+#footer {
+  background-color: #eee;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+#footer {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+}
+
+/* END sticky footer */
 
 /* Estil botons */
 input[type=submit] {
@@ -165,3 +200,19 @@ height: 20em;
 width: 55em;
 }
 /*END Estils mapa Google Maps Api*/
+
+
+.link_capcalera {
+  color: #858585;
+}
+
+.link_capcalera:hover {
+  text-decoration: none;
+  color: #ca1496;
+  border-bottom-style: solid;
+  border-width: 3px;
+  padding-bottom: 9px;
+  border-bottom-color: #ca1496;
+}
+
+

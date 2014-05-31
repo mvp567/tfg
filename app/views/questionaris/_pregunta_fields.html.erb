@@ -1,7 +1,7 @@
 <%= f.label "Pregunta:" %>
-<%= f.text_field :text %>
+<%= f.text_field :text, :style=>"width:300px;" %>
 <p>
-<ul>
+<ul style="list-style-type:none;">
 	<%= f.fields_for :respostas do |resp| %>
 	<li>
 		<%= render 'resposta_fields', :f => resp %>
