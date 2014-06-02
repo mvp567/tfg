@@ -4,6 +4,7 @@
 
 
 <%= hidden_field_tag :accio, "editant" %>
+
   <%= form_for @pdi, url: {controller: "pdis", action: "update"} do |p| %>
 		<%= hidden_field_tag :tipus, @pdi.type %>
 	

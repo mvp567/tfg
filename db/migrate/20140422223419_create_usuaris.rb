@@ -11,6 +11,8 @@ class CreateUsuaris < ActiveRecord::Migration
       t.string "pais_naixament", :limit => 25
       t.string "pais_residencia", :limit => 25
       t.float :punts
+      t.string :coord_lat_browser
+      t.string :coord_lng_browser
       t.timestamps
     end
   end

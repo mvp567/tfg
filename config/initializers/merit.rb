@@ -38,31 +38,38 @@ end
  [
  {
    id: (badge_id = badge_id+1),
-   name: 'primer-pdi'
+   name: 'primer-pdi',
+   multiple: true
  },
  {
    id: (badge_id = badge_id+1),
-   name: '10-pdis'
+   name: '10-pdis',
+   multiple: true
  },
  {
    id: (badge_id = badge_id+1),
-   name: 'primera-ruta-turistica'
+   name: 'primera-ruta-turistica',
+   multiple: true
  },
  {
    id: (badge_id = badge_id+1),
-   name: '3-rutes-turistiques'
+   name: '3-rutes-turistiques',
+   multiple: true
  },
  {
    id: (badge_id = badge_id+1),
-   name: 'primera-valoracio'
+   name: 'primera-valoracio',
+   multiple: true
  },
  {
    id: (badge_id = badge_id+1),
-   name: '5-valoracions'
+   name: '5-valoracions',
+   multiple: true
  },
  {
    id: (badge_id = badge_id+1),
-   name: 'registrat'
+   name: 'registrat',
+   multiple: true
  }
  ].each do |attrs|
    Merit::Badge.create! attrs

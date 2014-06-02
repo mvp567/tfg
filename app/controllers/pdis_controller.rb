@@ -59,7 +59,7 @@ class PdisController < ApplicationController
       @fotos = []
     end
 
-    if !@pdi.horari.nil?
+    if !@pdi.horari.blank?
       @horari = JSON.parse @pdi.horari
     else
       @horari = "-"
@@ -76,8 +76,11 @@ class PdisController < ApplicationController
     #end
      # @puntsPDI /= @valoracions.count
 
-     # Mostrar pdis per proximitat 
-    @pdis_propers = Pdi.close_to(@pdi.coord_lat, @pdi.coord_lng)
+    # Mostrar pdis per proximitat 
+    @pdis_propers = []
+    if !@pdi.coord_lat.blank? && !@pdi.coord_lng.blank?
+      @pdis_propers = Pdi.close_to(@pdi.coord_lat, @pdi.coord_lng, 500)
+    end
      
      # Mostrar rutes que inclouen aquest pdi
       @rts_from_pdi = []
@@ -89,9 +92,33 @@ class PdisController < ApplicationController
   def index
     # Per l'autocomplete dels pdis
     cercar = params[:request_term]
-     if cercar.nil?
-      @pdis = Pdi.all
+
+    if cercar.nil?
+      # TODO order by created_at
+      if usuari_actual.coord_lat_browser == "0" || usuari_actual.coord_lng_browser == "0"
+        @pdis = Pdi.all
+        @restaurants = Restaurant.all
+        @botigues = Botiga.all
+        @museus = Museu.all
+        @monuments = Monument.all
+        @discoteques = Discoteca.all
+        @entreteniment = Entreteniment.all
+        @hotels = Hotel.all
+        @vistes = Vista.all
+      else
+        @pdis = Pdi.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @restaurants = Restaurant.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @botigues = Botiga.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @museus = Museu.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @monuments = Monument.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @discoteques = Discoteca.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @entreteniment = Entreteniment.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @hotels = Hotel.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @vistes = Vista.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+      end
+
     else
+      # per l'autocomplete
       @pdis = Pdi.where("nom ILIKE ?", "%#{cercar}%" )
     end
      

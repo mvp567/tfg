@@ -202,7 +202,7 @@ width: 55em;
 /*END Estils mapa Google Maps Api*/
 
 
-.link_capcalera {
+.link_capcalera, .link_capcalera_pdi, .link_capcalera_rt, .link_capcalera_pdi_active, .link_capcalera_rt_active {
   color: #858585;
 }
 
@@ -215,4 +215,36 @@ width: 55em;
   border-bottom-color: #ca1496;
 }
 
+.link_capcalera_pdi:hover, .link_capcalera_pdi_active:hover {
+  text-decoration: none;
+  color: #14caa3;
+  border-bottom-style: solid;
+  border-width: 3px;
+  padding-bottom: 9px;
+  border-bottom-color: #14caa3;
+}
 
+.link_capcalera_rt:hover, .link_capcalera_rt_active:hover {
+  text-decoration: none;
+  color: #ed9577;
+  border-bottom-style: solid;
+  border-width: 3px;
+  padding-bottom: 9px;
+  border-bottom-color: #ed9577;
+}
+
+.link_capcalera_pdi_active {
+  text-decoration: none;
+  border-bottom-style: solid;
+  border-width: 3px;
+  padding-bottom: 9px;
+  border-bottom-color: #14caa3;
+}
+
+.link_capcalera_rt_active {
+  text-decoration: none;
+  border-bottom-style: solid;
+  border-width: 3px;
+  padding-bottom: 9px;
+  border-bottom-color: #ed9577;
+}

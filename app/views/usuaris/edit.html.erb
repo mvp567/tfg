@@ -1,5 +1,7 @@
-<h2>Enregistra't!</h2>
-<%= form_for @usuari, :class=>"form-horizontal" do |u| %>
+<h5 style="background:#fffeeb;border-style:solid; border-width:1px; border-color:#fff2c6; color:#b28b00; padding:15px;" style="padding:10px;">Edita les teves dades personals</h5>
+
+
+<%= form_for @usuari, url: {controller: "usuaris", action: "update"}, :class=>"form-horizontal" do |u| %>
 <% pais_array = [['Espanya',1], ['París', 2]] %>
 	<div class="control-group, <%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :nom_usuari, :class=>"titol_camp" %>	
@@ -66,11 +68,10 @@
 	</span>
 	</div>
 
-	<%= u.text_field :coord_lat_browser %>
-	<%= u.text_field :coord_lng_browser %>
+
 
 	<div>
-		<%= u.submit "Registra't", :class=>"contingut_camp_boto"  %>
+		<%= u.submit "Guardar canvis", :class=>"contingut_camp_boto"  %>
 	</div>
 
 <% end %>

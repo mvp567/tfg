@@ -19,9 +19,17 @@
             <div style="position:relative; left:2%; top:50%; font-size:14px;"> 
               <%= link_to " Home", {:controller => "home", :action => "index"}, {:class => "link_capcalera fa fa-home"} %>
               &nbsp &nbsp
-              <%= link_to " Punts d'interès", {:controller => "pdis", :action => "index"}, {:class => "link_capcalera fa fa-map-marker"} %>
+              <%= if params[:controller] == "pdis" 
+                  link_to " Punts d'interès", {:controller => "pdis", :action => "index"}, {:class => "link_capcalera_pdi_active fa fa-map-marker"}
+                 else
+                  link_to " Punts d'interès", {:controller => "pdis", :action => "index"}, {:class => "link_capcalera_pdi fa fa-map-marker"}
+                 end %>
               &nbsp &nbsp
-              <%= link_to " Rutes turístiques", {:controller => "ruta_turisticas", :action => "index"}, {:class => "link_capcalera fa fa-picture-o"} %>
+              <%= if params[:controller] == "ruta_turisticas" 
+                  link_to " Rutes turístiques", {:controller => "ruta_turisticas", :action => "index"}, {:class => "link_capcalera_rt_active fa fa-picture-o"} 
+                  else
+                  link_to " Rutes turístiques", {:controller => "ruta_turisticas", :action => "index"}, {:class => "link_capcalera_rt fa fa-picture-o"} 
+                  end %>
 
             </div>
             <i class="fa fa-globe" style="position:absolute; left:48%; top:15px; font-size:30px; color:#7d7d7d"></i>

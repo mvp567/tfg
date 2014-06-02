@@ -1,36 +1,76 @@
 <div id="capcalera_compte">
-	<i class="fa fa-user fa-4x" style="color:#ca1496; margin-right:40px;"> <%= @usuari.nom_usuari %></i> 
-	<i class="fa fa-trophy fa-3x" style="color:#e6bb0e"><%= @usuari.points %></i>
+	<i class="fa fa-user fa-4x" style="color:#ca1496; margin-right:15px;"> <%= @usuari.nom_usuari %></i> 
+	<i class="fa fa-trophy fa-2x punts_usuari"><%= @usuari.points %></i>
+	<% if @usuari == usuari_actual%>
+		<%= link_to 'Edita', edit_usuari_path(@usuari), :class => "edita_usuari fa fa-pencil-square-o" %>
+	<% end %>
 </div>
 
 <div id="dades_personals">
-
 </div>
 
 <div id="badges">
 <h3>Medalles</h3>
-	<ul style="list-style-type:none;">
+	<ul  class="list-inline" style="list-style-type:none;">
 	<% @usuari.badges.each do |badge| %>
-	  <li><i class="fa fa-certificate estil_medalla">&nbsp &nbsp<%= badge.name %></i></li>
+	  <li><i class="fa fa-certificate medalla">&nbsp &nbsp<%= badge.name %></i></li>
 	<% end %>
 	</ul>
 </div>
 
-<div id="historial_info">
 <h3><i class="fa fa-book"></i>  Historial d'informació afegida</h3>
-<h4>Punts d'interès</h4>
--
-<br>
-<h4>Rutes turístiques</h4>
-<table class="table">
 
-<% @usuari.ruta_turisticas.each do |rt| %>
+<div id="historial_info">
+<h4><i class="fa fa-map-marker"></i> Punts d'interès</h4>
+<table class="table">
   <tr>
-    <td><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></td>
+    <th>Nom del punt d'interès</th>
+    <th>Punts</th>
+  </tr>
+<% @usuari.pdis.each do |pdi| %>
+  <tr>
+    <td><%= link_to pdi.nom, pdi_path(pdi), :class=>"text_table" %></td>
+    <td><%= pdi.punts %></td>
   </tr>
 <% end %>
 </table>
 <br>
-<h4>Valoracions</h4>
--
+<h4><i class="fa fa-picture-o"></i> Rutes turístiques</h4>
+<table class="table">
+  <tr>
+    <th>Nom de la ruta turística</th>
+    <th>Punts</th>
+  </tr>
+<% @usuari.ruta_turisticas.each do |rt| %>
+  <tr>
+    <td><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></td>
+    <td><%= rt.punts %></td>
+  </tr>
+<% end %>
+</table>
+<br>
+<h4><i class="fa fa-comment"></i> Valoracions</h4>
+<table class="table">
+  <tr>
+    <th>Què?</th>
+    <th>Títol</th>
+    <th>Opinió</th>
+    <th>Punts</th>
+  </tr>
+<% @usuari.valoracios.each do |val| %>
+  <tr>
+  	<td> 
+  		<%= if !val.pdi.nil?	
+  				link_to val.pdi.nom, pdi_path(val.pdi), :class=>"text_table"
+  			else
+  				link_to val.ruta_turistica.nom, ruta_turistica_path(val.ruta_turistica), :class=>"text_table"
+  			end
+  	 	 %> 
+  	 </td>
+  	<td> <%= val.titol %> </td>
+    <td> <%= val.opinio %> </td>
+    <td> <%= val.punts %> </td>
+  </tr>
+<% end %>
+</table>
 </div>

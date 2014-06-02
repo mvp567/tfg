@@ -6,6 +6,7 @@ class Pdi < ActiveRecord::Base
 	has_many :etiqueta, through: :etiquetes_pdis
 	has_many :pdis_rutaturisticas
 	has_many :favorits
+  has_many :usuaris, through: :favorits
 	has_many :valoracios
 
 	def el_meu_save(etiquetes)
@@ -19,6 +20,11 @@ class Pdi < ActiveRecord::Base
 		end
 
 		#self.etiquetes_pdis = etiquetes_a_enllacar
+		
+		if self.coord_lat.blank?
+			self.coord_lat = 0
+			self.coord_lng = 0
+		end
 		self.save
 	end
 
@@ -38,7 +44,7 @@ class Pdi < ActiveRecord::Base
 
   self.table_name = "pdis"
 
-  scope :close_to, -> (latitude, longitude, distance_in_meters = 2000) {
+  scope :close_to, -> (latitude, longitude, distance_in_meters) {
     where(%{
       ST_DWithin(
         ST_GeographyFromText(
@@ -48,6 +54,22 @@ class Pdi < ActiveRecord::Base
         %d
       )
     } % [longitude, latitude, distance_in_meters])
+  }
+
+
+  scope :distance_to, -> (latitude, longitude) {
+    order(%{
+      ST_Distance(
+        ST_GeographyFromText(
+          'SRID=4326;POINT(' || pdis.coord_lng || ' ' || pdis.coord_lat || ')'
+        ),
+        ST_GeographyFromText('SRID=4326;POINT(%f %f)')
+      ) asc
+    } % [longitude, latitude])
+  }
+
+  scope :tipus_concret, -> (tipus) {
+    where("type = '" + tipus + "'")
   }
 
 end

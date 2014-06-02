@@ -10,7 +10,7 @@
 	<% if @rt.punts.nil? %>
 		<small style="float:right; margin-top:15px; color:darkorange;">-</small>
 	<% else %>
-		<small style="float:right; margin-top:15px; color:darkorange;"><i class="fa fa-trophy" style="padding-right:5px;"></i><%= '%.1f' % @rt.punts %></small>
+		<small><i class="fa fa-trophy punts_usuari"> <%= '%.1f' % @rt.punts %></i></small>
 	<% end %>
 </h2>
 
