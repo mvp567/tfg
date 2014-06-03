@@ -18,6 +18,17 @@
 	</ul>
 </div>
 
+
+<div id="favorits">
+<h3>Favorits</h3>
+  <ul  class="list-inline" style="list-style-type:none;">
+  <% @usuari.favorits.each do |fav| %>
+    <li><i class="fa fa-heart favorit">&nbsp &nbsp<%= link_to fav.pdi.nom, pdi_path(fav.pdi), :class=>"link_rosa" %></i></li>
+  <% end %>
+  </ul>
+</div>
+
+
 <h3><i class="fa fa-book"></i>  Historial d'informació afegida</h3>
 
 <div id="historial_info">

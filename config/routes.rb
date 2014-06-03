@@ -8,13 +8,16 @@ Tfg::Application.routes.draw do
   resource :session, :only => [] do
     get :destroy
   end
-  resources :pdis
+  resources :pdis do
+    get :favorit
+    get :des_favorit
+    get :destroy
+  end
   resources :ruta_turisticas 
   resources :valoracios
   resources :questionaris
   resources :usuari_questionaris
   resources :cercadors
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

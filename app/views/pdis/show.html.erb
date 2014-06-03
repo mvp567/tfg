@@ -6,6 +6,14 @@
 
 <div>
 
+<% if @es_favorit %>
+<%= link_to " Favorit", {:controller=>"pdis", :action=>"des_favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-lg glyphicon glyphicon-heart", :style=>"color:#f076a7" %>
+<% else %>
+<%= link_to " Favorit", {:controller=>"pdis", :action=>"favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-lg glyphicon glyphicon-heart" %>
+<% end %>
+
+
+
 <h2 style="width:800px;"> 
 	<i class="fa fa-map-marker"></i>
 	<%= @pdi.nom %> 
@@ -36,10 +44,18 @@
 
 <%= hidden_field_tag @pdi.coord_lat, @pdi.coord_lat, {:id => 'coord_lat'} %>
 <%= hidden_field_tag @pdi.coord_lng, @pdi.coord_lng, {:id => 'coord_lng'} %>
+<%= hidden_field_tag @pdi.place_reference, @pdi.place_reference, {:id => 'place_reference'} %>
 
 
 <div> 
-	<%= link_to 'Edita', edit_pdi_path(@pdi), :class => "edita_pdi fa fa-pencil-square-o" %>
+	<%= link_to ' Edita', edit_pdi_path(@pdi), :class => "edita_pdi fa fa-pencil-square-o" %>
+
+<% if usuari_actual == @pdi.usuari %>
+	<%= link_to ' Elimina', {:controller=>"pdis", :action=>"destroy", :pdi_id=>@pdi.id}, :class=>"fa fa-trash-o" %>
+	<%#= link_to ' Elimina', pdis_path, :method => :delete, :class=>"fa fa-trash-o" %>
+<% end %>
+	
+
 	Creat per <%= @pdi.usuari.nom_usuari %> - <%= @pdi.created_at %>
 	Última modificació: <%= @pdi.usuari_modificador.nom_usuari %> - <%= @pdi.updated_at %>
 </div>

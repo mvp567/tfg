@@ -13,6 +13,26 @@
   margin-bottom: 10px;
 }
 
+.favorit {
+  color: #f076a7;
+  padding: 5px;
+  background: #fef2f4;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color:#fce0f0;
+  margin-bottom: 10px;
+}
+
+.link_rosa {
+  text-decoration: none;
+  color: #f076a7;
+}
+
+.link_rosa:hover {
+  color: #f5a4c5;
+}
+
 .punts_usuari {
   color: #e6bb0e;
   border-style: dotted;

@@ -87,6 +87,11 @@ class PdisController < ApplicationController
       @pdi.pdis_rutaturisticas.each do |rtp|
           @rts_from_pdi << rtp.ruta_turistica
       end
+
+      # TODO si existeix favorit: pdi-usuari, llavors @es_favorit = true
+      if Favorit.where(:pdi_id=>@pdi.id, :usuari_id=>usuari_actual.id).exists?
+        @es_favorit = true
+      end
   end
 
   def index
@@ -95,7 +100,7 @@ class PdisController < ApplicationController
 
     if cercar.nil?
       # TODO order by created_at
-      if usuari_actual.coord_lat_browser == "0" || usuari_actual.coord_lng_browser == "0"
+      if usuari_actual.nil? || usuari_actual.coord_lat_browser == "0" || usuari_actual.coord_lng_browser == "0"
         @pdis = Pdi.all
         @restaurants = Restaurant.all
         @botigues = Botiga.all
@@ -127,14 +132,40 @@ class PdisController < ApplicationController
       format.json  { render :json => @pdis.to_json }
     end
 
+  end
 
+  def favorit
+    pdi = Pdi.find(params[:pdi_id])
+    f = Favorit.new
+    f.pdi = pdi
+    f.usuari = usuari_actual
+    pdi.favorits << f
+    usuari_actual.favorits << f
+    redirect_to pdi_path(pdi)
+  end
 
+  def des_favorit
+    pdi = params[:pdi_id]
+    f = Favorit.where(:pdi_id=>pdi, :usuari_id=>usuari_actual.id).first
+    f.destroy
+    redirect_to pdi_path(pdi)
+  end
+
+  def destroy
+    pdi = Pdi.find(params[:pdi_id])
+    
+    if pdi.pdis_rutaturisticas.count.zero? && pdi.valoracios.count.zero?
+      pdi.destroy
+      redirect_to pdis_path
+    else
+      redirect_to pdi_path(pdi) #amb un notice de q no es pot esborrar
+    end
   end
 
   def create_params
   		params.require(params[:tipus].downcase.to_sym).permit(
         :nom, :observacions, :horari, :fotos_petites, :fotos_grans, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles,
-        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng, :icone)
+        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng, :icone, :place_reference)
   end
 
   def update_params

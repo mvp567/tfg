@@ -40,6 +40,7 @@ function initialize() {
         $('#' + tipus + '_web').val(place.website);
         $('#' + tipus + '_nivell_preu').val(place.price_level);
         $('#' + tipus + '_icone').val(place.icon);
+        $('#' + tipus + '_place_reference').val(place.reference);
        
         // BEGIN tractament de place.photos per a guardar-ho serialitzat
         var string_fotos_petites = "";
@@ -138,13 +139,45 @@ function initialize() {
     $("#map-canvas").empty();
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-    var marker = new google.maps.Marker({
+    /*var marker = new google.maps.Marker({
       position: myLatlng,
       title:"Hello World!"
     });
 
     // To add the marker to the map, call setMap();
-    marker.setMap(map);
+    marker.setMap(map);*/
+
+    /* BEGIN carregant detalls del place */
+    var request = {
+    reference: $('#' + tipus + '_place_reference').val()
+    };
+
+    /*service = new google.maps.places.PlacesService(map);
+    service.getDetails(request, callback);
+
+    function callback(place, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        createMarker(place);
+      }
+    }*/
+
+    var infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+
+    service.getDetails(request, function(place, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name + '<br>' + place.formatted_address);
+          infowindow.open(map, this);
+        });
+      }
+    });
+  /* END carregant detalls del place */
+
   }
   else if ($('#accio').val() == "mostrant") {
     var lat = $('#coord_lat').val();
@@ -158,13 +191,45 @@ function initialize() {
     $("#map-canvas").empty();
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-    var marker = new google.maps.Marker({
+   /* var marker = new google.maps.Marker({
       position: myLatlng,
       title:"Hello World!"
     });
 
     // To add the marker to the map, call setMap();
-    marker.setMap(map);
+    marker.setMap(map);*/
+
+    /* BEGIN carregant detalls del place */
+    var request = {
+    reference: $('#place_reference').val()
+    };
+
+    /*service = new google.maps.places.PlacesService(map);
+    service.getDetails(request, callback);
+
+    function callback(place, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        createMarker(place);
+      }
+    }*/
+
+    var infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+
+    service.getDetails(request, function(place, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name + '<br>' + place.formatted_address);
+          infowindow.open(map, this);
+        });
+      }
+    });
+/* END carregant detalls del place */
+
   }
   else if ($('#accio').val() == "creant_rt") {
     //var map;

@@ -6,7 +6,7 @@ class Pdi < ActiveRecord::Base
 	has_many :etiqueta, through: :etiquetes_pdis
 	has_many :pdis_rutaturisticas
 	has_many :favorits
-  has_many :usuaris, through: :favorits
+  #has_many :usuaris, through: :favorits
 	has_many :valoracios
 
 	def el_meu_save(etiquetes)

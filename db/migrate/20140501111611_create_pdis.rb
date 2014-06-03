@@ -22,6 +22,7 @@ class CreatePdis < ActiveRecord::Migration
       t.string :pais
       t.string :coord_lat
       t.string :coord_lng
+      t.text :place_reference
 
       # nous camps per utilitzar PostGIS
       t.point :lat
