@@ -248,23 +248,33 @@ function initialize() {
       window.map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
 
-    $("li").each(function(index, value){
+    var markersCoordinates = [];
+
+    $("li").each(function(index, value) {
       var lat = $(value).children( "input[id$='lat']" ).val();
       var lng = $(value).children( "input[id$='lng']" ).val();
     
-        var myLatlng = new google.maps.LatLng(lat,lng);
-          var marker = new google.maps.Marker({
-            position: myLatlng
-          });
-          marker.setMap(window.map);
-          window.map.setCenter(marker.getPosition());
-          window.map.setZoom(12);
-        });
-  }
+      var myLatlng = new google.maps.LatLng(lat,lng);
+      var marker = new google.maps.Marker({
+        position: myLatlng
+      });
+      marker.setMap(window.map);
+      window.map.setCenter(marker.getPosition());
+      window.map.setZoom(12);
 
-  
+      markersCoordinates.push(myLatlng);
+    });
+
+  var rutaMarkers = new google.maps.Polyline({
+    path: markersCoordinates,
+    geodesic: true,
+    strokeColor: '#ed9577',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+    rutaMarkers.setMap(window.map);
 }
-
+}
 google.maps.event.addDomListener(window, 'load', initialize);
 
 //google.maps.event.addListenerOnce(map,'tilesloaded',function(){jQuery('#pac-input').focus()});

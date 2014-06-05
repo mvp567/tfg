@@ -1,5 +1,6 @@
 // no funciona el focus sobre el pac-input. crec q hi ha algo a sobre
 $(document).ready(function(){
+
 	/* Galeria fotos del PDI#show */
 	$('.popup-gallery').magnificPopup({
 		delegate: 'a',

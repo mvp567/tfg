@@ -1,6 +1,91 @@
 <script type="text/javascript">
 // ho poso qui pq sino els PDIs creats a partir del link add_fields, no funcionen
-$(function() {
+$(function(){
+
+/*provant*/
+/*var autocomplete;
+$( "input[id$='pdi_attributes_nom']" ).each(function( index ) {
+  autocomplete = new google.maps.places.Autocomplete(this);
+  
+});
+
+$( "input[id$='pdi_attributes_nom']"  ).change(function() {
+// esborrar marker
+});
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      return;
+    }
+        // Per a cada select de l'autocomplete, es carrega el marker en el mapa
+        var myLatlng = new google.maps.LatLng(place.geometry.location.k,place.geometry.location.A);
+        var marker = new google.maps.Marker({
+          position: myLatlng
+        });
+        marker.setMap(window.map);
+        window.map.setCenter(marker.getPosition());
+        window.map.setZoom(13);
+*/
+/*settejant DADES PDI*/
+/* 
+      $("input[id$='coord_lat']").val(place.geometry.location.k);
+      $("input[id$='coord_lng']").val(place.geometry.location.A);
+      $("input[id$='place_reference']").val(place.reference);
+
+       $('#' + tipus + '_horari').val(JSON.stringify(place.opening_hours));
+        $('#' + tipus + '_telefon').val(place.formatted_phone_number);
+        $('#' + tipus + '_web').val(place.website);
+        $('#' + tipus + '_nivell_preu').val(place.price_level);
+        $('#' + tipus + '_icone').val(place.icon);
+        $('#' + tipus + '_place_reference').val(place.reference);
+
+        // BEGIN tractament de place.photos per a guardar-ho serialitzat
+        var string_fotos_petites = "";
+        var string_fotos_grans = "";
+        
+        for (var i=0; i<place.photos.length; i++) {
+          string_fotos_petites += place.photos[i].getUrl({ 'maxWidth': 75, 'maxHeight': 75 }) +",";
+          string_fotos_grans += place.photos[i].getUrl({ 'maxWidth': 600, 'maxHeight': 600 }) +","; 
+        }
+
+        $('#' + tipus + '_fotos_petites').val(string_fotos_petites);
+        $('#' + tipus + '_fotos_grans').val(string_fotos_grans);
+
+        // END tractament de place.photos per a guardar-ho serialitzat
+
+
+        $('#' + tipus + '_adreca').val(place.formatted_address);
+       
+        
+
+
+
+for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (addressType == 'locality') {
+            $('#' + tipus + '_localitat').val(place.address_components[i].long_name);
+          }
+          else if (addressType == 'country') {
+            $('#' + tipus + '_pais').val(place.address_components[i].long_name);
+          }
+          else if (addressType == 'postal_code') {
+            $('#' + tipus + '_codi_postal').val(place.address_components[i].long_name);
+          }
+      }*/
+        
+  /*END settejant dades pdis*/
+
+/*
+  });
+
+})
+*/
+
+
+/*end provant */
+
+
       $(".text_autocomplete").autocomplete ({
       source: function( request, response ) {
         $.ajax({
@@ -44,20 +129,20 @@ $(function() {
     }); // end autocomplete
   }); // end function
 
-/*$( ".provant" ).on( "autocompleteselect", function( a,b) {
-	alert(b.item.id);
-	$('#selected_pdi').val(b.item.id);
-} );*/
 </script>
 
 <%#= ui-state-default ui-widget %>
 <li class="fields" style="margin-bottom:15px;">
+  
   <%= f.text_field :ordre, :class=>"estil_num_ordre" %>
   <%= f.fields_for :pdi do |p| %>
     <%= p.hidden_field :id %>
     <%= p.hidden_field :coord_lat %>
     <%= p.hidden_field :coord_lng %>
-    <%= p.text_field :nom, class: "text_autocomplete contingut_camp_autocomplete"%>
+    <%= p.hidden_field :place_reference %>
+    <%#= p.text_field :nom, class: "text_autocomplete contingut_camp_autocomplete"%>
+    <%= p.text_field :nom, class: "text_autocomplete contingut_camp_autocomplete", :placeholder=>"Introdueix un punt d'interès ja existent"%>
+
     <%= p.hidden_field :_destroy %>
     <%= link_to_function "", "remove_fields(this)", :class=>"fa fa-times" %>
     <i class="fa fa-arrows-v" style="color: #e46033;"></i>
