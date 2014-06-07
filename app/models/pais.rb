@@ -1,3 +1,4 @@
 class Pais < ActiveRecord::Base
-	has_many :ciutats
+	has_many :pais_residencias
+	has_many :usuaris #nascuts
 end

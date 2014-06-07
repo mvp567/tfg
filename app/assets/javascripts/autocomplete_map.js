@@ -241,6 +241,10 @@ function initialize() {
           mapOptions);
   }
   else if ($('#accio').val() == "editant_rt") {
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer({
+      suppressMarkers: true
+    });
     var mapOptions = {
         zoom: 1,
         center: new google.maps.LatLng(-34.397, 150.644)
@@ -249,32 +253,73 @@ function initialize() {
           mapOptions);
 
     var markersCoordinates = [];
+    var waypointslatlng = [];
+    var i = 0;
+
+    // ini
+    var infowindow = new google.maps.InfoWindow();
 
     $("li").each(function(index, value) {
       var lat = $(value).children( "input[id$='lat']" ).val();
       var lng = $(value).children( "input[id$='lng']" ).val();
     
       var myLatlng = new google.maps.LatLng(lat,lng);
-      var marker = new google.maps.Marker({
-        position: myLatlng
-      });
-      marker.setMap(window.map);
-      window.map.setCenter(marker.getPosition());
-      window.map.setZoom(12);
 
-      markersCoordinates.push(myLatlng);
+      if (lat != null && lng != null) {
+        markersCoordinates.push(myLatlng);
+        waypointslatlng.push({
+          location: myLatlng,
+          stopover: true});
+      }
+
+
+      // intent de posar multiples markers
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: window.map,
+            title: $( "input[id$='nompdi']" ).val()
+        });
+     
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(this.title);
+            infowindow.open(window.map, this);
+        });
+      
+    }); // end li each
+
+
+    // això dibuixa la ruta-direccions al mapa
+    directionsDisplay.setMap(window.map);
+
+    // esborrant el primer i últim pq ja estaran com origin i destination
+    markersCoordinates.splice(0,1);
+    markersCoordinates.splice(markersCoordinates.length-1,1);
+
+    var request = {
+        origin: new google.maps.LatLng(markersCoordinates[0]["k"], markersCoordinates[0]["A"]),
+        destination: new google.maps.LatLng(markersCoordinates[markersCoordinates.length-1]["k"], markersCoordinates[markersCoordinates.length-1]["A"]),
+        waypoints: waypointslatlng,
+        travelMode: google.maps.TravelMode.WALKING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
     });
 
-  var rutaMarkers = new google.maps.Polyline({
+
+
+    /* línia de punt a punt funciona */
+  /*var rutaMarkers = new google.maps.Polyline({
     path: markersCoordinates,
     geodesic: true,
     strokeColor: '#ed9577',
     strokeOpacity: 1.0,
     strokeWeight: 2
   });
-    rutaMarkers.setMap(window.map);
+    rutaMarkers.setMap(window.map);*/
 }
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
-//google.maps.event.addListenerOnce(map,'tilesloaded',function(){jQuery('#pac-input').focus()});
+

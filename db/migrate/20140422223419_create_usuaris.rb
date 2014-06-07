@@ -8,8 +8,7 @@ class CreateUsuaris < ActiveRecord::Migration
       t.string "password_digest"
       t.string "edat", :limit => 3
       t.string "sexe", :limit => 10
-      t.string "pais_naixament", :limit => 25
-      t.string "pais_residencia", :limit => 25
+      t.integer :pais_id
       t.float :punts
       t.string :coord_lat_browser
       t.string :coord_lng_browser

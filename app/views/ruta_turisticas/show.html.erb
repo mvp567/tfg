@@ -1,6 +1,6 @@
 <ol class="breadcrumb" style="margin-top:20px;">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Rutes turístiques</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/ruta_turisticas">Rutes turístiques</a></li>
   <li class="active"> <%= @rt.nom %> </li>
 </ol>
 
@@ -24,6 +24,16 @@
 	Última modificació: <%= @rt.usuari_modificador.nom_usuari %> - <%= @rt.updated_at %>
 </div>
 
+
+<div class="popup-gallery" style="margin-bottom:20px;">
+  <% @fotos.each do |f| %>
+    <% foto_petita = f.dup %>
+    <% foto_petita["w600-h600"] = "w75-h75" %>
+    <a href="<%= f %>" title="<%= @rt.pdis_rutaturisticas[@fotos.index(f)].pdi.nom %>"><img src="<%= foto_petita %>" width="75" height="75"></a>
+  <% end %>
+</div>
+
+
 <i class="fa fa-clock-o"></i>
 <%= label_tag @rt.temps %>
 		
@@ -31,8 +41,10 @@
 	<% @rt.pdis_rutaturisticas.each do |prt| %>
 		<li>
 			<%= link_to prt.pdi.nom, pdi_path(prt.pdi) %>
+      <%= hidden_field_tag :nompdi, prt.pdi.nom %>
 			<%= hidden_field_tag :coord_lat, prt.pdi.coord_lat %>
     		<%= hidden_field_tag :coord_lng, prt.pdi.coord_lng %>
+        <%= hidden_field_tag :place_reference, prt.pdi.place_reference %>
 		</li>
 	<% end %>
 </ol>

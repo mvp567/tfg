@@ -2,6 +2,11 @@ class Pdi < ActiveRecord::Base
 	belongs_to :usuari
 	belongs_to :usuari_modificador, :class_name => "Usuari", :foreign_key => "usuari_modificador_id"
 
+  belongs_to :classe_botiga
+  belongs_to :classe_entreteniment
+  belongs_to :classe_museu
+  belongs_to :classe_restaurant
+
 	has_many :etiquetes_pdis
 	has_many :etiqueta, through: :etiquetes_pdis
 	has_many :pdis_rutaturisticas

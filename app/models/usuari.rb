@@ -14,4 +14,6 @@ class Usuari < ActiveRecord::Base
 	has_many :usuari_questionaris
 	has_many :questionaris, through: :usuari_questionaris
 
+	has_many :pais_residencias
+	belongs_to :pais #de naixament
 end

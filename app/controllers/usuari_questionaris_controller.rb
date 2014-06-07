@@ -19,7 +19,7 @@ class UsuariQuestionarisController < ApplicationController
         pdis_rts = @uq.questionari.ruta_turistica.pdis_rutaturisticas
         pdis_rts.each do |pdi_rt|
           pdi = pdi_rt.pdi
-          if usuari_actual.pais_naixament == pdi.pais
+          if usuari_actual.pais == pdi.pais
             cond2 = true
           end
         end
@@ -31,13 +31,32 @@ class UsuariQuestionarisController < ApplicationController
         pdis_rts = @uq.questionari.ruta_turistica.pdis_rutaturisticas
         pdis_rts.each do |pdi_rt|
           pdi = pdi_rt.pdi
-          if usuari_actual.pais_residencia == pdi.pais
-            cond3 = true
+          usuari_actual.pais_residencias.each do |pr|
+            if pr.pais.nom == pdi.pais
+              cond3 = true
+            end
           end
         end
       end
-    if cond1 && cond2 && cond3
-      @passa_parametres = true
+
+      # si els dos paràmetres del qüestionari estan a true, vol dir que qualsevol dels dos serveix
+      if @uq.questionari.param_pais_naixament == true && @uq.questionari.param_pais_residencia == true
+        if cond1 && (cond2 || cond3)
+          @passa_parametres = true
+        end
+      else
+        if cond1 && cond2 && cond3
+          @passa_parametres = true
+        end
+      end
+    
+
+    # si no hi ha preguntes, posar un 10 al quest
+    if @passa_parametres && @uq.questionari.preguntas.count.zero?
+      @uq.usuari = usuari_actual
+      @uq.nota_treta = 10
+      @uq.save
+      redirect_to edit_ruta_turistica_path(@uq.questionari.ruta_turistica)
     end
   end
 

@@ -13,6 +13,7 @@ class RutaTuristicasController < ApplicationController
 
     @rt = RutaTuristica.new(create_params)
     @rt.usuari = usuari_actual
+    @rt.usuari_modificador = usuari_actual
 
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
 
@@ -34,6 +35,15 @@ class RutaTuristicasController < ApplicationController
   def show
     @rt = RutaTuristica.find(params[:id])
     @valoracions = @rt.valoracios
+    @fotos = []
+    @rt.pdis_rutaturisticas.each do |prt|
+      if !prt.pdi.fotos_grans.nil?
+        fotos_array = prt.pdi.fotos_grans.split ","
+        @fotos << fotos_array.first
+
+      end
+    end
+
   end
 
   def index
@@ -66,6 +76,7 @@ class RutaTuristicasController < ApplicationController
 
   def update
     @rt = RutaTuristica.find(params[:id])
+    @rt.usuari_modificador = usuari_actual
     #cont = 0
     #@rt.pdis_rutaturisticas.each do |association|
       #association.update_attributes(:ordre =>  params[:ruta_turistica][:pdis_rutaturisticas_attributes].values[cont][:ordre], :pdi_id => params[:ruta_turistica][:pdis_rutaturisticas_attributes].values[cont][:pdi_attributes][:id])
@@ -77,7 +88,7 @@ class RutaTuristicasController < ApplicationController
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
     
     @rt.pdis_rutaturisticas.destroy_all
-    byebug
+    
     @rt.el_meu_save(llista)
     
 

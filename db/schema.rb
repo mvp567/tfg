@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529112744) do
+ActiveRecord::Schema.define(version: 20140607090317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,15 +130,24 @@ ActiveRecord::Schema.define(version: 20140529112744) do
     t.datetime "updated_at"
   end
 
+  create_table "pais_residencia", force: true do |t|
+    t.integer  "pais_id"
+    t.integer  "usuari_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pdis", force: true do |t|
     t.float    "punts"
     t.string   "nom"
-    t.string   "observacions"
-    t.string   "horari"
+    t.text     "horari"
+    t.text     "fotos_petites"
+    t.text     "fotos_grans"
     t.string   "telefon"
     t.string   "web"
     t.decimal  "preu_aprox"
     t.integer  "nivell_preu"
+    t.string   "icone"
     t.string   "type"
     t.integer  "usuari_id"
     t.integer  "usuari_modificador_id"
@@ -148,6 +157,7 @@ ActiveRecord::Schema.define(version: 20140529112744) do
     t.string   "pais"
     t.string   "coord_lat"
     t.string   "coord_lng"
+    t.text     "place_reference"
     t.spatial  "lonlat",                  limit: {:srid=>4326, :type=>"point", :geographic=>true}
     t.integer  "forquilles"
     t.integer  "classe_restaurant_id"
@@ -159,8 +169,7 @@ ActiveRecord::Schema.define(version: 20140529112744) do
     t.datetime "updated_at"
     t.spatial  "lat",                     limit: {:srid=>0, :type=>"point"}
     t.spatial  "lng",                     limit: {:srid=>0, :type=>"point"}
-    t.text     "fotos"
-    t.text     "fotos_petites"
+    t.spatial  "boundary",                limit: {:srid=>2285, :type=>"polygon"}
   end
 
   add_index "pdis", ["lonlat"], :name => "index_pdis_on_lonlat", :spatial => true
@@ -229,11 +238,11 @@ ActiveRecord::Schema.define(version: 20140529112744) do
     t.string   "password_digest"
     t.string   "edat",              limit: 3
     t.string   "sexe",              limit: 10
-    t.string   "ciutat_naixament",  limit: 25
     t.string   "pais_naixament",    limit: 25
-    t.string   "ciutat_residencia", limit: 25
     t.string   "pais_residencia",   limit: 25
     t.float    "punts"
+    t.string   "coord_lat_browser"
+    t.string   "coord_lng_browser"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sash_id"

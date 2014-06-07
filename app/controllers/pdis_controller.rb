@@ -4,6 +4,10 @@ class PdisController < ApplicationController
     if params[:tipus_pdi] != nil
       @pdi = params[:tipus_pdi].constantize.new
       @tipus_valor = params[:tipus_pdi]
+      @classes_botigues = ClasseBotiga.all
+      @classes_entreteniment = ClasseEntreteniment.all
+      @classes_museus = ClasseMuseu.all
+      @classes_restaurants = ClasseRestaurant.all
     end
   end
 
@@ -16,6 +20,17 @@ class PdisController < ApplicationController
     @pdi.usuari = usuari_actual
     @pdi.usuari_modificador = usuari_actual
     @etiquetes = params[:etiquetes]
+
+    if params[:tipus] == 'Botiga' 
+      @pdi.classe_botiga = ClasseBotiga.find_by_id(params[:classe_botiga])
+    elsif params[:tipus] == 'Entreteniment'
+      @pdi.classe_entreteniment = ClasseEntreteniment.find_by_id(params[:classe_entreteniment])
+    elsif params[:tipus] == 'Museu'
+      @pdi.classe_museu = ClasseMuseu.find_by_id(params[:classe_museu])
+    elsif params[:tipus] == 'Restaurant'
+      @pdi.classe_restaurant = ClasseRestaurant.find_by_id(params[:classe_restaurant])
+    end
+  
     #@pdi.lonlat = 'POINT(2.1789019999999937 41.385514)'
 
     @pdi.el_meu_save(@etiquetes)
@@ -88,8 +103,8 @@ class PdisController < ApplicationController
           @rts_from_pdi << rtp.ruta_turistica
       end
 
-      # TODO si existeix favorit: pdi-usuari, llavors @es_favorit = true
-      if Favorit.where(:pdi_id=>@pdi.id, :usuari_id=>usuari_actual.id).exists?
+
+      if !usuari_actual.nil? && Favorit.where(:pdi_id=>@pdi.id, :usuari_id=>usuari_actual.id).exists?
         @es_favorit = true
       end
   end
@@ -165,7 +180,7 @@ class PdisController < ApplicationController
   def create_params
   		params.require(params[:tipus].downcase.to_sym).permit(
         :nom, :observacions, :horari, :fotos_petites, :fotos_grans, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles,
-        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng, :icone, :place_reference)
+        :adreca, :localitat, :pais, :codi_postal, :coord_lat, :coord_lng, :icone, :place_reference, :classe_botiga, :classe_entreteniment, :classe_museu, :classe_restaurant)
   end
 
   def update_params

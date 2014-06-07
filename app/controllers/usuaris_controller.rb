@@ -1,6 +1,7 @@
 class UsuarisController < ApplicationController
 	def new
 		@usuari = Usuari.new
+    @paisos = Pais.all
   end
 
 	def create
@@ -10,6 +11,10 @@ class UsuarisController < ApplicationController
         @usuari.coord_lat_browser = 0
         @usuari.coord_lng_browser = 0
       end
+
+      @usuari.pais = Pais.find_by_id(params[:pais])
+      @usuari.pais_residencias << PaisResidencia.new(:pais_id => params[:pais_residencia])
+
   		@usuari.save
   		# save! retorna una excepció. sense el signe d'admiració retorna un booleà i que @usuari té tots els errors @usuari.errors
   	  if @usuari.errors.count > 0
@@ -28,10 +33,17 @@ class UsuarisController < ApplicationController
 
   def edit
     @usuari = Usuari.find(params[:id])
+    @paisos = Pais.all
+    @pais_residencia = @usuari.pais_residencias.order("created_at").last.pais_id
+
   end
 
   def update
     @usuari = Usuari.find(params[:id])
+    @usuari.pais = Pais.find_by_id(params[:pais])
+    if !PaisResidencia.where(:pais_id=>params[:pais_residencia], :usuari_id=>usuari_actual.id).exists?
+      @usuari.pais_residencias << PaisResidencia.new(:pais_id => params[:pais_residencia])
+    end
     @usuari.update(create_params)
   end
 
