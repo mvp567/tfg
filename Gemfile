@@ -62,3 +62,12 @@ gem 'merit'
 
 # Adaptador per PostGis (postgres + dades geografiques)
 gem 'activerecord-postgis-adapter'
+
+# Use puma as webserver
+gem 'puma', '~> 2.8'
+
+# Use capistrano for distributed deploy
+gem 'capistrano', '~> 3.2'
+gem 'rvm1-capistrano3', :require => false
+gem 'capistrano-rails'
+gem 'capistrano3-puma'

@@ -25,7 +25,13 @@ Sino, aquests són els últims punts d'interès creats.</p>
     <ul>
     <% @restaurants.each do |pdi| %>
      <li>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
+      <%   foto = (pdi.fotos_grans.split ",").first %>
+      <img src="<%= foto %>" width="50" height="50">
+       <%= link_to pdi.nom, pdi_path(pdi)  %>
+       <%= pdi.classe_restaurant.nom %>
+       <span class="encerclar"><%= pdi.pdis_rutaturisticas.count %></span>
+
+       
      </li>
     <% end %>
   </ul>
