@@ -165,7 +165,6 @@ DEPENDENCIES
   pg
   puma (~> 2.8)
   rails (= 4.0.3)
-  rgeo
   rvm1-capistrano3
   sass-rails (~> 4.0.0)
   sdoc
