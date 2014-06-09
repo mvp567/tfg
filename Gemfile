@@ -71,3 +71,8 @@ gem 'capistrano', '~> 3.2'
 gem 'rvm1-capistrano3', :require => false
 gem 'capistrano-rails'
 gem 'capistrano3-puma'
+
+# gemmes per a l'autenticacióa través de xarxes socials
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-gplus', '~> 2.0'
