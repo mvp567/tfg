@@ -1,13 +1,17 @@
 class PdisController < ApplicationController
 
   def new
-    if params[:tipus_pdi] != nil
-      @pdi = params[:tipus_pdi].constantize.new
-      @tipus_valor = params[:tipus_pdi]
-      @classes_botigues = ClasseBotiga.all
-      @classes_entreteniment = ClasseEntreteniment.all
-      @classes_museus = ClasseMuseu.all
-      @classes_restaurants = ClasseRestaurant.all
+    if usuari_actual.nil?
+      redirect_to pdis_path, :notice => "Has d'estar registrat per poder crear punts d'interès."
+    else
+      if params[:tipus_pdi] != nil
+        @pdi = params[:tipus_pdi].constantize.new
+        @tipus_valor = params[:tipus_pdi]
+        @classes_botigues = ClasseBotiga.all
+        @classes_entreteniment = ClasseEntreteniment.all
+        @classes_museus = ClasseMuseu.all
+        @classes_restaurants = ClasseRestaurant.all
+      end
     end
   end
 

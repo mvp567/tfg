@@ -1,9 +1,10 @@
-<h2>Inicia sessió</h2>
-
-<%= form_tag sessions_path do %>
   <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
+    <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
   <% end %>
+
+  <h2>Inicia sessió</h2>
+
+  <%= form_tag sessions_path do %>
   <div>
     <%= label_tag :nom_usuari, nil, class: 'titol_camp' %>
     <%= text_field_tag :nom_usuari, params[:nom_usuari], class: 'contingut_camp' %>

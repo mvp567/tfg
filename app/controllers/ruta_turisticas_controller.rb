@@ -1,12 +1,14 @@
 class RutaTuristicasController < ApplicationController
   def new
-    @rt = RutaTuristica.new
-    2.times { 
-      @rt.pdis_rutaturisticas.build
-      @rt.pdis_rutaturisticas.last.pdi = Pdi.new
-    }
-
-    
+    if usuari_actual.nil?
+      redirect_to ruta_turisticas_path, :notice => "Has d'estar registrat per poder crear rutes turístiques."
+    else
+      @rt = RutaTuristica.new
+      2.times { 
+        @rt.pdis_rutaturisticas.build
+        @rt.pdis_rutaturisticas.last.pdi = Pdi.new
+      }
+    end
   end
 
   def create
