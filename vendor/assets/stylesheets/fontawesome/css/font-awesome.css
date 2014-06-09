@@ -5,9 +5,17 @@
 /* FONT PATH
  * -------------------------- */
 @font-face {
-  font-family: 'FontAwesome';
+  /*font-family: 'FontAwesome';
   src: asset-url('/assets/fontawesome/fonts/fontawesome-webfont.eot?v=4.1.0');
   src: asset-url('/assets/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'), asset-url('../fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'), asset-url('../fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'), asset-url('../fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;*/
+  font-family: "FontAwesome";
+  src: url('../font/fontawesome-webfont.eot');
+  src: url('../font/fontawesome-webfont.eot?#iefix') format('eot'), 
+  url('../font/fontawesome-webfont.woff') format('woff'), 
+  url('../font/fontawesome-webfont.ttf') format('truetype'), 
+  url('../font/fontawesome-webfont.svg#FontAwesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
