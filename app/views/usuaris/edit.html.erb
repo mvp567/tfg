@@ -51,7 +51,7 @@
 
 	<div>
 		<%= u.label "País naixament", :class=>"titol_camp" %>	
-		<%= select_tag(:pais, options_from_collection_for_select(@paisos, "id", "nom", @usuari.pais.id), :class=>"contingut_camp") %>
+		<%= select_tag(:pais, options_from_collection_for_select(@paisos, "id", "nom", @pais_naixament), :class=>"contingut_camp") %>
 	</div>
 
 	<div>

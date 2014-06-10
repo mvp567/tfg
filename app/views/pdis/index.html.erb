@@ -4,91 +4,61 @@
     <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 
-<table > <!--class="table">-->
-<% @pdis.each do |pdi| %>
-  <tr>
-    <td><%#= link_to pdi.nom, pdi_path(pdi), :class=>"text_table" %></td>
-    <td><%#= link_to 'Edita', edit_pdi_path(pdi), :class => "edita_pdi fa fa-pencil-square-o" %></td>
-  </tr>
-<% end %>
-</table>
 
 <p style="margin-top:30px;margin-bottom:30px;" class="alert alert-warning">Si tens la geolocalització del navegador activada, en aquesta pàgina podràs veure els punts d'interès més propers a tu. <br>
 Sino, aquests són els últims punts d'interès creats.</p>
 
 <%= link_to "Crea Punt d\'interès", {:controller => "pdis", :action => "new"}, {:class => "pdis_link_to_new"} %>
-<!-- TODO - POSAR UNA TAULA AMB MÉS INFO, PREU, DISTÀNCIA?-->
 <br><br>
-<div class="row">
-  <div class="col-md-6 pdis_categoritzats" id="pdis_restaurants">
-    <h4><i class="fa fa-cutlery"></i> Restaurants</h4>
-    <ul>
-    <% @restaurants.each do |pdi| %>
-     <li>
-      <%   foto = (pdi.fotos_grans.split ",").first %>
-      <img src="<%= foto %>" width="50" height="50">
-       <%= link_to pdi.nom, pdi_path(pdi)  %>
-       <%= pdi.classe_restaurant.nom %>
-       <span class="encerclar"><%= pdi.pdis_rutaturisticas.count %></span>
 
+
+<div class="row">
+
+    <% @pdis.each do |pdi| %>
+    <%= vari_classe = '' %>
+  <div class="col-md-2 pdi_encapsulat" id="pdis_restaurants">
+
+      <div class="encerclar_puntuacio"><%= pdi.punts %></div>
+
+        <%   foto = (pdi.fotos_grans.split ",").first %>
+        <img src="<%= foto %>" width="100%" height="100px" style="margin-bottom:5px;">
+
+        <br>
+
+        <%= link_to pdi.nom, pdi_path(pdi), :class => "titol_pdi"  %>
+        
+        <br>
+
+        <% if pdi.type == 'Restaurant' %>
+          <% vari_classe = pdi.classe_restaurant.nom %>
+          <i class="fa fa-cutlery"></i>
+        <% elsif pdi.type == 'Botiga' %>
+          <% vari_classe = pdi.classe_botiga.nom %>
+          <i class="fa fa-shopping-cart"></i>
+        <% elsif pdi.type == 'Museu' %>
+          <% vari_classe = pdi.classe_museu.nom %>
+          <i class="fa fa-university"></i>
+        <% elsif pdi.type == 'Monument' %>
+          <i class="fa fa-pied-piper-alt"></i>
+        <% elsif pdi.type == 'Discoteca' %>
+          <i class="fa fa-glass"></i>
+        <% elsif pdi.type == 'Entreteniment' %>
+          <% vari_classe = pdi.classe_entreteniment.nom %>
+          <i class="fa fa-ticket"></i>
+        <% elsif pdi.type == 'Hotel' %>
+          <i class="fa fa-suitcase"></i>
+        <% elsif pdi.type == 'Vista' %>
+          <i class="fa fa-tree"></i>
+        <% end %>
+        <span class="subtitol_pdi"><%= pdi.type %> <%= vari_classe %></span>
+        <br> <br>
+        <% if pdi.pdis_rutaturisticas.count > 0 %>
+          <i class="fa fa-picture-o encerclar_num_rts">
+          <%= pdi.pdis_rutaturisticas.count %></i> 
+        <% end %>
        
-     </li>
-    <% end %>
-  </ul>
   </div>
-  <div class="col-md-6 pdis_categoritzats" id="pdis_botigues">
-    <h4><i class="fa fa-shopping-cart"></i> Botigues</h4>
-    <% @botigues.each do |pdi| %>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
     <% end %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6 pdis_categoritzats" id="pdis_museus">
-    <h4><i class="fa fa-university"></i> Museus</h4>
-    <% @museus.each do |pdi| %>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
-    <% end %>
-  </div>
-  <div class="col-md-6 pdis_categoritzats" id="pdis_monuments">
-    <h4><i class="fa fa-pied-piper-alt"></i> Monuments</h4>
-    <% @monuments.each do |pdi| %>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
-    <% end %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6 pdis_categoritzats" id="pdis_discoteques">
-    <h4><i class="fa fa-glass"></i> Discoteques</h4>
-    <% @discoteques.each do |pdi| %>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
-    <% end %>
-  </div>
-  <div class="col-md-6 pdis_categoritzats" id="pdis_entreteniment">
-    <h4><i class="fa fa-ticket"></i> Entreteniment</h4>
-    <% @entreteniment.each do |pdi| %>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6 pdis_categoritzats" id="pdis_hotels">
-    <h4><i class="fa fa-suitcase"></i> Hotels</h4>
-    <ul>
-    <% @hotels.each do |pdi| %>
-    <li>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
-     </li>
-    <% end %>
-    </ul>
-  </div>
-  <div class="col-md-6 pdis_categoritzats" id="pdis_vistes">
-    <h4><i class="fa fa-tree"></i> Vistes</h4>
-    <% @vistes.each do |pdi| %>
-       <%= link_to pdi.nom, pdi_path(pdi) %>
-    <% end %>
-  </div>
 </div>

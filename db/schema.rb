@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607090317) do
+ActiveRecord::Schema.define(version: 20140609171627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20140607090317) do
   end
 
   add_index "admin_users", ["username"], :name => "index_admin_users_on_username"
+
+  create_table "authentications", force: true do |t|
+    t.integer  "usuari_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "badges_sashes", force: true do |t|
     t.integer  "badge_id"
@@ -238,8 +246,6 @@ ActiveRecord::Schema.define(version: 20140607090317) do
     t.string   "password_digest"
     t.string   "edat",              limit: 3
     t.string   "sexe",              limit: 10
-    t.string   "pais_naixament",    limit: 25
-    t.string   "pais_residencia",   limit: 25
     t.float    "punts"
     t.string   "coord_lat_browser"
     t.string   "coord_lng_browser"
@@ -247,6 +253,7 @@ ActiveRecord::Schema.define(version: 20140607090317) do
     t.datetime "updated_at"
     t.integer  "sash_id"
     t.integer  "level",                        default: 0
+    t.integer  "pais_id"
   end
 
   create_table "valoracios", force: true do |t|

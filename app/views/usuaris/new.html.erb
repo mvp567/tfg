@@ -1,4 +1,9 @@
 <h2>Enregistra't!</h2>
+
+<div id="user_nav">  
+  <%= link_to "Sign in with Twitter", "/auth/twitter" %>  
+</div>
+
 <%= form_for @usuari, :class=>"form-horizontal" do |u| %>
 	<div class="control-group, <%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
 		<%= u.label :nom_usuari, :class=>"titol_camp" %>	

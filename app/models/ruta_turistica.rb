@@ -28,6 +28,8 @@ class RutaTuristica < ActiveRecord::Base
     		self.pdis_rutaturisticas = ll
     	end
 
+      self.punts = 0
+      
     	self.save
 	end
 

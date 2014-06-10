@@ -30,6 +30,7 @@ class Pdi < ActiveRecord::Base
 			self.coord_lat = 0
 			self.coord_lng = 0
 		end
+    self.punts = 0
 		self.save
 	end
 

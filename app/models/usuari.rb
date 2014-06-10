@@ -16,4 +16,16 @@ class Usuari < ActiveRecord::Base
 
 	has_many :pais_residencias
 	belongs_to :pais #de naixament
+
+	has_one :authentication
+
+
+	def self.crear_amb_omniauth(auth)
+		#usu.nom_usuari = auth['user_info']['name']
+		usu = Usuari.create(:nom_usuari => "mariaaa")
+		usu.authentication = Authentication.create(:provider => auth['provider'], :uid => auth['uid'])
+			
+		
+		
+	end
 end

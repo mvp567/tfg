@@ -12,6 +12,7 @@ class CreateUsuaris < ActiveRecord::Migration
       t.float :punts
       t.string :coord_lat_browser
       t.string :coord_lng_browser
+      t.integer :authentication_id
       t.timestamps
     end
   end

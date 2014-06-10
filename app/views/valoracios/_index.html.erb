@@ -1,5 +1,7 @@
 <table>
- 
+ <% if @valoracions.count == 0 %>
+ Sigues el primer en valorar!
+ <% end %>
 <% @valoracions.each do |val| %>
   <tr>
     <td><%= val.titol %></td>

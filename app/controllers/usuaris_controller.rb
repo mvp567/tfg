@@ -34,11 +34,17 @@ class UsuarisController < ApplicationController
   def edit
     @usuari = Usuari.find(params[:id])
     @paisos = Pais.all
-    @pais_residencia = @usuari.pais_residencias.order("created_at").last.pais_id
-
+    if !@usuari.pais.nil?
+      @pais_naixament = @usuari.pais.id
+    end
+    if !@usuari.pais_residencias.first.nil?
+      @pais_residencia = @usuari.pais_residencias.order("created_at").last.pais_id
+    end
   end
 
   def update
+    # TODO - un usuari normal me l'updateja bé. Però un usuari de xarxa social no. només país de residència. potser tmb és culpa dels validates a Usuari?
+    # TODO - o botó o guardar coords
     @usuari = Usuari.find(params[:id])
     @usuari.pais = Pais.find_by_id(params[:pais])
     if !PaisResidencia.where(:pais_id=>params[:pais_residencia], :usuari_id=>usuari_actual.id).exists?

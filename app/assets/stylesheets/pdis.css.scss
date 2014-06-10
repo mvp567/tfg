@@ -15,7 +15,7 @@ ul {
   list-style-type: none;
 }
 
-.pdis_categoritzats {
+/*.pdis_categoritzats {
   padding: 20px;
   height: 300px;
   width: 400px;
@@ -24,7 +24,57 @@ ul {
   border-left-color: #14caa3;
   border-width: 3px;
   background-color: #f8f8f8;
+}*/
+
+.pdi_encapsulat {
+  min-height: 200px;
+  margin: 20px;
+  border-left: solid;
+  border-left-color: #14caa3;
+  border-width: 3px;
+  background-color: #f8f8f8;
 }
+
+
+.encerclar_puntuacio {
+  /*background-color: #fcf7e3;
+  color: #e6bb0e;
+  width: 50%;
+  padding: 5px;
+  float: left;*/
+  background-color: #ffe30f;
+  color: #716400;
+  font-weight: bold;
+  padding: 5px;
+  position: absolute;
+  left:100px;
+  z-index: 100;
+
+}
+
+.encerclar_num_rts {
+  /*background-color: #fbeedf;
+  color: #ed9577;
+  padding: 5px;*/
+  color:#ed9577;
+  position: absolute;
+  bottom: 7px;
+  right: 15px;
+}
+
+.titol_pdi {
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: normal;
+  color: black;
+}
+
+.subtitol_pdi {
+  color: #14caa3;
+  font-style: italic;
+  font-size: 10px;
+}
+
 /*
 #pdis_restaurants {
   background-color: #dff9ee;
