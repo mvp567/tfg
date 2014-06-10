@@ -42,14 +42,13 @@ class RutaTuristicasController < ApplicationController
       if !prt.pdi.fotos_grans.nil?
         fotos_array = prt.pdi.fotos_grans.split ","
         @fotos << fotos_array.first
-
       end
     end
 
   end
 
   def index
-    @rts = RutaTuristica.all
+    @rts = RutaTuristica.all.order("punts desc")
   end
 
   def edit
@@ -84,7 +83,7 @@ class RutaTuristicasController < ApplicationController
       #association.update_attributes(:ordre =>  params[:ruta_turistica][:pdis_rutaturisticas_attributes].values[cont][:ordre], :pdi_id => params[:ruta_turistica][:pdis_rutaturisticas_attributes].values[cont][:pdi_attributes][:id])
       #cont = cont + 1
     # end
-    #@rt.update(update_params)
+    @rt.update(update_params)
 
     # TODO mirar si se n'han tret o afegit. crear o treure instàncies a pdis_rutaturist
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values

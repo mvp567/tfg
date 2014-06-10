@@ -16,10 +16,6 @@ class PdisController < ApplicationController
   end
 
   def create
-  	# TODO flten les classes_ a la view i aqui
-
-    # TODO favorits pdi-usuari
-
   	@pdi = params[:tipus].constantize.new(create_params)
     @pdi.usuari = usuari_actual
     @pdi.usuari_modificador = usuari_actual
@@ -145,7 +141,7 @@ class PdisController < ApplicationController
       # per l'autocomplete
       @pdis = Pdi.where("nom ILIKE ?", "%#{cercar}%" )
     end
-     
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => @pdis.to_json }

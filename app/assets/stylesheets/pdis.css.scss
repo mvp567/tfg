@@ -27,53 +27,75 @@ ul {
 }*/
 
 .pdi_encapsulat {
-  min-height: 200px;
-  margin: 20px;
+  min-height: 300px;
+  width: 210px;
+  margin: 10px;
   border-left: solid;
   border-left-color: #14caa3;
-  border-width: 3px;
+  border-width: 1px;
   background-color: #f8f8f8;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.13);
+  float:left;
+}
+.capcalera_pdi_encapsulat {
+  color: white;
+  background-color: #14caa3;
+  font-weight: lighter;
+  padding: 3px;
+  font-size: 18px;
+  border-top-left-radius: 6px;
+}
+.contingut_pdi_encapsulat {
+  margin-left: 10px;
 }
 
-
-.encerclar_puntuacio {
-  /*background-color: #fcf7e3;
-  color: #e6bb0e;
-  width: 50%;
-  padding: 5px;
-  float: left;*/
-  background-color: #ffe30f;
-  color: #716400;
+.encerclar_puntuacio_pdi {
+  /*background-color: #ffd917;
+  color: #b09300;*/
+  background-color: #a6f6e5;
+  color: #14caa3;
   font-weight: bold;
-  padding: 5px;
-  position: absolute;
-  left:100px;
-  z-index: 100;
-
+  padding: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  float: right;
+  z-index: 1000;
+  font-size: 14px;
+  position: relative;
+  top: -3px;
+  right: 12px;
+  border-bottom-left-radius: 5px;
 }
 
 .encerclar_num_rts {
-  /*background-color: #fbeedf;
+  padding: 2px;
+  background-color: #fbeedf;
   color: #ed9577;
-  padding: 5px;*/
-  color:#ed9577;
-  position: absolute;
+  /*position: absolute;
   bottom: 7px;
-  right: 15px;
+  right: 15px;*/
 }
 
 .titol_pdi {
-  font-size: 13px;
+  font-size: 14px;
   text-decoration: none;
   font-weight: normal;
   color: black;
+  
 }
 
-.subtitol_pdi {
-  color: #14caa3;
-  font-style: italic;
+.pdi_tipus_classe {
   font-size: 10px;
 }
+
+.lloc_pdi {
+  color:#797979;
+  font-size: 11px;
+}
+
+
 
 /*
 #pdis_restaurants {

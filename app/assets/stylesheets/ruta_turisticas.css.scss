@@ -8,6 +8,74 @@
   color: #ed9577;
 }
 
+.rt_encapsulada {
+  min-height: 200px;
+  width: 200px;
+  margin: 15px;
+  border-left: solid;
+  border-left-color: #ed9577;
+  border-width: 1px;
+  background-color: #f8f8f8;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.13);
+  float:left;
+}
+
+.capcalera_rt_encapsulada {
+  color: white;
+  background-color: #ed9577;
+  font-weight: lighter;
+  padding: 5px;
+  font-size: 12px;
+  border-top-left-radius: 6px;
+}
+
+.encerclar_puntuacio_rt {
+  /*background-color: #ffd917;
+  color: #b09300;*/
+  background-color: #f8d3c7;
+  color: #e7724a;
+  font-weight: bold;
+  padding: 1px;
+  padding-left: 7px;
+  padding-right: 7px;
+  float: right;
+  z-index: 1000;
+  font-size: 14px;
+  position: relative;
+  top: -5px;
+  right: 12px;
+  border-bottom-left-radius: 5px;
+}
+
+.contingut_rt_encapsulada {
+  margin-left: 10px;
+}
+
+
+.fotos_rt_encapsulada {
+	display: flex;
+	margin-bottom: 5px;
+}
+.crop {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 50px;
+    height: 50px;
+   
+}
+
+.llistat_pdis_rt_encapsulada {
+	margin-bottom: 5px;
+  color:#797979;
+  font-size: 11px;
+}
+
 /* RUTA#new/edit */
 .estil_num_ordre {
 	color: #e46033;

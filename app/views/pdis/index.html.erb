@@ -14,21 +14,13 @@ Sino, aquests són els últims punts d'interès creats.</p>
 
 <div class="row">
 
-    <% @pdis.each do |pdi| %>
-    <%= vari_classe = '' %>
-  <div class="col-md-2 pdi_encapsulat" id="pdis_restaurants">
+<% @pdis.each do |pdi| %>
+  <%= vari_classe = '' %>
+  <div class="pdi_encapsulat">
 
-      <div class="encerclar_puntuacio"><%= pdi.punts %></div>
+      
 
-        <%   foto = (pdi.fotos_grans.split ",").first %>
-        <img src="<%= foto %>" width="100%" height="100px" style="margin-bottom:5px;">
-
-        <br>
-
-        <%= link_to pdi.nom, pdi_path(pdi), :class => "titol_pdi"  %>
-        
-        <br>
-
+      <div class="capcalera_pdi_encapsulat">
         <% if pdi.type == 'Restaurant' %>
           <% vari_classe = pdi.classe_restaurant.nom %>
           <i class="fa fa-cutlery"></i>
@@ -50,15 +42,32 @@ Sino, aquests són els últims punts d'interès creats.</p>
         <% elsif pdi.type == 'Vista' %>
           <i class="fa fa-tree"></i>
         <% end %>
-        <span class="subtitol_pdi"><%= pdi.type %> <%= vari_classe %></span>
-        <br> <br>
-        <% if pdi.pdis_rutaturisticas.count > 0 %>
-          <i class="fa fa-picture-o encerclar_num_rts">
-          <%= pdi.pdis_rutaturisticas.count %></i> 
-        <% end %>
-       
+        <span class="pdi_tipus_classe"><%= pdi.type %> <%= vari_classe %></span>
+        <div class="encerclar_puntuacio_pdi"><%= pdi.punts %></div>
+        
+       </div>
+
+        <% foto = (pdi.fotos_grans.split ",").first %>
+        <img src="<%= foto %>" width="100%" height="100px" style="margin-bottom:5px;">
+
+      <div class="contingut_pdi_encapsulat">
+         <%= link_to pdi.nom, pdi_path(pdi), :class => "titol_pdi"  %>
+         <br>
+         <div class="lloc_pdi"><%= pdi.localitat%> - <%= pdi.pais %></div>
+         <br>
+          <% if pdi.pdis_rutaturisticas.count > 0 %>
+            <i class="fa fa-picture-o encerclar_num_rts">
+            <%= pdi.pdis_rutaturisticas.count %></i> 
+          <% end %>
+
+          <p>
+            <% if pdi.valoracios.where("punts > 5").count > 0%>
+            <%= pdi.valoracios.where("punts > 5").order("punts desc").first.opinio %>
+            <% end %>
+          </p>
+      </div>
   </div>
-    <% end %>
+<% end %>
 
 
 </div>

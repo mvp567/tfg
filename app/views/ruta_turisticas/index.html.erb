@@ -2,14 +2,69 @@
     <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 
-<h1>Rutes turístiques</h1>
+<p style="margin-top:30px;margin-bottom:30px;">Explora les rutes turístiques que han creat els usuaris.</p>
 
-<table class="table">
+<%= link_to "Crea Ruta turística", {:controller => "ruta_turisticas", :action => "new"}, {:class => "rts_link_to_new"} %>
+<br><br>
+
+<div class="row">
 
 <% @rts.each do |rt| %>
-  <tr>
-    <td><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></td>
-    <td><%= link_to 'Edita', edit_ruta_turistica_path(rt), :class => "edita_ruta fa fa-pencil-square-o" %></td>
-  </tr>
+
+		<%
+	  		fotos = []
+	  		localitats = []
+	  		pdis = []
+	    	rt.pdis_rutaturisticas.each do |prt|
+	      		if !prt.pdi.fotos_grans.nil?
+	        		fotos_array = prt.pdi.fotos_grans.split ","
+	       			fotos << fotos_array.first 
+	      		end
+	      		localitats << prt.pdi.localitat
+	      		pdis << prt.pdi.nom
+			end
+			localitats = localitats.uniq
+		%>
+
+
+  <div class="rt_encapsulada">
+  	<div class="capcalera_rt_encapsulada">
+  			<% localitats.each do |l| %> &nbsp
+  				<%= l %>
+  			<% end %>
+        <div class="encerclar_puntuacio_rt"><%= rt.punts %></div>
+  	</div>
+  	<div class="fotos_rt_encapsulada">
+
+		<% fotos.each do |f|%>
+		  <div class="crop">
+		  	<img src="<%= f %>" class="arrodonint_foto">
+		  </div>
+		<% end %>
+	</div>
+	<div class="contingut_rt_encapsulada">
+    	<div style="margin-bottom:5px;"><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></div>
+    	<div class="llistat_pdis_rt_encapsulada">
+    		<% count = 0
+    		pdis.each do |p| 
+    			count = count + 1 %>
+  				<%= p %>
+  				<% if count < pdis.count %>
+  				-
+  				<% end %>
+  			<% end %>
+    	</div>
+    	<p>
+            <% if rt.valoracios.where("punts > 5").count > 0%>
+            	<%= rt.valoracios.where("punts > 5").order("punts desc").first.opinio %>
+            <% end %>
+          </p>
+	</div>
+  </div>
 <% end %>
-</table>
+
+</div>
+
+
+
+
