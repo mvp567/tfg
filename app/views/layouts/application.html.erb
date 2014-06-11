@@ -9,6 +9,9 @@
   </script>
   <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400italic,700,700italic|Roboto:400,100,300,700,300italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Quicksand|Ovo|Antic|Raleway|Junge' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -17,9 +20,6 @@
   <div id="wrap">
   <div class="container">
       <div id="capcalera" style="height:50px; width:100%; background-color:#f5f5f5;"> 
-        <% if flash[:notice] %>
-    <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
-<% end %>
             <div style="position:relative; left:2%; top:50%; font-size:14px;"> 
               <%= link_to " Home", {:controller => "home", :action => "index"}, {:class => "link_capcalera fa fa-home"} %>
               &nbsp &nbsp
