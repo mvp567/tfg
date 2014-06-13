@@ -67,6 +67,7 @@ class PdisController < ApplicationController
 
   def show
     @pdi = Pdi.find(params[:id])
+    @url_compartir = "https://www.facebook.com/sharer.php?u=http://146.148.11.157/pdis/" + @pdi.id.to_s + "&t=YOUR_TITLE"
     @valoracions = @pdi.valoracios
     if !@pdi.fotos_grans.nil?
       @fotos = @pdi.fotos_grans.split ","
