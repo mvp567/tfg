@@ -74,10 +74,65 @@ class PdisController < ApplicationController
       @fotos = []
     end
 
+    @horari = nil
+
     if !@pdi.horari.blank?
+  
       @horari = JSON.parse @pdi.horari
-    else
-      @horari = "-"
+
+      @dll, @dt, @dc, @dj, @dv, @ds, @du = nil
+
+      @horari["periods"].each do |p|
+        if p["close"].nil? 
+          @horari = nil
+        else
+          if p["close"]["day"] == 0
+            @du = p["open"]["time"] + '-' + p["close"]["time"]
+            @du.insert(2, ':').insert(8, ':')
+
+          elsif p["close"]["day"] == 1
+            @dll = p["open"]["time"] + '-' + p["close"]["time"]
+            @dll.insert(2, ':').insert(8, ':')
+
+          elsif p["close"]["day"] == 2
+            @dt = p["open"]["time"] + '-' + p["close"]["time"]
+            @dt.insert(2, ':').insert(8, ':')
+
+          elsif p["close"]["day"] == 3
+            @dc = p["open"]["time"] + '-' + p["close"]["time"]
+            @dc.insert(2, ':').insert(8, ':')
+
+          elsif p["close"]["day"] == 4
+            @dj = p["open"]["time"] + '-' + p["close"]["time"]
+            @dj.insert(2, ':').insert(8, ':')
+
+          elsif p["close"]["day"] == 5
+            @dv = p["open"]["time"] + '-' + p["close"]["time"]
+            @dv.insert(2, ':').insert(8, ':')
+
+          elsif p["close"]["day"] == 6
+            @ds = p["open"]["time"] + '-' + p["close"]["time"]
+            @ds.insert(2, ':').insert(8, ':')
+          end
+        end
+
+        if @dll.nil?
+          @dll = "Tancat"
+        elsif @dt.nil?
+          @dt = "Tancat"
+        elsif @dc.nil?
+          @dc = "Tancat"
+        elsif @dj.nil?
+          @dj = "Tancat"
+        elsif @dv.nil?
+          @dv = "Tancat"
+        elsif @ds.nil?
+          @ds = "Tancat"
+        elsif @du.nil?
+          @du = "Tancat"
+        end
+      end
+  
     end
 
     #@puntsPDI = @pdi.calcula_punts
@@ -150,20 +205,30 @@ class PdisController < ApplicationController
   end
 
   def favorit
-    pdi = Pdi.find(params[:pdi_id])
-    f = Favorit.new
-    f.pdi = pdi
-    f.usuari = usuari_actual
-    pdi.favorits << f
-    usuari_actual.favorits << f
-    redirect_to pdi_path(pdi)
+    if usuari_actual.nil?
+      pdi = params[:pdi_id]
+      redirect_to pdi_path(pdi)
+    else
+      pdi = Pdi.find(params[:pdi_id])
+      f = Favorit.new
+      f.pdi = pdi
+      f.usuari = usuari_actual
+      pdi.favorits << f
+      usuari_actual.favorits << f
+      redirect_to pdi_path(pdi)
+    end
   end
 
   def des_favorit
-    pdi = params[:pdi_id]
-    f = Favorit.where(:pdi_id=>pdi, :usuari_id=>usuari_actual.id).first
-    f.destroy
-    redirect_to pdi_path(pdi)
+    if usuari_actual.nil?
+      pdi = params[:pdi_id]
+      redirect_to pdi_path(pdi)
+    else
+      pdi = params[:pdi_id]
+      f = Favorit.where(:pdi_id=>pdi, :usuari_id=>usuari_actual.id).first
+      f.destroy
+      redirect_to pdi_path(pdi)
+    end
   end
 
   def destroy

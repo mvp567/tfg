@@ -175,6 +175,15 @@ ul {
 }
 
 /* PDI#show */
+.capsula_info_pdi {
+  width: 200px;
+  height: 240px;
+  color: white;
+  background-color: #14caa3;
+  margin-left: 56em;
+  padding: 10px;
+}
+
 .verdmar {
   color: #109e7f;
   padding:5px;
@@ -192,6 +201,49 @@ ul {
 .link_verdmar:hover {
   color: #15cca4;
   font-weight: bold;
+}
+
+.punts_pdi {
+  color: #e6bb0e;
+  border-style: dotted;
+  border-width: 1px;
+  padding: 7px;
+  background-color: #fcf7e3;
+  float: right;
+}
+
+#taula_horari td{
+  padding-right: 30px;
+}
+
+.rt_encapsulada_en_el_pdi {
+  min-height: 200px;
+  width: 200px;
+  margin: 15px;
+  border-left: solid;
+  border-left-color: #ed9577;
+  border-width: 1px;
+  background-color: #f8f8f8;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.13);
+  display: flex;
+}
+
+.pdi_proper {
+  padding: 4px;
+  padding-left: 5px;
+  background-color: #e1fcf6;
+  line-height: 2em;
+  margin-bottom: 10px;
+  width: 843px;
+}
+
+.pdi_proper a {
+  text-decoration: none;
+  color: #14caa3;
+  font-size: 15px;
+  margin-left: 10px;
 }
 
 /* BEGIN Estils mapa Google Maps Api*/  

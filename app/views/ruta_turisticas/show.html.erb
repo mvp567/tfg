@@ -7,40 +7,81 @@
 <h2> 
 	<i class="fa fa-picture-o"></i> 
 	<%= @rt.nom %> 
-	<% if @rt.punts.nil? %>
-		<small style="float:right; margin-top:15px; color:darkorange;">-</small>
-	<% else %>
-		<small><i class="fa fa-trophy punts_usuari"> <%= '%.1f' % @rt.punts %></i></small>
-	<% end %>
 </h2>
 
 <%= hidden_field_tag :accio, "editant_rt" %>
 
-<div id="map-canvas"> </div>
+<div id="map-canvas" style="margin-bottom:20px;float:left;"> </div>
 
-<div> 
-	<%= link_to 'Edita', edit_ruta_turistica_path(@rt), :class => "edita_ruta fa fa-pencil-square-o" %>
-	Creat per <%= @rt.usuari.nom_usuari %> - <%= @rt.created_at %>
-	Última modificació: <%= @rt.usuari_modificador.nom_usuari %> - <%= @rt.updated_at %>
+
+<div class="capsula_info_rt"> 
+  <i class="fa fa-trophy fa-lg punts_pdi" > <%= '%.1f' % @rt.punts %></i>
+  <br><br>
+
+  	<%= link_to 'Edita', edit_ruta_turistica_path(@rt), :class => "edita_ruta fa fa-pencil-square-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
+    <br><br>
+
+  	Creat per <%= @rt.usuari.nom_usuari %> 
+    <br>
+    <%= @rt.created_at %>
+    <br><br>
+  	Última modificació: <%= @rt.usuari_modificador.nom_usuari %>
+    <br>
+    <%= @rt.updated_at %>
+  
+
 </div>
 
-
-<div class="popup-gallery" style="margin-bottom:20px;">
-  <% @fotos.each do |f| %>
-    <% foto_petita = f.dup %>
-    <% foto_petita["w600-h600"] = "w75-h75" %>
-    <a href="<%= f %>" title="<%= @rt.pdis_rutaturisticas[@fotos.index(f)].pdi.nom %>"><img src="<%= foto_petita %>" width="75" height="75"></a>
-  <% end %>
-</div>
-
-
+<br><br>
 <i class="fa fa-clock-o"></i>
-<%= label_tag @rt.temps %>
-		
-<ol>
+Aquesta ruta pot ser completada en <span class="temps_rt"><%= label_tag @rt.temps %></span>
+		<br><br>
+
+
+
+
+<ol class="llista_rt_pdis">
 	<% @rt.pdis_rutaturisticas.each do |prt| %>
+
+
+    
+
 		<li>
+    <div class="rt_pdi">
+      <% foto = (prt.pdi.fotos_grans.split ",").first %>
+      <img src="<%= foto %>" width="75" height="75">
 			<%= link_to prt.pdi.nom, pdi_path(prt.pdi) %>
+      
+      <span class="info_extra_rt_pdi">
+        <%= vari_classe = '' %>
+        <% if prt.pdi.type == 'Restaurant' %>
+            <% vari_classe = prt.pdi.classe_restaurant.nom %>
+            <i class="fa fa-cutlery"></i>
+          <% elsif prt.pdi.type == 'Botiga' %>
+            <% vari_classe = prt.pdi.classe_botiga.nom %>
+            <i class="fa fa-shopping-cart"></i>
+          <% elsif prt.pdi.type == 'Museu' %>
+            <% vari_classe = prt.pdi.classe_museu.nom %>
+            <i class="fa fa-university"></i>
+          <% elsif prt.pdi.type == 'Monument' %>
+            <i class="fa fa-pied-piper-alt"></i>
+          <% elsif prt.pdi.type == 'Discoteca' %>
+            <i class="fa fa-glass"></i>
+          <% elsif prt.pdi.type == 'Entreteniment' %>
+            <% vari_classe = prt.pdi.classe_entreteniment.nom %>
+            <i class="fa fa-ticket"></i>
+          <% elsif prt.pdi.type == 'Hotel' %>
+            <i class="fa fa-suitcase"></i>
+          <% elsif prt.pdi.type == 'Vista' %>
+            <i class="fa fa-tree"></i>
+      <% end %>
+
+
+        <%= prt.pdi.type %> 
+        <%= vari_classe %>
+
+    </span>
+    </div>
       <%= hidden_field_tag :nompdi, prt.pdi.nom %>
 			<%= hidden_field_tag :coord_lat, prt.pdi.coord_lat %>
     		<%= hidden_field_tag :coord_lng, prt.pdi.coord_lng %>
@@ -49,7 +90,7 @@
 	<% end %>
 </ol>
 
-
+<br> <br>
 <div style="background:#f3f2f4; padding:15px;">
 <h2>
 	<i class="fa fa-comment"></i> Valoracions

@@ -54,6 +54,7 @@
   				<% end %>
   			<% end %>
     	</div>
+     
     	<p>
             <% if rt.valoracios.where("punts > 5").count > 0%>
             	<%= rt.valoracios.where("punts > 5").order("punts desc").first.opinio %>

@@ -6,11 +6,7 @@
 
 <div>
 
-<% if @es_favorit %>
-<%= link_to " Favorit", {:controller=>"pdis", :action=>"des_favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-lg glyphicon glyphicon-heart", :style=>"color:#f076a7" %>
-<% else %>
-<%= link_to " Favorit", {:controller=>"pdis", :action=>"favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-lg glyphicon glyphicon-heart" %>
-<% end %>
+
 
 
 
@@ -27,12 +23,6 @@
 	<small><small>
 		<%= link_to @pdi.pais, {:controller=>"cercadors", :action=>"index", :cerca=>@pdi.pais, :tipus=>"4"}, :style=>"color: #9f9f9f;" %>
 	</small></small>
-
-<% if @pdi.punts.nil? %>
-	<small style="float:right; margin-top:15px; color:darkorange;">-</small>
-<% else %>
-	<small><i class="fa fa-trophy punts_usuari" > <%= '%.1f' % @pdi.punts %></i></small>
-<% end %>
 </h2>
 
 </div>
@@ -40,30 +30,48 @@
 <%= hidden_field_tag :accio, "mostrant" %>
 <%= hidden_field_tag :tipus, @pdi.type %>
 
-<div id="map-canvas" style="margin-bottom:20px;"> </div>
+
+<div id="map-canvas" style="margin-bottom:20px;float:left;"> </div>
 
 <%= hidden_field_tag @pdi.coord_lat, @pdi.coord_lat, {:id => 'coord_lat'} %>
 <%= hidden_field_tag @pdi.coord_lng, @pdi.coord_lng, {:id => 'coord_lng'} %>
 <%= hidden_field_tag @pdi.place_reference, @pdi.place_reference, {:id => 'place_reference'} %>
 
 
-<div> 
-	<%= link_to ' Edita', edit_pdi_path(@pdi), :class => "edita_pdi fa fa-pencil-square-o" %>
+<div class="capsula_info_pdi"> 
+	<i class="fa fa-trophy fa-lg punts_pdi" > <%= '%.1f' % @pdi.punts %></i>
+	<br><br>
+	<%= link_to ' Edita', edit_pdi_path(@pdi), :class => "fa fa-pencil-square-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
 
 <% if usuari_actual == @pdi.usuari %>
-	<%= link_to ' Elimina', {:controller=>"pdis", :action=>"destroy", :pdi_id=>@pdi.id}, :class=>"fa fa-trash-o" %>
+	<%= link_to ' Elimina', {:controller=>"pdis", :action=>"destroy", :pdi_id=>@pdi.id}, :class=>"fa fa-trash-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
 	<%#= link_to ' Elimina', pdis_path, :method => :delete, :class=>"fa fa-trash-o" %>
 <% end %>
 	
+	<br><br>
+	Creat per <%= @pdi.usuari.nom_usuari %> 
+	<br>
+	<%= @pdi.created_at %>
+	<br><br>
+	Última modificació: <%= @pdi.usuari_modificador.nom_usuari %> 
+	<br>
+	<%= @pdi.updated_at %>
 
-	Creat per <%= @pdi.usuari.nom_usuari %> - <%= @pdi.created_at %>
-	Última modificació: <%= @pdi.usuari_modificador.nom_usuari %> - <%= @pdi.updated_at %>
+<div style="position:relative;bottom:-45px;">
+	<% if @es_favorit %>
+		<%= link_to " Favorit", {:controller=>"pdis", :action=>"des_favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-sm fa fa-heart", :style=>"color:#f076a7" %>
+	<% else %>
+	<%= link_to " Favorit", {:controller=>"pdis", :action=>"favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-sm fa fa-heart" %>
+	<% end %>
+
+
+	<%= link_to " Comparteix", {:controller=>"pdis", :action=>"index", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-sm fa fa-facebook-square" %>
 </div>
 
-<div class="popup-gallery" style="margin-bottom:20px;">
+</div>
+<div class="popup-gallery" style="margin-bottom:20px; margin-top:2em;">
 	<% @fotos.each do |f| %>
 		<% foto_petita = f.dup %>
-		<% foto_petita["w600-h600"] = "w75-h75" %>
 		<a href="<%= f %>" title="<%= @pdi.nom %>"><img src="<%= foto_petita %>" width="75" height="75"></a>
 	<% end %>
 </div>
@@ -84,20 +92,55 @@
 <div style="margin-bottom:40px;">
 
 	<i class="fa fa-arrows"></i>
+	<div style="margin-left: 7px; display:initial;">
 		<%= label_tag @pdi.adreca %>	
 		<%= label_tag @pdi.codi_postal %>	
+	</div>
 <br>
+	<div style="display:flex;">
 	<i class="fa fa-clock-o"></i>
-		<%= label_tag @pdi.horari %>
+		<%#= label_tag @pdi.horari %>
+		<% if @horari.nil? %>
+			<div> - </div>
+		<% else %>
+			<table id="taula_horari" style="margin-left: 10px;">
+			  <tr>
+			    <td>Dilluns</td>
+			    <td>Dimarts</td>
+			    <td>Dimecres</td>
+			    <td>Dijous</td>
+			    <td>Divendres</td>
+			    <td>Dissabte</td>
+			    <td>Diumenge</td>
+			  </tr>
+			  <tr>
+			    <td><%= @dll %></td>
+			    <td><%= @dt %></td>
+			    <td><%= @dc %></td>
+			    <td><%= @dj %></td>
+			    <td><%= @dv %></td>
+			    <td><%= @ds %></td>
+			    <td><%= @du %></td>
+			  </tr>
+			  
+	  		</table>
+	  	<% end %>
+	  </div>
 <br>
 	<i class="fa fa-phone"></i>
+	<div style="margin-left: 7px; display:initial;">
 		<%= label_tag @pdi.telefon %>	
+	</div>
 <br>
 	<i class="fa fa-link"></i>
+	<div style="margin-left: 7px; display:initial;">
 		<%= link_to @pdi.web, @pdi.web, :target => "_blank" %>	
+	</div>
 <br>
 	<i class="fa fa-money"></i>
+	<div style="margin-left: 7px; display:initial;">
 		<%= label_tag @pdi.preu_aprox %>	
+	</div>
 
 	<% if @pdi.type == "Restaurant" %>
 		<%= label_tag @pdi.forquilles %>
@@ -112,37 +155,140 @@
 
 <div style="width:600px; margin-bottom:40px;">
 <h4>Punts d'interès propers</h4>
-<ul class="list-group">
-<% @pdis_propers.each do |pp| %>
-	<% if pp != @pdi %>
-	  <li class="list-group-item">
-	  	<i class="fa fa-map-marker">
-	    <%= link_to pp.nom, pdi_path(pp) %>
-	    </i>
-	  </li>
+<% if @pdis_propers.count == 1 %>
+	No s'han trobat altres punts d'interès propers.
+<% else %>
+	<% @pdis_propers.each do |pp| %>
+		<% if pp != @pdi %>
+
+
+
+
+	<div class="pdi_proper">
+      <% foto = (pp.fotos_grans.split ",").first %>
+      <img src="<%= foto %>" width="50" height="50">
+			<%= link_to pp.nom, pdi_path(pp) %>
+      &nbsp
+      <span class="info_extra_rt_pdi">
+        <%= vari_classe = '' %>
+        <% if pp.type == 'Restaurant' %>
+            <% vari_classe = pp.classe_restaurant.nom %>
+            <i class="fa fa-cutlery"></i>
+          <% elsif pp.type == 'Botiga' %>
+            <% vari_classe = pp.classe_botiga.nom %>
+            <i class="fa fa-shopping-cart"></i>
+          <% elsif pp.type == 'Museu' %>
+            <% vari_classe = pp.classe_museu.nom %>
+            <i class="fa fa-university"></i>
+          <% elsif pp.type == 'Monument' %>
+            <i class="fa fa-pied-piper-alt"></i>
+          <% elsif pp.type == 'Discoteca' %>
+            <i class="fa fa-glass"></i>
+          <% elsif pp.type == 'Entreteniment' %>
+            <% vari_classe = pp.classe_entreteniment.nom %>
+            <i class="fa fa-ticket"></i>
+          <% elsif pp.type == 'Hotel' %>
+            <i class="fa fa-suitcase"></i>
+          <% elsif pp.type == 'Vista' %>
+            <i class="fa fa-tree"></i>
+      <% end %>
+
+
+        <%= pp.type %> 
+        <%= vari_classe %>
+        <div class="encerclar_puntuacio_pdi"><%= pp.punts %> </div>
+    </span>
+    </div>
+
+
+
+
+		<% end %>
 	<% end %>
 <% end %>
-</ul>
-</div>
+	</div>
 
 <div style="width:600px; margin-bottom:40px;">
 <h4>Rutes turístiques que l'inclouen </h4>
-<ul class="list-group">
-  <% @rts_from_pdi.each do |rtp| %>
-	  <li class="list-group-item">
-	  	<i class="fa fa-picture-o">
-	    <%= link_to rtp.nom, ruta_turistica_path(rtp) %>
-	    </i>
-	  </li>
-  <% end %>
-</ul>
+<% if @rts_from_pdi.count == 0 %>
+	No s'han trobat rutes turístiques que incloguin aquest punt d'interès.
+<% else %>
+	
+	<div style="display:flex">
+	  <% @rts_from_pdi.each do |rt| %>
+	
+
+
+		<%
+	  		fotos = []
+	  		localitats = []
+	  		pdis = []
+	    	rt.pdis_rutaturisticas.each do |prt|
+	      		if !prt.pdi.fotos_grans.nil?
+	        		fotos_array = prt.pdi.fotos_grans.split ","
+	       			fotos << fotos_array.first 
+	      		end
+	      		localitats << prt.pdi.localitat
+	      		pdis << prt.pdi.nom
+			end
+			localitats = localitats.uniq
+		%>
+
+
+  <div class="rt_encapsulada" style="float:none">
+  	<div class="capcalera_rt_encapsulada">
+  			<% localitats.each do |l| %> &nbsp
+  				<%= l %>
+  			<% end %>
+        <div class="encerclar_puntuacio_rt"><%= rt.punts %></div>
+  	</div>
+  	<div class="fotos_rt_encapsulada">
+
+		<% fotos.each do |f|%>
+		  <div class="crop">
+		  	<img src="<%= f %>" class="arrodonint_foto">
+		  </div>
+		<% end %>
+	</div>
+	<div class="contingut_rt_encapsulada">
+    	<div style="margin-bottom:5px;"><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></div>
+    	<div class="llistat_pdis_rt_encapsulada">
+    		<% count = 0
+    		pdis.each do |p| 
+    			count = count + 1 %>
+  				<%= p %>
+  				<% if count < pdis.count %>
+  				-
+  				<% end %>
+  			<% end %>
+    	</div>
+     
+    	<p>
+            <% if rt.valoracios.where("punts > 5").count > 0%>
+            	<%= rt.valoracios.where("punts > 5").order("punts desc").first.opinio %>
+            <% end %>
+          </p>
+	</div>
+  </div>
+
+
+
+
+
+
+
+
+
+	  <% end %>
+	</div>
+<% end %>
 </div>
 
 
 
 
 
-<div style="background:#f3f2f4; padding:15px;">
+<div style="background:#f3f2f4; padding:10px; margin-bottom:20px;">
 <h2>
 	<i class="fa fa-comment"></i> Valoracions
 

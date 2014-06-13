@@ -76,6 +76,59 @@
   font-size: 11px;
 }
 
+/* RUTA#show */
+.capsula_info_rt {
+  width: 200px;
+  height: 240px;
+  color: white;
+  background-color: #ed9577;
+  margin-left: 56em;
+  padding: 10px;
+}
+
+.rt_pdi {
+  padding: 4px;
+  padding-left: 15px;
+  color: black;
+  background-color: #fbeedf;
+  line-height: 2em;
+  margin-bottom: 10px;
+  width: 843px;
+}
+
+.rt_pdi a {
+  text-decoration: none;
+  color: #e7724a;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.rt_pdi a:hover {
+  color:#e74b4a;
+}
+
+.llista_rt_pdis {
+  margin-left:30px; 
+  font-size: 20px;
+  font-weight: bold;
+  color: #e7724a;
+}
+
+.info_extra_rt_pdi {
+  color: #ababab;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.temps_rt {
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #eee;
+  color: #3d3d3d;
+  font-weight: bold;
+}
+
 /* RUTA#new/edit */
 .estil_num_ordre {
 	color: #e46033;

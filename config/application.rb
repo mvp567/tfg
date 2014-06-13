@@ -20,9 +20,5 @@ module Tfg
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ca
     #config.assets.paths << Rails.root.join("vendor", "assets", "stylesheets", "fontawesome", "fonts", "fontawesome-webfont.woff")
-    config.assets.precompile += ["fontawesome-webfont.ttf",
-                         "fontawesome-webfont.eot",
-                         "fontawesome-webfont.svg",
-                         "fontawesome-webfont.woff"]
   end
 end
