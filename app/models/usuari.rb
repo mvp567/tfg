@@ -8,6 +8,7 @@ class Usuari < ActiveRecord::Base
 
 	has_many :favorits
 	#has_many :pdis_favorits, :class_name => "Pdi", through: :favorits
+	has_many :favoritas
 	has_many :pdis #, :conditions => {:type => ['Restaurant', 'Museu']}
 	has_many :valoracios
 	has_many :ruta_turisticas

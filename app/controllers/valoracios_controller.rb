@@ -1,6 +1,6 @@
 class ValoraciosController < ApplicationController
   def new
-  	@valoracio = Valoracio.new
+  	 @valoracio = Valoracio.new
   end
 
   def create

@@ -29,7 +29,16 @@
     <br>
     <%= @rt.updated_at %>
   
+<div style="position:relative;bottom:-45px;">
+  <% if @es_favorit %>
+    <%= link_to " Favorit", {:controller=>"ruta_turisticas", :action=>"des_favorit", :ruta_turistica_id=>@rt.id}, :class=>"btn btn-default btn-sm fa fa-heart", :style=>"color:#f076a7" %>
+  <% else %>
+  <%= link_to " Favorit", {:controller=>"ruta_turisticas", :action=>"favorit", :ruta_turistica_id=>@rt.id}, :class=>"btn btn-default btn-sm fa fa-heart" %>
+  <% end %>
 
+
+  <%= link_to " Comparteix", {}, :class=>"btn btn-default btn-sm fa fa-facebook-square", :style => "float:right;", :href=> @url_compartir %>
+</div>
 </div>
 
 <br><br>
@@ -98,8 +107,11 @@ Aquesta ruta pot ser completada en <span class="temps_rt"><%= label_tag @rt.temp
 	<small><small>
     <%#= link_to "Afegeix una nova valoració", {:controller => "valoracios", :action => "new", :ruta_turistica_id => @rt.id}, :method => :get, "data-toggle"=>"modal" %>
 <!-- Button trigger modal -->
+<% if usuari_actual.nil? %>
+  <span>Has d'haver iniciat sessió per poder valorar.</span>
+<% else %>
   <a data-toggle="modal" href="#myModal" class="">Afegeix una nova valoració</a>
-
+<% end %>
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -118,6 +130,7 @@ Aquesta ruta pot ser completada en <span class="temps_rt"><%= label_tag @rt.temp
   </small></small>
 
 </h2>
+<br>
 <%= render 'valoracios/index' %>
 
 </div>

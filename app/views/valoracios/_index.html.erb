@@ -1,17 +1,25 @@
-<table>
+
  <% if @valoracions.count == 0 %>
- Sigues el primer en valorar!
+ 	Sigues el primer en valorar!
  <% end %>
+
 <% @valoracions.each do |val| %>
-  <tr>
-    <td><%= val.titol %></td>
-    <td><%= val.punts %></td>
-    <td> <%=val.usuari.nom_usuari%> </td>
-    <td><%=val.created_at%></td>
-  </tr>
-  <tr>
-    <td colspan="4"><%= val.opinio %></td>
-  </tr>
+
+	<div class="valoracio_encapsulada">
+		<div class="encerclar_puntuacio_val">
+	    	<%= val.punts %>
+		</div>
+		<div class="val_titol">
+	    	<%= val.titol %>
+	    </div>
+		<div class="val_info_extra">
+	    	<%=val.usuari.nom_usuari%> 
+	    	<%=val.created_at%>
+		</div>
+		<div class="val_opinio">
+	 		<%= val.opinio %>
+	 	</div>
+ 	</div>
+
 <% end %>
 
-</table>

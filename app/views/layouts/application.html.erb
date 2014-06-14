@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dubidu - Punts d'interès i rutes turístiques</title>
+  <title>Berry Tour - Punts d'interès i rutes turístiques</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
   <script type="text/javascript"
@@ -27,6 +27,11 @@
   <div id="wrap">
   <div class="container">
       <div id="capcalera" style="height:50px; width:100%; background-color:#f5f5f5;"> 
+        <span>NOTIFICACIO BADGE NOVA</span> 
+         <% if flash[:notice] %>
+            <div class="notice"><%= flash[:notice] %></div>
+         <% end %>
+         
             <div style="position:relative; left:2%; top:50%; font-size:14px;"> 
               <%= link_to " Home", {:controller => "home", :action => "index"}, {:class => "link_capcalera fa fa-home"} %>
               &nbsp &nbsp

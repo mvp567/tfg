@@ -8,7 +8,8 @@ class RutaTuristica < ActiveRecord::Base
 	accepts_nested_attributes_for :pdis_rutaturisticas, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
 	has_many :valoracios
-
+  has_many :favoritas
+  
 	has_one :questionari
 	
 	def el_meu_save(params_pdis)
@@ -38,7 +39,7 @@ class RutaTuristica < ActiveRecord::Base
 		if valoracions.count > 0
 			puntsRT = 0
     		valoracions.each do |v|
-      			puntsRT += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+      			puntsRT += (v.punts * Usuari.find_by_id(v.usuari_id).points/1000)
    			end
       		puntsRT /= valoracions.count
       		self.punts = puntsRT

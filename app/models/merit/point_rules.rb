@@ -24,6 +24,10 @@ module Merit
       #   'photos#create'
       # ]
 
+      score 50, :on => ['usuaris#create']
+      
+      score 10, :on => ['sessions#create']
+
       score 10, :on => 'valoracios#create' do |val|
 
         spm = false
@@ -33,7 +37,7 @@ module Merit
               puntsPDI = 0
 
               ultimes_vals.each do |v|
-                puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+                puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).points/1000)
               end
 
               puntsPDI /= 5

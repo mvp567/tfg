@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609171627) do
+ActiveRecord::Schema.define(version: 20140614205019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(version: 20140609171627) do
   create_table "etiquetes_pdis", force: true do |t|
     t.integer  "etiqueta_id"
     t.integer  "pdi_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "favorita", force: true do |t|
+    t.integer  "usuari_id"
+    t.integer  "ruta_turistica_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -254,6 +261,7 @@ ActiveRecord::Schema.define(version: 20140609171627) do
     t.integer  "sash_id"
     t.integer  "level",                        default: 0
     t.integer  "pais_id"
+    t.integer  "authentication_id"
   end
 
   create_table "valoracios", force: true do |t|

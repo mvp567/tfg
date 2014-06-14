@@ -39,7 +39,7 @@ class Pdi < ActiveRecord::Base
 		if valoracions.count > 0
 			puntsPDI = 0
     		valoracions.each do |v|
-      			puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).punts/1000)
+      			puntsPDI += (v.punts * Usuari.find_by_id(v.usuari_id).points/1000)
    			end
       		puntsPDI /= valoracions.count
       		self.punts = puntsPDI

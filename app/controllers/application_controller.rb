@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :usuari_actual
 
+  def hola
+  	@hola = "eo"
+  end
+  helper_method :hola
 end

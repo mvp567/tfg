@@ -13,8 +13,10 @@ class CercadorsController < ApplicationController
 
   	if params[:tipus] == tipus_pdi
       @pdis = Pdi.find(:all, :conditions => ['nom ILIKE ?', "%#{params[:cerca]}%"])
+
   	elsif params[:tipus] == tipus_rt
       @rts = RutaTuristica.find(:all, :conditions => ['nom ILIKE ?', "%#{params[:cerca]}%"])
+
   	elsif params[:tipus] == tipus_ciutat
   	  @pdis = Pdi.find(:all, :conditions => ['localitat ILIKE ?', "%#{params[:cerca]}%"])
       @pdis.each do |p|
@@ -23,7 +25,8 @@ class CercadorsController < ApplicationController
         end
       end
       @rts = @rts.uniq
-  	elsif params[:tipus] == tipus_pais
+  	
+    elsif params[:tipus] == tipus_pais
       @pdis = Pdi.find(:all, :conditions => ['pais ILIKE ?', "%#{params[:cerca]}%"])
       @pdis.each do |p|
         p.pdis_rutaturisticas.each do |rtp|
@@ -31,8 +34,10 @@ class CercadorsController < ApplicationController
         end
       end
       @rts = @rts.uniq
-  	elsif params[:tipus] == tipus_etiqueta
+  	
+    elsif params[:tipus] == tipus_etiqueta
       @pdis = Etiqueta.find(:all, :conditions => ['nom ILIKE ?', "%#{params[:cerca]}%"]).first.pdis
+    
     elsif params[:tipus] == tipus_usuari
       @usuaris = Usuari.find(:all, :conditions => ['nom_usuari ILIKE ?', "%#{params[:cerca]}%"])  
   	end	

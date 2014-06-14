@@ -25,6 +25,9 @@
   <% @usuari.favorits.each do |fav| %>
     <li><i class="fa fa-heart favorit">&nbsp &nbsp<%= link_to fav.pdi.nom, pdi_path(fav.pdi), :class=>"link_rosa" %></i></li>
   <% end %>
+  <% @usuari.favoritas.each do |fav| %>
+    <li><i class="fa fa-heart favorit">&nbsp &nbsp<%= link_to fav.ruta_turistica.nom, ruta_turistica_path(fav.ruta_turistica), :class=>"link_rosa" %></i></li>
+  <% end %>
   </ul>
 </div>
 

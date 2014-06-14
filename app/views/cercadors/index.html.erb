@@ -1,16 +1,137 @@
-<h1>Cercadors#index</h1>
+<div style="margin-top:40px;"></div>
+<h4>Resultats de la cerca:</h4>
 
-<ul>
+<%if @pdis.count.zero? && @rts.count.zero? && @usuaris.count.zero? %>
+	<p> No s'ha trobat ningun resultat per a la teva cerca.</p>
+<% end %>
+
+
+<%if @pdis.count > 0 %>
+	<h5> Punts d'interès </h5>
+<% end %>
+<div>
 <% @pdis.each do |pdi| %>
-    <li><%= link_to pdi.nom, pdi_path(pdi) %></li>
-<% end %>
-</ul>
+  <%= vari_classe = '' %>
+  <div class="pdi_encapsulat">
 
-<ul>
-<% @rts.each do |rt| %>
-    <li><%= link_to rt.nom, ruta_turistica_path(rt) %></li>
+      
+
+      <div class="capcalera_pdi_encapsulat">
+        <% if pdi.type == 'Restaurant' %>
+          <% vari_classe = pdi.classe_restaurant.nom %>
+          <i class="fa fa-cutlery"></i>
+        <% elsif pdi.type == 'Botiga' %>
+          <% vari_classe = pdi.classe_botiga.nom %>
+          <i class="fa fa-shopping-cart"></i>
+        <% elsif pdi.type == 'Museu' %>
+          <% vari_classe = pdi.classe_museu.nom %>
+          <i class="fa fa-university"></i>
+        <% elsif pdi.type == 'Monument' %>
+          <i class="fa fa-pied-piper-alt"></i>
+        <% elsif pdi.type == 'Discoteca' %>
+          <i class="fa fa-glass"></i>
+        <% elsif pdi.type == 'Entreteniment' %>
+          <% vari_classe = pdi.classe_entreteniment.nom %>
+          <i class="fa fa-ticket"></i>
+        <% elsif pdi.type == 'Hotel' %>
+          <i class="fa fa-suitcase"></i>
+        <% elsif pdi.type == 'Vista' %>
+          <i class="fa fa-tree"></i>
+        <% end %>
+        <span class="pdi_tipus_classe"><%= pdi.type %> <%= vari_classe %></span>
+        <div class="encerclar_puntuacio_pdi"><%= pdi.punts %></div>
+        
+       </div>
+
+        <% foto = (pdi.fotos_grans.split ",").first %>
+        <img src="<%= foto %>" width="100%" height="100px" style="margin-bottom:5px;">
+
+      <div class="contingut_pdi_encapsulat">
+         <%= link_to pdi.nom, pdi_path(pdi), :class => "titol_pdi"  %>
+         <br>
+         <div class="lloc_pdi"><%= pdi.localitat%> - <%= pdi.pais %></div>
+         <br>
+          <% if pdi.pdis_rutaturisticas.count > 0 %>
+            <i class="fa fa-picture-o encerclar_num_rts">
+            <%= pdi.pdis_rutaturisticas.count %></i> 
+          <% end %>
+
+          <p>
+            <% if pdi.valoracios.where("punts > 5").count > 0%>
+            <%= pdi.valoracios.where("punts > 5").order("punts desc").first.opinio %>
+            <% end %>
+          </p>
+      </div>
+  </div>
 <% end %>
-</ul>
+
+
+</div>
+<br> <br>
+
+<div style="float:none"></div>
+
+<%if @rts.count > 0 %>
+	<h6>Rutes turístiques</h6>
+<% end %>
+
+<div>
+<% @rts.each do |rt| %>
+
+		<%
+	  		fotos = []
+	  		localitats = []
+	  		pdis = []
+	    	rt.pdis_rutaturisticas.each do |prt|
+	      		if !prt.pdi.fotos_grans.nil?
+	        		fotos_array = prt.pdi.fotos_grans.split ","
+	       			fotos << fotos_array.first 
+	      		end
+	      		localitats << prt.pdi.localitat
+	      		pdis << prt.pdi.nom
+			end
+			localitats = localitats.uniq
+		%>
+
+
+  <div class="rt_encapsulada" >
+  	<div class="capcalera_rt_encapsulada">
+  			<% localitats.each do |l| %> &nbsp
+  				<%= l %>
+  			<% end %>
+        <div class="encerclar_puntuacio_rt"><%= rt.punts %></div>
+  	</div>
+  	<div class="fotos_rt_encapsulada">
+
+		<% fotos.each do |f|%>
+		  <div class="crop">
+		  	<img src="<%= f %>" class="arrodonint_foto">
+		  </div>
+		<% end %>
+	</div>
+	<div class="contingut_rt_encapsulada">
+    	<div style="margin-bottom:5px;"><%= link_to rt.nom, ruta_turistica_path(rt), :class=>"text_table" %></div>
+    	<div class="llistat_pdis_rt_encapsulada">
+    		<% count = 0
+    		pdis.each do |p| 
+    			count = count + 1 %>
+  				<%= p %>
+  				<% if count < pdis.count %>
+  				-
+  				<% end %>
+  			<% end %>
+    	</div>
+     
+    	<p>
+            <% if rt.valoracios.where("punts > 5").count > 0%>
+            	<%= rt.valoracios.where("punts > 5").order("punts desc").first.opinio %>
+            <% end %>
+          </p>
+	</div>
+  </div>
+<% end %>
+
+</div>
 
 <ul>
 <% @usuaris.each do |usu| %>

@@ -36,6 +36,7 @@ class RutaTuristicasController < ApplicationController
 
   def show
     @rt = RutaTuristica.find(params[:id])
+    @url_compartir = "https://www.facebook.com/sharer.php?u=http://146.148.11.157/ruta_turisticas/" + @rt.id.to_s + "&t=Berry Tour - Ruta Turística"
     @valoracions = @rt.valoracios
     @fotos = []
     @rt.pdis_rutaturisticas.each do |prt|
@@ -43,6 +44,10 @@ class RutaTuristicasController < ApplicationController
         fotos_array = prt.pdi.fotos_grans.split ","
         @fotos << fotos_array.first
       end
+    end
+
+    if !usuari_actual.nil? && Favorita.where(:ruta_turistica_id=>@rt.id, :usuari_id=>usuari_actual.id).exists?
+        @es_favorit = true
     end
 
   end
@@ -53,7 +58,6 @@ class RutaTuristicasController < ApplicationController
 
   def edit
     @rt = RutaTuristica.find(params[:id])
-    # TODO check if user have the quest for it in usuari-questionari
 
     if usuari_actual.nil?
       error = "Has d'estar registrat per poder editar la ruta turística."
@@ -85,7 +89,6 @@ class RutaTuristicasController < ApplicationController
     # end
     @rt.update(update_params)
 
-    # TODO mirar si se n'han tret o afegit. crear o treure instàncies a pdis_rutaturist
     llista = params[:ruta_turistica][:pdis_rutaturisticas_attributes].values
     
     @rt.pdis_rutaturisticas.destroy_all
@@ -93,6 +96,33 @@ class RutaTuristicasController < ApplicationController
     @rt.el_meu_save(llista)
     
 
+  end
+
+  def favorit
+    if usuari_actual.nil?
+      rt = params[:ruta_turistica_id]
+      redirect_to ruta_turistica_path(rt)
+    else
+      rt = RutaTuristica.find(params[:ruta_turistica_id])
+      f = Favorita.new
+      f.ruta_turistica = rt
+      f.usuari = usuari_actual
+      rt.favoritas << f
+      usuari_actual.favoritas << f
+      redirect_to ruta_turistica_path(rt)
+    end
+  end
+
+  def des_favorit
+    if usuari_actual.nil?
+      rt = params[:ruta_turistica_id]
+      redirect_to ruta_turistica_path(rt)
+    else
+      rt = params[:ruta_turistica_id]
+      f = Favorita.where(:ruta_turistica_id=>rt, :usuari_id=>usuari_actual.id).first
+      f.destroy
+      redirect_to ruta_turistica_path(rt)
+    end
   end
   
   def create_params

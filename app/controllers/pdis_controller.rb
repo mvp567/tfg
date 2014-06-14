@@ -67,7 +67,7 @@ class PdisController < ApplicationController
 
   def show
     @pdi = Pdi.find(params[:id])
-    @url_compartir = "https://www.facebook.com/sharer.php?u=http://146.148.11.157/pdis/" + @pdi.id.to_s + "&t=YOUR_TITLE"
+    @url_compartir = "https://www.facebook.com/sharer.php?u=http://146.148.11.157/pdis/" + @pdi.id.to_s + "&t=Berry Tour - Punt d'interès"
     @valoracions = @pdi.valoracios
     if !@pdi.fotos_grans.nil?
       @fotos = @pdi.fotos_grans.split ","
@@ -235,7 +235,7 @@ class PdisController < ApplicationController
   def destroy
     pdi = Pdi.find(params[:pdi_id])
     
-    if pdi.pdis_rutaturisticas.count.zero? && pdi.valoracios.count.zero?
+    if (pdi.pdis_rutaturisticas.count.zero? && pdi.valoracios.count.zero?) || usuari_actual.nil?
       pdi.destroy
       redirect_to pdis_path
     else

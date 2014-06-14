@@ -295,8 +295,11 @@
 	<small><small>
 		<%#= link_to "Afegeix una nova valoració", {:controller => "valoracios", :action => "new", :pdi_id => @pdi.id}, :method => :get %>
 		<!-- Button trigger modal -->
-  <a data-toggle="modal" href="#myModal" class="">Afegeix una nova valoració</a>
-
+<% if usuari_actual.nil? %>
+	<span>Has d'haver iniciat sessió per poder valorar.</span>
+<% else %>
+    <a data-toggle="modal" href="#myModal" class="">Afegeix una nova valoració</a>
+<% end %>
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -315,6 +318,8 @@
 	</small></small>
 
 </h2>
+
+<br>
 <%= render 'valoracios/index' %>
 
 </div>

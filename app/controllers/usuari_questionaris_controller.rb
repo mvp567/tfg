@@ -9,7 +9,7 @@ class UsuariQuestionarisController < ApplicationController
     cond1 = cond2 = cond3 = true
     
     # 1) comprovar param_reputació
-     if @uq.questionari.param_reputacio > usuari_actual.punts
+     if @uq.questionari.param_reputacio > usuari_actual.points
       cond1 = false
      end
 
