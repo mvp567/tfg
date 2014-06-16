@@ -1,6 +1,7 @@
 Tfg::Application.routes.draw do
 
-  get "/auth/:provider/callback" => "sessions#create"  
+  get "/auth/:provider/callback" => "sessions#create_with_omniauth"  
+  post "/auth/:provider/callback" => "sessions#create_with_omniauth"  
   
   root "home#index"
     

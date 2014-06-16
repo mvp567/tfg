@@ -26,17 +26,17 @@
  <div id="ph_1b" class="allunyat">
 	<h5>1. Estàs creant un punt d'interès: <b><%= @tipus_valor %></b> <small><%= link_to 'Canvia-ho', controller: "pdis", action: "new", :class => "glyphicon glyphicon-arrow-left" %></small></h5> 
 	<%= if @tipus_valor == "Botiga" 
-		select_tag :classe_botiga, options_from_collection_for_select(@classes_botigues, "id", "nom"), include_blank: true 
+		select_tag :classe_botiga, options_from_collection_for_select(@classes_botigues, "id", "nom"), :class => "form-control", :style => "width: 200px;"
 		
 		elsif @tipus_valor == "Entreteniment"
 			
-			select_tag :classe_entreteniment, options_from_collection_for_select(@classes_entreteniment, "id", "nom"), include_blank: true 
+			select_tag :classe_entreteniment, options_from_collection_for_select(@classes_entreteniment, "id", "nom"), :class => "form-control", :style => "width: 200px;"
 		
 		elsif @tipus_valor == "Museu"
-			select_tag :classe_museu, options_from_collection_for_select(@classes_museus, "id", "nom"), include_blank: true 
+			select_tag :classe_museu, options_from_collection_for_select(@classes_museus, "id", "nom"), :class => "form-control", :style => "width: 200px;"
 	
 		elsif @tipus_valor == "Restaurant"
-			select_tag :classe_restaurant, options_from_collection_for_select(@classes_restaurants, "id", "nom"), include_blank: true	
+			select_tag :classe_restaurant, options_from_collection_for_select(@classes_restaurants, "id", "nom"), :class => "form-control", :style => "width: 200px;"
 	 end %>
 </div>
 	 

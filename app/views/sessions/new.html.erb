@@ -18,3 +18,18 @@
   </div>
   <%#= TODO link a enregistrar-se%>
 <% end %>
+
+<hr>
+
+<p> Si et vas registrar a través d'alguna d'aquestes xarxes socials, inicia sessió aquí:</p>
+<div id="user_nav">  
+  <%= link_to "/auth/facebook", :class => "btn btn-primary" do %>
+    <i class="fa fa-facebook"></i>  Inicia sessió amb Facebook
+  <% end %> &nbsp
+  <%= link_to "/auth/twitter", :class => "btn btn-info" do %>
+    <i class="fa fa-twitter"></i>  Inicia sessió amb Twitter
+  <% end %>  &nbsp
+  <%= link_to "/auth/plus", :class => "btn btn-danger" do %>
+    <i class="fa fa-google-plus"></i>  Inicia sessió amb Google+
+  <% end %> 
+</div>

@@ -21,11 +21,24 @@ class Usuari < ActiveRecord::Base
 	has_one :authentication
 
 
-	def self.crear_amb_omniauth(auth)
+	def crear_amb_omniauth(auth)
 		#usu.nom_usuari = auth['user_info']['name']
-		usu = Usuari.create(:nom_usuari => "mariaaa")
-		usu.authentication = Authentication.create(:provider => auth['provider'], :uid => auth['uid'])
-			
+		#self.create(:nom_usuari => auth['info']['nickname'], :email => "provisional@provisional.com", :password => "provisional")
+		self.nom_usuari = auth['info']['nickname']
+		self.email = "provisional@provisional.com"
+		self.password = "provisional"
+		self.password_confirmation = "provisional"
+		#self.save
+
+		#a = Authentication.create(:provider => auth['provider'], :uid => auth['uid'])
+		a = Authentication.new
+		a.provider = auth['provider']
+		a.uid = auth['uid']
+		a.usuari = self
+		a.save
+
+		self.authentication = a
+		self.save
 		
 		
 	end

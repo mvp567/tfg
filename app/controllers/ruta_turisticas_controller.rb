@@ -95,6 +95,8 @@ class RutaTuristicasController < ApplicationController
     
     @rt.el_meu_save(llista)
     
+    redirect_to ruta_turistica_path(@rt)
+  
 
   end
 

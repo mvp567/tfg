@@ -25,6 +25,22 @@
 	</small></small>
 </h2>
 
+
+
+<%
+	la_classe = ''
+	if @pdi.type == 'Botiga' 
+      la_classe = @pdi.classe_botiga.nom
+    elsif @pdi.type == 'Entreteniment'
+      la_classe = @pdi.classe_entreteniment.nom
+    elsif @pdi.type == 'Museu'
+      la_classe = @pdi.classe_museu.nom
+    elsif @pdi.type == 'Restaurant'
+      la_classe = @pdi.classe_restaurant.nom
+    end
+%>
+
+
 </div>
 
 <%= hidden_field_tag :accio, "mostrant" %>
@@ -69,6 +85,7 @@
 </div>
 
 </div>
+
 <div class="popup-gallery" style="margin-bottom:20px; margin-top:2em;">
 	<% @fotos.each do |f| %>
 		<% foto_petita = f.dup %>
@@ -90,7 +107,7 @@
 </div>
 
 <div style="margin-bottom:40px;">
-
+<h4><%= @pdi.type %> <%= la_classe %> </h4>
 	<i class="fa fa-arrows"></i>
 	<div style="margin-left: 7px; display:initial;">
 		<%= label_tag @pdi.adreca %>	
@@ -170,7 +187,7 @@
 			<%= link_to pp.nom, pdi_path(pp) %>
       &nbsp
       <span class="info_extra_rt_pdi">
-        <%= vari_classe = '' %>
+        <% vari_classe = '' %>
         <% if pp.type == 'Restaurant' %>
             <% vari_classe = pp.classe_restaurant.nom %>
             <i class="fa fa-cutlery"></i>

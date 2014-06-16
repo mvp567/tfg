@@ -1,4 +1,5 @@
 class Pdi < ActiveRecord::Base
+
 	belongs_to :usuari
 	belongs_to :usuari_modificador, :class_name => "Usuari", :foreign_key => "usuari_modificador_id"
 

@@ -7,7 +7,20 @@
 
   <%= form_for @pdi, url: {controller: "pdis", action: "update"} do |p| %>
 		<%= hidden_field_tag :tipus, @pdi.type %>
+	<%= if @pdi.type == "Botiga" 
+		select_tag :classe_botiga, options_from_collection_for_select(ClasseBotiga.all, "id", "nom", @pdi.classe_botiga.id), :class => "form-control", :style => "width: 200px;"
+		
+		elsif @pdi.type == "Entreteniment"
+			
+			select_tag :classe_entreteniment, options_from_collection_for_select(ClasseEntreteniment.all, "id", "nom", @pdi.classe_entreteniment.id), :class => "form-control", :style => "width: 200px;"
+		
+		elsif @pdi.type == "Museu"
+			select_tag :classe_museu, options_from_collection_for_select(ClasseMuseu.all, "id", "nom", @pdi.classe_museu.id), :class => "form-control", :style => "width: 200px;"
 	
+		elsif @pdi.type == "Restaurant"
+			select_tag :classe_restaurant, options_from_collection_for_select(ClasseRestaurant.all, "id", "nom", @pdi.classe_restaurant.id), :class => "form-control", :style => "width: 200px;"
+	 end %>
+<br>
 	<div id="map-canvas" style="margin-bottom:20px;"> </div>
 
 

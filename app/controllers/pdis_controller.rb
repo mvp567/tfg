@@ -55,14 +55,24 @@ class PdisController < ApplicationController
     @pdi = Pdi.find(params[:id])
     @etiquetes = params[:etiquetes]
     @pdi.usuari_modificador = usuari_actual
+
+    if params[:tipus] == 'Botiga' 
+      @pdi.classe_botiga = ClasseBotiga.find_by_id(params[:classe_botiga])
+    elsif params[:tipus] == 'Entreteniment'
+      @pdi.classe_entreteniment = ClasseEntreteniment.find_by_id(params[:classe_entreteniment])
+    elsif params[:tipus] == 'Museu'
+      @pdi.classe_museu = ClasseMuseu.find_by_id(params[:classe_museu])
+    elsif params[:tipus] == 'Restaurant'
+      @pdi.classe_restaurant = ClasseRestaurant.find_by_id(params[:classe_restaurant])
+    end
+
     @pdi.el_meu_save(@etiquetes)
 
-    #if 
-    ##@pdi.update(update_params)
-      #redirect_to @pdi ## PROBLEM no existeix hotel_url
-    #else
-     # render 'edit'
-    #end
+    if @pdi.update(update_params)
+      redirect_to pdi_path(@pdi)
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -251,6 +261,6 @@ class PdisController < ApplicationController
 
   def update_params
       params.require(params[:tipus].downcase.to_sym).permit(
-        :nom, :observacions, :horari, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles)
+        :nom, :observacions, :horari, :telefon, :web, :preu_aprox, :nivell_preu, :forquilles, :estrelles, :classe_botiga, :classe_entreteniment, :classe_museu, :classe_restaurant)
   end
 end
