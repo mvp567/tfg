@@ -29,12 +29,25 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).parent().before(content.replace(regexp, new_id));
+  var cont = 1;
+  $("li").each(function(event, ui) {
+    var element = $(event.target);
+    $(ui).children("input[id$='ordre']").val(cont);
+    cont++;
+  })
 }
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
   $(link).closest(".fields").children( "input[id$='nom']" ).val("");
+  var cont = 1;
+  $("li").each(function(event, ui) {
+    var element = $(event.target);
+    $(ui).children("input[id$='ordre']").val(cont);
+    if ( $(ui).children("input[id$='_destroy']").val() == 'false' )
+    	cont++;
+  })
 }
 
 
