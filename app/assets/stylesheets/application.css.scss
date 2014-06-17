@@ -14,6 +14,7 @@
  *= require ../../../vendor/assets/stylesheets/bootstrap/css/bootstrap
  
  *= require_tree ../../../vendor/assets/stylesheets/fontawesome
+
  *= require ../../../vendor/assets/stylesheets/customdropdown/css/style
 
  *= require ../../../vendor/assets/stylesheets/magnific-popup/css/magnific-popup
@@ -24,7 +25,8 @@
  *= require_tree .
  */
 
-
+ @import '/fontawesome/fonts';
+ 
 /* COLORS */
 $lila_back: #ca1496;
 /*botó verdmar meu: */
