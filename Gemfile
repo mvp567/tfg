@@ -76,3 +76,8 @@ gem 'capistrano3-puma'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-gplus', '~> 2.0'
+
+# gemmes per testejar
+gem 'rspec-rails', '~> 3.0.1' 
+gem 'factory_girl_rails', '~> 4.4.1'
+gem 'shoulda-matchers', '~> 2.6.1'
