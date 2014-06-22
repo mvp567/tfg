@@ -1,4 +1,6 @@
 
+
+
 <h3><i class="fa fa-map-marker"></i> Crea un nou punt d'interès</h3>
 
 <% if @pdi.nil? %>
@@ -17,7 +19,11 @@
 <% end %>
 
 <% if @pdi %>
-
+<% if @pdi.errors[:nom].first %>
+	<div style="margin-top:30px" class="alert alert-danger">
+		<%= @pdi.errors[:nom].first %>
+	</div>
+<% end %>
 
 <%= hidden_field_tag :accio, "creant" %>
   <%= form_for @pdi, url: {controller: "pdis", action: "create"} do |p| %>
@@ -46,6 +52,10 @@
 	<input id="pac-input" class="controls" type="text"
         placeholder="Introdueix una localització" autofocus>
    
+		<div style="color:red;">
+			<%= @pdi.errors[:coord_lat].first %>
+		</div>
+
 	<div id="map-canvas"> </div>
 	<%# END Codi mapa + input autocomplete(pac-input) %>
 </div>

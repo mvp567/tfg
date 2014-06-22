@@ -1,4 +1,7 @@
-<h2>Enregistra't!</h2>
+
+<div style="margin-top:30px"></div>
+
+<h5>Només has d'omplir aquest senzill formulari per enregistrar-te i poder començar a crear contingut, editar i valorar.</h5>
 
 
 
@@ -69,8 +72,8 @@
 	</span>
 	</div>
 
-	<%= u.text_field :coord_lat_browser %>
-	<%= u.text_field :coord_lng_browser %>
+	<%= u.hidden_field :coord_lat_browser %>
+	<%= u.hidden_field :coord_lng_browser %>
 
 	<div>
 		<%= u.submit "Registra't", :class=>"contingut_camp_boto"  %>

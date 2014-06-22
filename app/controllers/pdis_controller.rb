@@ -35,6 +35,12 @@ class PdisController < ApplicationController
 
     @pdi.el_meu_save(@etiquetes)
   	# @pdi.save
+
+    if @pdi.errors.count > 0
+        render('new')
+      else 
+        redirect_to pdi_path(@pdi)
+      end
   end
 
   def edit

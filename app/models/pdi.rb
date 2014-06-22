@@ -1,4 +1,7 @@
 class Pdi < ActiveRecord::Base
+  validates :nom, :presence => true, :uniqueness => { :message => "Aquest punt d'interès ja existeix." }
+  validates :coord_lat, :presence => { :message => "Aquest punt d'interès no és correcte, torna a buscar siusplau." }
+  validates :coord_lng, :presence => true
 
 	belongs_to :usuari
 	belongs_to :usuari_modificador, :class_name => "Usuari", :foreign_key => "usuari_modificador_id"
@@ -27,10 +30,11 @@ class Pdi < ActiveRecord::Base
 
 		#self.etiquetes_pdis = etiquetes_a_enllacar
 		
-		if self.coord_lat.blank?
-			self.coord_lat = 0
-			self.coord_lng = 0
-		end
+    # millor controlo per validació que no poden ser 0, així no m'asseguro de no tenir pdis inútils
+		#if self.coord_lat.blank?
+		#	self.coord_lat = 0
+		#	self.coord_lng = 0
+		#end
     self.punts = 0
 		self.save
 	end
