@@ -9,7 +9,7 @@
 <%if @pdis.count > 0 %>
 	<h5> Punts d'interès </h5>
 <% end %>
-<div>
+<div style="display:inline-block">
 <% @pdis.each do |pdi| %>
   <%= vari_classe = '' %>
   <div class="pdi_encapsulat">
@@ -69,13 +69,13 @@
 </div>
 <br> <br>
 
-<div style="float:none"></div>
+
 
 <%if @rts.count > 0 %>
 	<h6>Rutes turístiques</h6>
 <% end %>
 
-<div>
+<div style="display:inline-block">
 <% @rts.each do |rt| %>
 
 		<%
