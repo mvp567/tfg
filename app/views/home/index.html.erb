@@ -1,33 +1,40 @@
 
+<div style="position:relative; left:-100px;">
 <h1 style="display:none">Cerca, crea, edita. Comparteix les teves rutes.</h1>
-<div id="contingut_searcher">
+<div id="contingut_searcher" style="position:absolute;top:10px;left:0px;opacity: 0.8;">
 	<%= render :partial => '/layouts/cercador' %>
 </div>
 <!--<div style="width:100%; height:250px;overflow:hidden; margin-bottom:10px;">
       <img style="width:100%;" src="http://www.wallpele.com/wp-content/uploads/2013/05/Barcelona-City-HD-Wallpaper.png" alt="Barcelona">
 </div>-->
-<div style="width:100%; background-color: #fd879d; height:250px;overflow:hidden; margin-bottom:10px;">
+<!-- 
+<div style="width:100%; background-color: #fed2da; height:250px;overflow:hidden; margin-bottom:10px;">
   <img style="width:100px;position:relative; left:5%;" src="http://www.flaticon.com/png/256/34250.png" >
   <img style="width:200px;position:relative; left:25%;" src="http://www.flaticon.com/png/256/32364.png" >
   <img style="width:200px;position:relative; left:40%;" src="http://www.flaticon.com/png/256/40054.png" >
+  <h5 style="color:#fd879d"></h5>
 </div>
-<div id="contingut_funcionament">
+-->
+
+<img style="width:1140px;height:548px;margin-top:10px;" src="../../../portada.jpg" >
+
+<div id="contingut_funcionament" style="position:absolute;top:400px;left:0px;opacity: 0.9;">
 	<h2>Com funciona?</h2>
 	<div class="div_floatejant">
-		<p>1. Crea els punts d'interès si no existeixen ja. </p>
+		<p><span style="font-size:20px">1.</span> Crea els punts d'interès si no existeixen ja. </p>
 		<div style="position:relative; left: 17px;">
 			<%= link_to "Crea Punt d\'interès", {:controller => "pdis", :action => "new"}, {:class => "pdis_link_to_new"} %>
 		</div>
 	</div>
 
 	<div class="div_floatejant">
-		<p>2. Crea una ruta turística. </p>
+		<p><span style="font-size:20px">2.</span> Crea una ruta turística. </p>
 		<div style="position:relative; left: 17px;">
 			<%= link_to "Crea Ruta turística", {:controller => "ruta_turisticas", :action => "new"}, {:class => "rts_link_to_new"} %>
 		</div>
 	</div>
 </div>
-
+</div>
 <!--
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
