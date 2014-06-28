@@ -258,6 +258,7 @@ function initialize() {
 
     // ini
     var infowindow = new google.maps.InfoWindow();
+    var locations = [];
 
     $("li").each(function(index, value) {
       var lat = $(value).children( "input[id$='lat']" ).val();
@@ -270,22 +271,33 @@ function initialize() {
         waypointslatlng.push({
           location: myLatlng,
           stopover: true});
+
+        locations.push([$(value).children( "input[id$='nompdi']" ).val(), lat, lng]);
       }
 
-
-      // intent de posar multiples markers
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: window.map,
-            title: $( "input[id$='nompdi']" ).val()
-        });
-     
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(this.title);
-            infowindow.open(window.map, this);
-        });
+      
+  
       
     }); // end li each
+
+
+    // posa markers a cada PDI i amb el nom correcta
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: window.map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(window.map, marker);
+        }
+      })(marker, i));
+    }
+
 
 
     // això dibuixa la ruta-direccions al mapa

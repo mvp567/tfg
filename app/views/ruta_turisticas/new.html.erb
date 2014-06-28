@@ -14,7 +14,7 @@
 	</div>
 	<div>
 		<%= p.label :temps, :style=>"width:50px;"  %>	
-		<%= p.text_field :temps, :class=>"contingut_camp" %>
+		<%= p.text_field :temps, options = { :class=>"contingut_camp", :data => {:toggle=>"tooltip", :placement=>"right", :trigger=>"hover focus"}, :title=>"Afegeix el temps aproximat. Utilitza 'h' per expressar hores i 'd' per expressar dies."} %>
 		<div>
 			<%= @rt.errors[:temps].first %>
 		</div>

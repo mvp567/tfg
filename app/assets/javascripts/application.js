@@ -52,7 +52,6 @@ function remove_fields(link) {
 
 
 $( document ).ready(function() {
-
 /*Codi pel customdropdown*/
 	// customdropdown de la home, eo funciona, seleccionat no
   	$("li").on("click",function() {

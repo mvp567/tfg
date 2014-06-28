@@ -1,3 +1,5 @@
+
+
 <h5 style="background:#fffeeb;border-style:solid; border-width:1px; border-color:#fff2c6; color:#b28b00; padding:15px;" style="padding:10px;">Editant</h5>
 
 <h3> Ruta turística: <%= @rt.nom %> </h3>
@@ -17,7 +19,7 @@
 	</div>
 	<div>
 		<%= p.label :temps, :style=>"width:50px;" %>	
-		<%= p.text_field :temps, :class=>"contingut_camp" %>
+		<%= p.text_field :temps, options = { :class=>"contingut_camp", :data => {:toggle=>"tooltip", :placement=>"right"}, :title=>"Afegeix el temps aproximat. Utilitza 'h' per expressar hores i 'd' per expressar dies."} %>
 		<div>
 			<%= @rt.errors[:temps].first %>
 		</div>
