@@ -26,7 +26,7 @@ def new
         elsif params[:param_reputacio] == "5"
             @quest.param_reputacio = 800
         end
-byebug
+
         if params[:param_pais] == "2"
             @quest.param_pais_naixament = true 
             @quest.param_pais_residencia = true

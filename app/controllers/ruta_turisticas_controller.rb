@@ -126,6 +126,22 @@ class RutaTuristicasController < ApplicationController
       redirect_to ruta_turistica_path(rt)
     end
   end
+
+
+
+  def destroy
+    rt = RutaTuristica.find(params[:ruta_turistica_id])
+    
+    if (rt.valoracios.count.zero?)
+      rt.destroy
+      flash[:notice_verd] =  "Ruta turística esborrada."
+      redirect_to ruta_turisticas_path
+    else
+      flash[:notice] =  "Aquesta ruta turística no es pot esborrar perquè té valoracions."
+      redirect_to ruta_turistica_path(rt)
+    end
+  end
+
   
   def create_params
     params.require(:ruta_turistica).permit(:nom, :temps,

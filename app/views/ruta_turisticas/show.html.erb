@@ -1,3 +1,9 @@
+
+  <% if flash[:notice] %>
+    <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
+  
+
 <ol class="breadcrumb" style="margin-top:20px;">
   <li><a href="/">Home</a></li>
   <li><a href="/ruta_turisticas">Rutes turístiques</a></li>
@@ -19,6 +25,11 @@
   <br><br>
 
   	<%= link_to 'Edita', edit_ruta_turistica_path(@rt), :class => "edita_ruta fa fa-pencil-square-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
+    <% if usuari_actual == @rt.usuari %>
+      <%= link_to ' Elimina', {:controller=>"ruta_turisticas", :action=>"destroy", :ruta_turistica_id=>@rt.id}, :class=>"fa fa-trash-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
+    <% end %>
+
+
     <br><br>
 
   	Creat per <%= @rt.usuari.nom_usuari %> 

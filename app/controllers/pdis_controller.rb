@@ -251,11 +251,13 @@ class PdisController < ApplicationController
   def destroy
     pdi = Pdi.find(params[:pdi_id])
     
-    if (pdi.pdis_rutaturisticas.count.zero? && pdi.valoracios.count.zero?) || usuari_actual.nil?
+    if (pdi.pdis_rutaturisticas.count.zero? && pdi.valoracios.count.zero?)
       pdi.destroy
+      flash[:notice_verd] =  "Punt d'interès esborrat."
       redirect_to pdis_path
     else
-      redirect_to pdi_path(pdi) #amb un notice de q no es pot esborrar
+      flash[:notice] =  "Aquest punt d'interès no es pot esborrar perquè té valoracions o està inclòs en alguna ruta turística."
+      redirect_to pdi_path(pdi)
     end
   end
 

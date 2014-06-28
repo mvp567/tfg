@@ -1,3 +1,8 @@
+
+  <% if flash[:notice] %>
+    <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
+  <% end %>
+  
 <ol class="breadcrumb" style="margin-top:20px;">
   <li><a href="/">Home</a></li>
   <li><a href="/pdis">Punts d'interès</a></li>
@@ -61,7 +66,6 @@
 
 <% if usuari_actual == @pdi.usuari %>
 	<%= link_to ' Elimina', {:controller=>"pdis", :action=>"destroy", :pdi_id=>@pdi.id}, :class=>"fa fa-trash-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
-	<%#= link_to ' Elimina', pdis_path, :method => :delete, :class=>"fa fa-trash-o" %>
 <% end %>
 	
 	<br><br>

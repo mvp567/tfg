@@ -17,7 +17,6 @@ class RutaTuristica < ActiveRecord::Base
     	ordreRuta = 1
       params_pdis.sort! { |a,b| a["ordre"].to_i <=> b["ordre"].to_i }
    		params_pdis.each do |a|
-   			#byebug
       		pdi_seleccionat = a.values[1]["id"]
       		if !pdi_seleccionat.blank? && a.values[1]["_destroy"] == "false"
       			ll << PdisRutaturistica.new(:pdi_id => pdi_seleccionat, :ordre => ordreRuta)

@@ -2,6 +2,10 @@
     <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 
+<% if flash[:notice_verd] %>
+  <div style="margin-top:30px" class="alert alert-success"><%= flash[:notice_verd] %></div>
+<% end %>
+
 <p style="margin-top:30px;margin-bottom:30px;">Explora les rutes turístiques que han creat els usuaris.</p>
 
 <%= link_to "Crea Ruta turística", {:controller => "ruta_turisticas", :action => "new"}, {:class => "rts_link_to_new"} %>

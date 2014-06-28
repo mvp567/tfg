@@ -4,6 +4,9 @@
     <div style="margin-top:30px" class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 
+<% if flash[:notice_verd] %>
+  <div style="margin-top:30px" class="alert alert-success"><%= flash[:notice_verd] %></div>
+<% end %>
 
 <p style="margin-top:30px;margin-bottom:30px;" class="alert alert-warning">Si tens la geolocalització del navegador activada, en aquesta pàgina podràs veure els punts d'interès més propers a tu. <br>
 Sino, aquests són els últims punts d'interès creats.</p>

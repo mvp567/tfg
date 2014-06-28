@@ -18,6 +18,7 @@ Tfg::Application.routes.draw do
   resources :ruta_turisticas do
     get :favorit
     get :des_favorit
+    get :destroy
   end
   resources :valoracios
   resources :questionaris
