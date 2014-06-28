@@ -77,7 +77,7 @@
 	<br>
 	<%= @pdi.updated_at %>
 
-<div style="position:relative;bottom:-45px;">
+<div style="position:relative;bottom:-30px;">
 	<% if @es_favorit %>
 		<%= link_to " Favorit", {:controller=>"pdis", :action=>"des_favorit", :pdi_id=>@pdi.id}, :class=>"btn btn-default btn-sm fa fa-heart", :style=>"color:#f076a7" %>
 	<% else %>

@@ -40,7 +40,7 @@
     <br>
     <%= @rt.updated_at %>
   
-<div style="position:relative;bottom:-45px;">
+<div style="position:relative;bottom:-30px;">
   <% if @es_favorit %>
     <%= link_to " Favorit", {:controller=>"ruta_turisticas", :action=>"des_favorit", :ruta_turistica_id=>@rt.id}, :class=>"btn btn-default btn-sm fa fa-heart", :style=>"color:#f076a7" %>
   <% else %>

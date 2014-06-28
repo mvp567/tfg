@@ -54,6 +54,9 @@ class Usuari < ActiveRecord::Base
 			self.cognom = auth[:info][:last_name]
 		end
 
+		self.punts = 0
+		self.coord_lat_browser = 0
+		self.coord_lng_browser = 0
 
 		#a = Authentication.create(:provider => auth['provider'], :uid => auth['uid'])
 		a = Authentication.new
