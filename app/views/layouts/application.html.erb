@@ -62,16 +62,16 @@
            <div style="float: right; margin-right: 10px; margin-top: 10px;">
             <% if usuari_actual.nil? %>
               <div id="no_loguejat">
-                <%= link_to "Enregistra't", {:controller => "usuaris", :action => "new", :method => :get}, {:style => "color:#ca1496"} %>
+                <%= link_to "Enregistra't", {:controller => "usuaris", :action => "new", :method => :get}, {:style => "color:#ca1496; position:relative; z-index:20"} %>
                 <span> | </span>
-                <%= link_to "Inicia sessió", {:controller => "sessions", :action => "new", :method => :get}, {:style => "color:#ca1496"} %>
+                <%= link_to "Inicia sessió", {:controller => "sessions", :action => "new", :method => :get}, {:style => "color:#ca1496; position:relative; z-index:20"} %>
               </div>
             <% else %>
               <div id="loguejat">
                   <i class="fa fa-user" style="color:#ca1496"></i>
-                    <%= link_to usuari_actual.nom_usuari, usuari_path(usuari_actual), {:style => "color:#ca1496"} %>
+                    <%= link_to usuari_actual.nom_usuari, usuari_path(usuari_actual), {:style => "color:#ca1496; position:relative; z-index:20"} %>
                     <span> | </span>
-                    <%= link_to "Tanca sessió", {:controller => "sessions", :action => "destroy", :method => :delete}, {:style => "color:#ca1496"} %>
+                    <%= link_to "Tanca sessió", {:controller => "sessions", :action => "destroy", :method => :delete}, {:style => "color:#ca1496; position:relative; z-index:20"} %>
                </div>
             <% end %>
           </div>

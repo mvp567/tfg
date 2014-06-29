@@ -7,8 +7,7 @@ class UsuarisController < ApplicationController
 	def create
   		@usuari = Usuari.new(create_params)
       @usuari.punts = 0
-
-      if params[:coord_lat_browser].blank? || params[:coord_lng_browser].blank?
+      if params[:usuari][:coord_lat_browser].blank? || params[:usuari][:coord_lng_browser].blank?
         @usuari.coord_lat_browser = 0
         @usuari.coord_lng_browser = 0
       end

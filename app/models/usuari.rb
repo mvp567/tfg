@@ -57,7 +57,10 @@ class Usuari < ActiveRecord::Base
 		self.punts = 0
 		self.coord_lat_browser = 0
 		self.coord_lng_browser = 0
-
+		self.pais_id = 1
+		p = PaisResidencia.create(:pais_id => 1)
+		self.pais_residencias << p
+		
 		#a = Authentication.create(:provider => auth['provider'], :uid => auth['uid'])
 		a = Authentication.new
 		a.provider = auth['provider']

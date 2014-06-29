@@ -198,15 +198,15 @@ class PdisController < ApplicationController
         @hotels = Hotel.all
         @vistes = Vista.all
       else
-        @pdis = Pdi.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @restaurants = Restaurant.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @botigues = Botiga.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @museus = Museu.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @monuments = Monument.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @discoteques = Discoteca.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @entreteniment = Entreteniment.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @hotels = Hotel.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
-        @vistes = Vista.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 2000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @pdis = Pdi.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @restaurants = Restaurant.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @botigues = Botiga.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @museus = Museu.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @monuments = Monument.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @discoteques = Discoteca.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @entreteniment = Entreteniment.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @hotels = Hotel.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
+        @vistes = Vista.close_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser, 10000).distance_to(usuari_actual.coord_lat_browser, usuari_actual.coord_lng_browser)
       end
 
     else
