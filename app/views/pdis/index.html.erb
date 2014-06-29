@@ -73,7 +73,7 @@ Sino, aquests són els últims punts d'interès creats.</p>
 <% end %>
 </div>
 <br>
-<% if usuari_actual.coord_lat_browser != "0" %>
+<% if !usuari_actual.nil? && usuari_actual.coord_lat_browser != "0" %>
 <div style="display:inline-block">
 <%= link_to "Veure'ls tots", {:controller => :cercadors, :action => :index, :tipus => "1"}, {:class => "btn btn-default"} %>
 </div>
