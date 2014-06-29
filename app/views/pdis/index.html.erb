@@ -16,7 +16,7 @@ Sino, aquests són els últims punts d'interès creats.</p>
 
 
 <div class="row">
-
+<div style="display:inline-block">
 <% @pdis.each do |pdi| %>
   <%= vari_classe = '' %>
   <div class="pdi_encapsulat">
@@ -71,5 +71,11 @@ Sino, aquests són els últims punts d'interès creats.</p>
       </div>
   </div>
 <% end %>
-
+</div>
+<br>
+<% if usuari_actual.coord_lat_browser != "0" %>
+<div style="display:inline-block">
+<%= link_to "Veure'ls tots", {:controller => :cercadors, :action => :index, :tipus => "1"}, {:class => "btn btn-default"} %>
+</div>
+<% end %>
 </div>
