@@ -221,6 +221,7 @@ class PdisController < ApplicationController
 
   end
 
+
   def favorit
     if usuari_actual.nil?
       pdi = params[:pdi_id]

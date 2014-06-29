@@ -101,8 +101,8 @@
 
 <% if @pdi.type == "Restaurant" %>
 	<div>
-		<%= p.label :forquilles %>
-		<%#= p.text_field :etiqueta %>
+		<%= p.label :forquilles, :class=>"titol_camp_width" %>
+		<%= p.number_field :forquilles, :class=>"textbox_linia" %>
 		<div>
 			<%#= @pdi.errors[:etiqueta].first %>
 		</div>
@@ -113,8 +113,8 @@
 
 	<% if @pdi.type == "Hotel" %>
 	<div>
-		<%= p.label :estrelles %>
-		<%#= p.text_field :etiqueta %>
+		<%= p.label :estrelles, :class=>"titol_camp_width" %>
+		<%= p.number_field :estrelles, :class=>"textbox_linia" %>
 		<div>
 			<%#= @pdi.errors[:etiqueta].first %>
 		</div>

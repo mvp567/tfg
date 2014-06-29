@@ -28,8 +28,7 @@ module Merit
       
       score 10, :on => ['sessions#create']
 
-      score 10, :on => 'valoracios#create' do |val|
-
+      score 10, :on => 'valoracios#create', :to => :pointer do |val|
         spm = false
         if !val.pdi.nil?
           if val.pdi.valoracios.count.modulo(5).zero?
@@ -42,9 +41,22 @@ module Merit
 
               puntsPDI /= 5
 
-              if puntsPDI > 5
+              if puntsPDI >= 5
                 spm = true
               end
+          end
+
+          spm == true
+
+        end
+      end #score
+
+
+      score 50, :on => 'valoracios#create', :to => :pointerrt do |val|
+        spm = false
+        if !val.ruta_turistica.nil?
+          if val.ruta_turistica.punts >= 5
+            spm = true
           end
 
           spm == true

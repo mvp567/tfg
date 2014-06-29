@@ -23,8 +23,9 @@
 <div class="capsula_info_rt"> 
   <i class="fa fa-trophy fa-lg punts_pdi" > <%= '%.1f' % @rt.punts %></i>
   <br><br>
-
-  	<%= link_to 'Edita', edit_ruta_turistica_path(@rt), :class => "edita_ruta fa fa-pencil-square-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
+    <% if !usuari_actual.nil? %>
+  	  <%= link_to 'Edita', edit_ruta_turistica_path(@rt), :class => "edita_ruta fa fa-pencil-square-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
+      <% end %>
     <% if usuari_actual == @rt.usuari %>
       <%= link_to ' Elimina', {:controller=>"ruta_turisticas", :action=>"destroy", :ruta_turistica_id=>@rt.id}, :class=>"fa fa-trash-o", :style => "color: white; font-size:14px;font-weight:bold;" %>
     <% end %>
@@ -32,11 +33,11 @@
 
     <br><br>
 
-  	Creat per <%= @rt.usuari.nom_usuari %> 
+  	Creat per <%= link_to @rt.usuari.nom_usuari, usuari_path(@rt.usuari), :class=>"links_nets" %>
     <br>
     <%= @rt.created_at %>
     <br><br>
-  	Última modificació: <%= @rt.usuari_modificador.nom_usuari %>
+  	Última modificació: <%= link_to @rt.usuari_modificador.nom_usuari, usuari_path(@rt.usuari_modificador), :class=>"links_nets" %>
     <br>
     <%= @rt.updated_at %>
   

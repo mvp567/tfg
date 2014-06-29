@@ -104,28 +104,28 @@
 
 
 	<div>
-		<%= p.label :horari, "horari_hidden", :class=>"titol_camp_esq" %>
-		<%= p.text_field :horari, :class=>"textbox_linia" %>
+		<%#= p.label :horari, "horari_hidden", :class=>"titol_camp_esq" %>
+		<%= p.hidden_field :horari, :class=>"textbox_linia" %>
 	</div>
 
 	<div>
-		<%= p.label :fotos_petites, "fotos_hidden", :class=>"titol_camp_esq" %>
-		<%= p.text_field :fotos_petites, :class=>"textbox_linia" %>
+		<%#= p.label :fotos_petites, "fotos_hidden", :class=>"titol_camp_esq" %>
+		<%= p.hidden_field :fotos_petites, :class=>"textbox_linia" %>
 	</div>
 
 	<div>
-		<%= p.label :fotos_grans, "fotos_hidden", :class=>"titol_camp_esq" %>
-		<%= p.text_field :fotos_grans, :class=>"textbox_linia" %>
+		<%#= p.label :fotos_grans, "fotos_hidden", :class=>"titol_camp_esq" %>
+		<%= p.hidden_field :fotos_grans, :class=>"textbox_linia" %>
 	</div>
 
 	<div>
-		<%= p.label :icone, "icone_hidden", :class=>"titol_camp_esq" %>
-		<%= p.text_field :icone, :class=>"textbox_linia" %>
+		<%#= p.label :icone, "icone_hidden", :class=>"titol_camp_esq" %>
+		<%= p.hidden_field :icone, :class=>"textbox_linia" %>
 	</div>
 
 	<div>
-		<%= p.label :place_reference, "place_reference_hidden", :class=>"titol_camp_esq" %>
-		<%= p.text_field :place_reference, :class=>"textbox_linia" %>
+		<%#= p.label :place_reference, "place_reference_hidden", :class=>"titol_camp_esq" %>
+		<%= p.hidden_field :place_reference, :class=>"textbox_linia" %>
 	</div>
 
 		<%= p.hidden_field :nivell_preu  %>
@@ -153,13 +153,13 @@
 		<%= p.text_field :pais, :class=>"textbox_linia"  %>
 	</div>
 
-	<%= p.text_field :coord_lat %>
-	<%= p.text_field :coord_lng %>
+	<%= p.hidden_field :coord_lat %>
+	<%= p.hidden_field :coord_lng %>
 
 <% if @tipus_valor == "Restaurant" %>
 	<div>
-		<%= p.label :forquilles %>
-		<%#= p.text_field :etiqueta %>
+		<%= p.label :forquilles, :class=>"titol_camp_esq" %>
+		<%= p.number_field :forquilles, :class=>"textbox_linia" %>
 		<div>
 			<%#= @pdi.errors[:etiqueta].first %>
 		</div>
@@ -170,8 +170,8 @@
 
 	<% if @tipus_valor == "Hotel" %>
 	<div>
-		<%= p.label :estrelles %>
-		<%#= p.text_field :etiqueta %>
+		<%= p.label :estrelles, :class=>"titol_camp_esq" %>
+		<%= p.number_field :estrelles, :class=>"textbox_linia" %>
 		<div>
 			<%#= @pdi.errors[:etiqueta].first %>
 		</div>

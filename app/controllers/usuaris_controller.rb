@@ -18,6 +18,7 @@ class UsuarisController < ApplicationController
   		@usuari.save
   		# save! retorna una excepció. sense el signe d'admiració retorna un booleà i que @usuari té tots els errors @usuari.errors
   	  if @usuari.errors.count > 0
+        @paisos = Pais.all
         render('new')
       else 
         # TODO redirigir a l'autèntica home

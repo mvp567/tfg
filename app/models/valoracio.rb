@@ -14,4 +14,12 @@ class Valoracio < ActiveRecord::Base
 			@rtt.calcula_punts
 		end
 	end
+
+	def pointer
+		self.pdi.usuari
+	end
+
+	def pointerrt
+		self.ruta_turistica.usuari
+	end
 end
