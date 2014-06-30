@@ -7,7 +7,7 @@
 
 <%= form_for @usuari, :class=>"form-horizontal" do |u| %>
 	<div class="control-group, <%= @usuari.errors[:nom_usuari].present? ? 'camp_amb_errors' : '' %>">
-		<%= u.label :nom_usuari, :class=>"titol_camp" %>	
+		<%= u.label "Nom usuari *", :class=>"titol_camp" %>	
 		<%= u.text_field :nom_usuari, :class=>"contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:nom_usuari].first %>
@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="<%= @usuari.errors[:email].present? ? 'camp_amb_errors' : '' %>">
-		<%= u.label :email, :class=>"titol_camp" %>	
+		<%= u.label "Email *", :class=>"titol_camp" %>	
 		<%= u.email_field :email, :class=>"contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:email].first %>
@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="<%= @usuari.errors[:password].present? ? 'camp_amb_errors' : '' %>">
-		<%= u.label :password, :class=>"titol_camp" %>	
+		<%= u.label "Contrasenya *", :class=>"titol_camp" %>	
 		<%= u.password_field :password, :class=>"contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:password].first %>
@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="<%= @usuari.errors[:password_confirmation].present? ? 'camp_amb_errors' : '' %>">
-		<%= u.label :password_confirmation, :class=>"titol_camp" %>	
+		<%= u.label "Confirma contrasenya *", :class=>"titol_camp" %>	
 		<%= u.password_field :password_confirmation, :class=>"contingut_camp" %>
 		<div>
 			<%= @usuari.errors[:password_confirmation].first %>
